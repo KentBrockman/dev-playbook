@@ -10,3 +10,5 @@
   snap:
     name: code
     classic: yes
+
+# configure VSCode plugins...

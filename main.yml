@@ -3,5 +3,8 @@
   connection: local
   tasks:
       # TODO: tags
+      # TODO: become here?
     - import_tasks: tasks/editor.yml
     - import_tasks: tasks/terminal.yml
+    - import_tasks: tasks/applications.yml
+      tags: ['applications']

@@ -1,4 +1,13 @@
 ---
+- name: install terminal related packages
+  become: true
+  apt:
+    pkg:
+      - zsh
+      - zsh-autosuggestions
+      - tmux
+      - vim
+    
 - name: check if dotfiles are installed
   stat:
     path: ~/dotfiles
@@ -15,21 +24,13 @@
       command: ~/dotfiles/install.sh
   when: dotfiles.stat.exists == False
 
-- name: Clone oh-my-zsh repo
+- name: Install oh-my-zsh
   git: 
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
 
 # apply patch to agnoster or copy in custom theme
 
-- name: install terminal related packages
-  become: true
-  apt:
-    pkg:
-      - zsh
-      # - zsh-completions
-      - zsh-autosuggestions
-      - tmux
-
 # change default shell
 # install powerline font
+# install vim plugins

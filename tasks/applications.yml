@@ -1,0 +1,28 @@
+---
+- name: install spotify
+  become: true
+  snap: 
+    name: spotify
+
+- name: install slack
+  become: true
+  snap:
+    name: slack
+    classic: true
+
+- name: install virtualbox
+  become: true
+  apt:
+    name: virtualbox
+
+- name: install docker
+  become: true
+  snap:
+    name: docker
+
+# - name: ensure current user is in docker group
+#   become: true
+#   user:
+#     name: "{{ ansible_user_id }}"
+#     group: docker
+#     append: yes
