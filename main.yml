@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+      # TODO: tags
+    - import_tasks: tasks/editor.yml
+    - import_tasks: tasks/terminal.yml

@@ -1,0 +1,12 @@
+---
+- name: install snapd
+  become: true
+  apt:
+    name: snapd
+    state: present
+
+- name: install vscode
+  become: true
+  snap:
+    name: code
+    classic: yes
