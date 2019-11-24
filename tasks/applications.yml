@@ -17,7 +17,7 @@
 
 - name: install docker
   become: true
-  snap:
+  snap: 
     name: docker
 
 - name: docker group exists
@@ -32,3 +32,8 @@
     name: "{{ ansible_user_id }}"
     group: docker
     append: yes
+
+- name: install timeshift
+  become: true
+  apt:
+    name: timeshift

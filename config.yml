@@ -1,2 +1,3 @@
 ---
-install_dotfiles: False
+install_dotfiles: True
+hostname: phoenix
