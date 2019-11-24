@@ -22,12 +22,24 @@
 
     - name: install dotfiles
       command: ~/dotfiles/install.sh
-  when: dotfiles.stat.exists == False or install_dotfiles == True
+  when: dotfiles.stat.exists == False and install_dotfiles == True
 
 - name: Install oh-my-zsh
   git: 
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
+
+- name: find preferred shell
+  stat:
+    path: "{{ preferred_shell }}"
+  register: preferred_shell_executable
+
+- name: set preferred shell for user
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: "{{ preferred_shell }}"
+  when: preferred_shell_executable.stat.exists
 
 # apply patch to agnoster or copy in custom theme
 

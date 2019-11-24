@@ -1,3 +1,4 @@
 ---
 install_dotfiles: True
 hostname: phoenix
+preferred_shell: /usr/bin/zsh
