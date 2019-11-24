@@ -3,6 +3,14 @@
   connection: local
   vars_files:
     - config.yml
+
+  pre_tasks:
+    - name: update packages
+      become: true
+      apt: 
+        update_cache: yes
+      changed_when: False
+
   tasks:
     - import_tasks: tasks/editor.yml
       tags: ['editor']
