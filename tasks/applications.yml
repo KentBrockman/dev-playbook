@@ -20,9 +20,15 @@
   snap:
     name: docker
 
-# - name: ensure current user is in docker group
-#   become: true
-#   user:
-#     name: "{{ ansible_user_id }}"
-#     group: docker
-#     append: yes
+- name: docker group exists
+  become: true
+  group:
+    name: docker
+    state: present
+
+- name: ensure current user is in docker group
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    group: docker
+    append: yes

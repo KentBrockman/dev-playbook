@@ -22,7 +22,7 @@
 
     - name: install dotfiles
       command: ~/dotfiles/install.sh
-  when: dotfiles.stat.exists == False
+  when: dotfiles.stat.exists == False or install_dotfiles == True
 
 - name: Install oh-my-zsh
   git: 
