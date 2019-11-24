@@ -2,3 +2,7 @@
 install_dotfiles: True
 hostname: phoenix
 preferred_shell: /usr/bin/zsh
+
+packages:
+  # TODO: figure out how to configure
+  - gnome-tweak-tool
