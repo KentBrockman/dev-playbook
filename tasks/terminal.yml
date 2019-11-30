@@ -7,7 +7,7 @@
       - zsh-autosuggestions
       - tmux
       - vim
-    
+
 - name: check if dotfiles are installed
   stat:
     path: ~/dotfiles
@@ -25,11 +25,11 @@
   when: dotfiles.stat.exists == False and install_dotfiles == True
 
 - name: Install oh-my-zsh
-  git: 
+  git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
 
-- name: find preferred shell
+- name: confirm preferred shell executable is installed
   stat:
     path: "{{ preferred_shell }}"
   register: preferred_shell_executable
@@ -40,7 +40,6 @@
     name: "{{ ansible_user_id }}"
     shell: "{{ preferred_shell }}"
   when: preferred_shell_executable.stat.exists
-
 # apply patch to agnoster or copy in custom theme
 
 # change default shell

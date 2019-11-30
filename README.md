@@ -5,7 +5,10 @@ Currently targeting Pop!_OS 19.10.
 
 ## Installation
 
-1. Install Ansible. I'm currently using 2.8
+1. Install Ansible. I'm currently using 2.8.
+    ```
+    sudo apt install ansible
+    ```
 2. Check out this repo and install `ansible-playbook main.yml -K`
 
 ## Undocumented tweaks:

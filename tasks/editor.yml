@@ -10,5 +10,6 @@
   snap:
     name: code
     classic: yes
-
-# configure VSCode plugins...
+# TODO: configure VSCode using the gist below
+# see https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54 for all vscode settings
+# install VSCode sync and pull these settings down to complete
