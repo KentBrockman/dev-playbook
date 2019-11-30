@@ -13,5 +13,13 @@
   #   classic: yes
   apt:
     deb: https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
+
 # configure VSCode using gist - https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54
 # install VSCode sync and pull these settings down to complete
+
+- name: install packages to help vscode
+  become: true
+  apt:
+    name:
+      # builds tag databases for symbol search
+      - universal-ctags
