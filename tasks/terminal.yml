@@ -3,10 +3,15 @@
   become: true
   apt:
     pkg:
+      # better shell and helper methods
       - zsh
       - zsh-autosuggestions
+      # terminal multiplexer
       - tmux
+      # cli text editor
       - vim
+      # use clipboard from terminal
+      - xclip
 
 - name: check if dotfiles are installed
   stat:

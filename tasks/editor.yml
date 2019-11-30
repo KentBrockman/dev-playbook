@@ -7,9 +7,11 @@
 
 - name: install vscode
   become: true
-  snap:
-    name: code
-    classic: yes
-# TODO: configure VSCode using the gist below
-# see https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54 for all vscode settings
+  # seems to have buggy behaviour - caps lock escape doesnt remap, backspace doesnt work in preferences search, etc
+  # snap:
+  #   name: code
+  #   classic: yes
+  apt:
+    deb: https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
+# configure VSCode using gist - https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54
 # install VSCode sync and pull these settings down to complete
