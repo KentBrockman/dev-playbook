@@ -20,4 +20,3 @@ Currently targeting Pop!\_OS 19.10.
 Would be nice to include these...
 
 - Remap Capslock to Escape
-- Customize Firefox - Ctrl+Tab cycles through tabs in most recent order unchecked
