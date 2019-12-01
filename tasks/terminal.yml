@@ -45,8 +45,5 @@
     name: "{{ ansible_user_id }}"
     shell: "{{ preferred_shell }}"
   when: preferred_shell_executable.stat.exists
-# apply patch to agnoster or copy in custom theme
-
-# change default shell
 # install powerline font
 # install vim plugins
