@@ -27,3 +27,5 @@
       tags: ["terminal"]
     - import_tasks: tasks/applications.yml
       tags: ["applications"]
+    - import_tasks: tasks/tmux-plugins.yml
+      tags: ["tmux-plugins"]

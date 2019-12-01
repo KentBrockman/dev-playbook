@@ -1,0 +1,15 @@
+---
+- name: tmux plugin manager directory exists
+  file:
+    name: ~/.tmux/plugins
+    state: directory
+
+- name: install tmux plugin manager (tpm)
+  git:
+    repo: https://github.com/tmux-plugins/tpm.git
+    dest: ~/.tmux/plugins/tpm
+    version: v3.0.0
+
+# Note: must have plugin lines uncommented for this to work
+- name: install tmux plugins
+  command: ~/.tmux/plugins/tpm/bin/install_plugins
