@@ -10,13 +10,7 @@
   snap:
     name: "{{ item.name }}"
     classic: "{{ item.classic }}"
-  with_items:
-    - name: slack
-      classic: true
-    - name: spotify
-      classic: false
-    - name: docker
-      classic: false
+  with_items: "{{ snap_applications }}"
 
 - name: docker group exists
   become: true
@@ -34,7 +28,4 @@
 - name: install applications via apt
   become: true
   apt:
-    name: "{{ item }}"
-  with_items:
-    - timeshift
-    - virtualbox
+    pkg: "{{ apt_applications }}"

@@ -25,3 +25,17 @@ firefox_profiles:
       datareporting.healthreport.uploadEnabled: "false"
       browser.ctrlTab.recentlyUsedOrder: "false"
       browser.search.defaultenginename: "'DuckDuckGo'"
+
+# all the applications you like and want managed by snap
+snap_applications:
+  - name: slack
+    classic: true
+  - name: spotify
+    classic: false
+  - name: docker
+    classic: false
+
+# all the applications you like and want managed by apt
+apt_applications:
+  - timeshift
+  - virtualbox
