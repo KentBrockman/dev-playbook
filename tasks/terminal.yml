@@ -45,5 +45,13 @@
     name: "{{ ansible_user_id }}"
     shell: "{{ preferred_shell }}"
   when: preferred_shell_executable.stat.exists
-# install powerline font
-# install vim plugins
+
+- name: ensure local font directory exists
+  file:
+    name: ~/.local/share/fonts
+    state: directory
+
+- name: Monaco for Powerline font installed
+  file:
+    src: files/Monaco-for-Powerline.ttf
+    dest: ~/.local/share/fonts/Monaco-for-Powerline.ttf
