@@ -1,0 +1,15 @@
+---
+- name: vim plugin manager directory exists
+  file:
+    name: ~/.vim/bundle
+    state: directory
+
+- name: install vim plugin manager (vundle)
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: ~/.vim/bundle/Vundle.vim
+    version: v0.10.2
+
+# Note: must have plugin lines uncommented for this to work
+- name: install vim plugins
+  command: vim +PluginInstall +qall

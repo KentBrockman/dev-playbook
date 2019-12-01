@@ -29,3 +29,5 @@
       tags: ["applications"]
     - import_tasks: tasks/tmux-plugins.yml
       tags: ["tmux-plugins"]
+    - import_tasks: tasks/vim-plugins.yml
+      tags: ["vim-plugins"]
