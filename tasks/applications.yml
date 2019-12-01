@@ -1,24 +1,22 @@
 ---
-- name: install spotify
-  become: true
-  snap: 
-    name: spotify
-
-- name: install slack
-  become: true
-  snap:
-    name: slack
-    classic: true
-
-- name: install virtualbox
+- name: install snapd
   become: true
   apt:
-    name: virtualbox
+    name: snapd
+    state: present
 
-- name: install docker
+- name: install applications via snap
   become: true
-  snap: 
-    name: docker
+  snap:
+    name: "{{ item.name }}"
+    classic: "{{ item.classic }}"
+  with_items:
+    - name: slack
+      classic: true
+    - name: spotify
+      classic: false
+    - name: docker
+      classic: false
 
 - name: docker group exists
   become: true
@@ -33,7 +31,10 @@
     group: docker
     append: yes
 
-- name: install timeshift
+- name: install applications via apt
   become: true
   apt:
-    name: timeshift
+    name: "{{ item }}"
+  with_items:
+    - timeshift
+    - virtualbox

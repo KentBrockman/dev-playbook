@@ -11,7 +11,7 @@
     version: v3.0.0
 
 # Note: must have plugin lines in tmux.conf uncommented for this to work
-# TODO: when run via ansible-playbook, a prompt appears for github credentials. how to not have this?
+# TODO: this is always marked changed cause we run a command. can you make this more idempotent?
 - name: install tmux plugins
   command: ~/.tmux/plugins/tpm/bin/install_plugins
 
@@ -22,4 +22,4 @@
     minute: "*/20"
     # save tmux panes, do it quietly so I dont see it
     job: ~/.tmux/./plugins/tmux-resurrect/scripts/save.sh quiet
-# TODO: include conditional in tmux.conf - reload tmux if there is a save?
+# TODO: include conditional in tmux.conf - reload tmux panes on tmux start if there is a save available

@@ -1,21 +1,12 @@
 ---
-- name: install snapd
-  become: true
-  apt:
-    name: snapd
-    state: present
-
 - name: install vscode
   become: true
-  # seems to have buggy behaviour - caps lock escape doesnt remap, backspace doesnt work in preferences search, etc
-  # snap:
-  #   name: code
-  #   classic: yes
+  # use apt instead of snap. snap has buggy behaviour e.g. caps lock escape doesnt remap, backspace doesnt work in preferences search
   apt:
     deb: https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 
 # TODO: automate configuring VSCode using the following gist - https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54
-# manually: install VSCode sync and pull gist settings
+# manually: install shan.code-settings-sync and pull gist settings
 
 - name: install packages to help vscode
   become: true
