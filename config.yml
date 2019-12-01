@@ -17,6 +17,7 @@ firefox_profiles:
       # TODO: enable extesions after install
       - ublock-origin
       - tridactyl-vim
+      - lastpass-password-manager
     preferences:
       privacy.donottrackheader.enabled: "true"
       privacy.trackingprotection.enabled: "true"
