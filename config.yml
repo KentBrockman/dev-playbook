@@ -10,3 +10,17 @@ packages:
   - nixnote2
   # https://zealdocs.org/
   - zeal
+
+firefox_profiles:
+  default-release:
+    extensions:
+      # TODO: enable extesions after install
+      - ublock-origin
+      - tridactyl-vim
+    preferences:
+      privacy.donottrackheader.enabled: "true"
+      privacy.trackingprotection.enabled: "true"
+      signon.rememberSignons: "false"
+      datareporting.healthreport.uploadEnabled: "false"
+      browser.ctrlTab.recentlyUsedOrder: "false"
+      browser.search.defaultenginename: "'DuckDuckGo'"
