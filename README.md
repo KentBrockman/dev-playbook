@@ -14,9 +14,3 @@ Currently targeting Pop!\_OS 19.10.
    ansible-galaxy install basvandenbrink.firefox
    ```
 3. Check out this repo and install `ansible-playbook main.yml -K`
-
-## Undocumented tweaks:
-
-Would be nice to include these...
-
-- Remap Capslock to Escape
