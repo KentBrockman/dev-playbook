@@ -20,7 +20,7 @@
     name: save tmux panes
     # run every 20 minutes: https://crontab.guru/#*/20_*_*_*_*
     minute: "*/20"
-    # save tmux panes, do it quietly so I dont see it
-    # TODO: dont save unless tmux server is running, otherwise we overwrite existing configurations
-    job: ~/.tmux/./plugins/tmux-resurrect/scripts/save.sh quiet
+    # save tmux panes quietly so I dont see it
+    # dont save panes unless tmux server is running otherwise we overwrite our old configuration
+    job: tmux server-info &> /dev/null; if [[ $? == 0 ]]; then ~/.tmux/plugins/tmux-resurrect/scripts/save.sh quiet; else echo "tmux server not running. dont save session"; fi
 # TODO: include conditional in tmux.conf - reload tmux panes on tmux start if there is a save available
