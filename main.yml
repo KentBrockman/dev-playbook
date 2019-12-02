@@ -31,3 +31,5 @@
       tags: ["tmux-plugins"]
     - import_tasks: tasks/vim-plugins.yml
       tags: ["vim-plugins"]
+    - import_tasks: tasks/gnome-desktop.yml
+      tags: ["gnome-desktop"]

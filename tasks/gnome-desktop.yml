@@ -1,0 +1,52 @@
+---
+- name: dependencies for managing gnome-desktop settings via ansible
+  become: true
+  apt:
+    name:
+      - python3-psutil
+      - gnome-tweaks
+
+- name: set GNOME desktop preferences
+  dconf:
+    key: "{{item.key | string}}"
+    value: "{{item.value}}"
+  # dconf settings can be a little finicky, so be careful how you use them
+  # see this for a good guide: https://docs.ansible.com/ansible/latest/modules/dconf_module.html#notes
+  # basically: make sure values have single quotes around them so ansibles dconf module parses them as strings
+  with_items:
+    # display temperatures in celsius
+    - key: /org/gnome/GWeather/temperature-unit
+      value: "'centigrade'"
+
+    # invert scrolling so it is similar to MacOS. if you like windows scrolling set to false
+    - key: /org/gnome/desktop/peripherals/touchpad/natural-scroll
+      value: "true"
+      # use two fingers on the track pad to scroll
+    - key: /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled
+      value: "true"
+
+    # enable f.lux style blue-light reduction in display
+    - key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+      value: "true"
+
+    # determine where in the world we are for weather purposes
+    - key: /org/gnome/shell/weather/automatic-location
+      value: "true"
+
+    # TODO: we are hardcoding a profile ID - does this work on a fresh install? or should we create a profile and set it as default?
+    # solarized dark
+    - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-color
+      value: "'rgb(0,43,54)'"
+    # use powerline font provided + installed from this repo
+    - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/font
+      value: "'Monaco for Powerline 10'"
+    # solarized dark
+    - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/foreground-color
+      value: "'rgb(131,148,150)'"
+    # use solarized palette
+    - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/palette
+      value: "['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']"
+
+    # Escape is a far more useful key than capslock (at least for vim users) so remap it to escape
+    - key: /org/gnome/desktop/input-sources/xkb-options
+      value: "['caps:escape']"

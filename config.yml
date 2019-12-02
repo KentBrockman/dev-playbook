@@ -4,8 +4,6 @@ hostname: phoenix
 preferred_shell: /usr/bin/zsh
 
 packages:
-  # TODO: dont forget my settings in dconf
-  - gnome-tweak-tool
   # http://www.nixnote.org/NixNote-Home/
   - nixnote2
   # https://zealdocs.org/
