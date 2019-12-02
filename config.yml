@@ -3,16 +3,11 @@ install_dotfiles: True
 hostname: phoenix
 preferred_shell: /usr/bin/zsh
 
-packages:
-  # http://www.nixnote.org/NixNote-Home/
-  - nixnote2
-  # https://zealdocs.org/
-  - zeal
-
 firefox_profiles:
   default-release:
     extensions:
       # TODO: enable extensions after install. they are disabled by default
+      # TODO: automatically configure extentions (e.g. tridactyl-vim URL ignore list)
       - ublock-origin
       - tridactyl-vim
       - lastpass-password-manager
@@ -35,8 +30,16 @@ snap_applications:
 
 # all the applications you like and want managed by apt
 apt_applications:
+  # for making backups/restore points
   - timeshift
+  # virtual machines
   - virtualbox
+  # timer to help me work using pomodoro technique: https://en.wikipedia.org/wiki/Pomodoro_Technique
+  - gnome-pomodoro
+  # open source evernote client
+  - nixnote2
+  # offline documentation viewer. nice for working on an offline/airplane/roadtrip
+  # - zeal
 
 # gnome-desktop uses the dconf database under the hood for managing settings
 # dconf is a key-value storage and how you specify values can be a little finicky
@@ -63,6 +66,8 @@ gnome_desktop_settings:
     value: "true"
 
   # TODO: we are hardcoding a profile ID - does this work on a fresh install? or should we create a profile and set it as default?
+  # if you use a different color scheme or font, overwrite these keys in your fork
+  # see the keys/values on your own system with the command: dconf dump /
   # solarized dark
   - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-color
     value: "'rgb(0,43,54)'"
@@ -72,7 +77,6 @@ gnome_desktop_settings:
   # use solarized palette
   - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/palette
     value: "['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']"
-
   # use powerline font provided + installed from this repo
   - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/font
     value: "'Monaco for Powerline 10'"
