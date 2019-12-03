@@ -2,6 +2,7 @@
 install_dotfiles: True
 hostname: phoenix
 preferred_shell: /usr/bin/zsh
+install_battery_management_tools: true
 
 firefox_profiles:
   default-release:

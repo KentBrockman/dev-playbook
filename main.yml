@@ -33,3 +33,6 @@
       tags: ["vim-plugins"]
     - import_tasks: tasks/gnome-desktop.yml
       tags: ["gnome-desktop"]
+    - import_tasks: tasks/battery-management.yml
+      tags: ["battery-management"]
+      when: install_battery_management_tools
