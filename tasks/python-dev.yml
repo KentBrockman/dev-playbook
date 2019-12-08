@@ -1,0 +1,16 @@
+---
+- name: install python3 for development
+  become: true
+  apt:
+    name:
+      - python3-dev
+      - python3-pip
+      - python3-tk
+
+- name: install packages
+  pip:
+    name:
+      - wheel
+      - virtualenv
+      - virtualenvwrapper
+    executable: pip3

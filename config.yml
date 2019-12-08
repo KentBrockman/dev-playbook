@@ -39,7 +39,7 @@ apt_applications:
   - gnome-pomodoro
   # open source evernote client
   - nixnote2
-  # offline documentation viewer. nice for working on an offline/airplane/roadtrip
+  # view developer documentation offline. nice for working on an offline/airplane/roadtrip
   # - zeal
 
 # gnome-desktop uses the dconf database under the hood for managing settings

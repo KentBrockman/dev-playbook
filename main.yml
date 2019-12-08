@@ -36,3 +36,5 @@
     - import_tasks: tasks/battery-management.yml
       tags: ["battery-management"]
       when: install_battery_management_tools
+    - import_tasks: tasks/python-dev.yml
+      tags: ["python-dev"]
