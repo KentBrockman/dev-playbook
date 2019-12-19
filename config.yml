@@ -28,6 +28,7 @@ snap_applications:
     classic: false
 
 # all the applications you like and want managed by apt
+# TODO: pin versions?
 apt_applications:
   # team chat
   - slack-desktop

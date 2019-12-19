@@ -2,6 +2,7 @@
 - name: install vscode
   become: true
   # use apt instead of snap. snap has buggy behaviour e.g. caps lock escape doesnt remap, backspace doesnt work in preferences search
+  # TODO: pin versions?
   apt:
     deb: https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 
