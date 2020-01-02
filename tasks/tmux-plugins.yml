@@ -15,7 +15,11 @@
 - name: install tmux plugins
   command: ~/.tmux/plugins/tpm/bin/install_plugins
   environment:
-    # TODO: this is really hard coded, but isnt set otherwise...
+    # needs to be set for plugins to install
+    # this is a fairly standard place for tmux plugins
+    # but the hardcoding is still bad
+    # TODO: do not hardcode or at least infer first
+    # maybe set in config.yml?
     TMUX_PLUGIN_MANAGER_PATH: $HOME/.tmux/plugins/
 
 - name: periodically save tmux configuration

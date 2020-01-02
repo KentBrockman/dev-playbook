@@ -7,7 +7,10 @@
     deb: https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
 
 # TODO: automate configuring VSCode using the following gist - https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54
-# manually: install shan.code-settings-sync and pull gist settings
+# code --install-extension Shan.code-settings-sync
+# set this line in settings.json:   "sync.gist": "f5b65a7d81e236973d21493b0be0ba54"
+# move gist id to config.yml
+# unsure how to execute command to sync settings from commandline. does not appear to be a way
 
 - name: install packages to help vscode
   become: true

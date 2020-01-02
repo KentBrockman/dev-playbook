@@ -3,7 +3,9 @@
   become: true
   apt:
     name:
+      # package for recording system resource (CPU, RAM, etc) information
       - python3-psutil
+      # lots of extra gnome customizations
       - gnome-tweaks
 
 - name: set GNOME desktop preferences

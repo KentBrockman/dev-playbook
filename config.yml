@@ -73,7 +73,6 @@ gnome_desktop_settings:
   - key: /org/gnome/shell/weather/automatic-location
     value: "true"
 
-  # TODO: we are hardcoding a profile ID - does this work on a fresh install? or should we create a profile and set it as default?
   # if you use a different color scheme or font, overwrite these keys in your fork
   # see the keys/values on your own system with the command: dconf dump /
   # solarized dark
