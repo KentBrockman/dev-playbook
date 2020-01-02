@@ -52,6 +52,6 @@
     state: directory
 
 - name: Monaco for Powerline font installed
-  file:
+  copy:
     src: files/Monaco-for-Powerline.ttf
     dest: ~/.local/share/fonts/Monaco-for-Powerline.ttf

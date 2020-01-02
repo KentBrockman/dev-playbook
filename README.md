@@ -16,11 +16,11 @@ Currently targeting and tested against [Pop!\_OS 19.10](https://system76.com/pop
    sudo apt install ansible
    ansible-playbook --version
    ```
-3. Install modules:
+3. Install roles:
    ```
-   ansible-galaxy install basvandenbrink.firefox
+   ansible-galaxy install -r requirements.yml
    ```
-4. Run the playbook like so:
+4. Run the playbook with sudo permission:
    ```
    ansible-playbook main.yml -K
    ```

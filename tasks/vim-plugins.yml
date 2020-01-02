@@ -11,6 +11,8 @@
     version: v0.10.2
 
 # Note: must have plugin lines uncommented for this to work
-# TODO: when run via ansible-playbook, a prompt appears for github credentials. can you get rid of this?
+# If you get a github prompt on this its possible you've mistyped a plugin name
+# https://github.com/VundleVim/Vundle.vim/issues/662
+# Double check them
 - name: install vim plugins
   command: vim +PluginInstall +qall
