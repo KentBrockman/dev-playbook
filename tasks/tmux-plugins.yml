@@ -14,6 +14,9 @@
 # TODO: this is always marked changed cause we run a command. can you make this more idempotent?
 - name: install tmux plugins
   command: ~/.tmux/plugins/tpm/bin/install_plugins
+  environment:
+    # TODO: this is really hard coded, but isnt set otherwise...
+    TMUX_PLUGIN_MANAGER_PATH: $HOME/.tmux/plugins/
 
 - name: periodically save tmux configuration
   cron:
