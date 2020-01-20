@@ -1,6 +1,11 @@
 ---
-install_dotfiles: True
+your_full_name: Kent Brockman
+your_email: brockman.ks@gmail.com
+# name your computer
 hostname: phoenix
+# install github.com/KentBrockman/dotfiles
+# TODO: there is surely a way to let someone load their own dotfiles
+install_dotfiles: True
 preferred_shell: /usr/bin/zsh
 install_battery_management_tools: true
 
@@ -30,6 +35,8 @@ snap_applications:
 # all the applications you like and want managed by apt
 # TODO: pin versions?
 apt_applications:
+  # googles browser
+  # - google-chrome-stable
   # team chat
   - slack-desktop
   # for making backups/restore points
@@ -38,8 +45,6 @@ apt_applications:
   - virtualbox
   # timer to help me work using pomodoro technique: https://en.wikipedia.org/wiki/Pomodoro_Technique
   - gnome-shell-pomodoro
-  # open source evernote client
-  - nixnote2
   # view developer documentation offline. nice for working on an offline/airplane/roadtrip
   - zeal
   # image editor
@@ -48,6 +53,13 @@ apt_applications:
   - peek
   # 3D parametric modelling
   - freecad
+  # great media player
+  - vlc
+
+# links to debian packages to install
+other_applications:
+  # tool for making USB sticks that boot multiple OS's http://multibootusb.org
+  # - https://github.com/mbusb/multibootusb/releases/download/v9.2.0/python3-multibootusb_9.2.0-1_all.deb
 
 # gnome-desktop uses the dconf database under the hood for managing settings
 # dconf is a key-value storage and how you specify values can be a little finicky

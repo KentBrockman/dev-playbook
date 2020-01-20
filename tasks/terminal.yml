@@ -27,6 +27,25 @@
 
     - name: install dotfiles
       command: ~/dotfiles/install.sh
+
+    - name: Set gitconfig user header
+      lineinfile:
+        path: ~/.gitconfig
+        line: "[user]"
+        state: present
+
+    - name: Set gitconfig user name and email
+      lineinfile:
+        path: ~/.gitconfig
+        insertafter: '\[user\]'
+        line: "{{ item.line }}"
+        regexp: "{{ item.regexp }}"
+        state: present
+      loop:
+        - regexp: 'name\ =.*'
+          line: "name = {{ your_full_name }}"
+        - regexp: 'email\ =.*'
+          line: "email = {{ your_email }}"
   when: dotfiles.stat.exists == False and install_dotfiles == True
 
 - name: Install oh-my-zsh
