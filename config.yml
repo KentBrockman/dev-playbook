@@ -27,9 +27,11 @@ firefox_profiles:
 
 # all the applications you like and want managed by snap
 snap_applications:
+  # music client
   - name: spotify
     classic: false
-  - name: docker
+  # REST client
+  - name: insomnia
     classic: false
 
 # all the applications you like and want managed by apt
@@ -37,6 +39,9 @@ snap_applications:
 apt_applications:
   # googles browser
   # - google-chrome-stable
+  # containerization engine + tooling
+  - docker.io
+  - docker-compose
   # team chat
   - slack-desktop
   # for making backups/restore points
@@ -55,6 +60,8 @@ apt_applications:
   - freecad
   # great media player
   - vlc
+  # sql database client
+  - dbeaver-ce
 
 # links to debian packages to install
 other_applications:
