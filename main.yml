@@ -10,6 +10,10 @@
       role: basvandenbrink.firefox
       tags: ["firefox"]
 
+    - name: install gnome_extensions
+      role: jaredhocutt.gnome_extensions
+      tags: ["gnome_extensions"]
+
   pre_tasks:
     - name: update packages
       become: true

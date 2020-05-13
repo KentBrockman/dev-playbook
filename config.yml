@@ -38,7 +38,7 @@ snap_applications:
 # TODO: pin versions?
 apt_applications:
   # googles browser
-  # - google-chrome-stable
+  - google-chrome-stable
   # containerization engine + tooling
   - docker.io
   - docker-compose
@@ -62,6 +62,23 @@ apt_applications:
   - vlc
   # sql database client
   - dbeaver-ce
+
+# If using gnome, pick the extensions you like
+# https://extensions.gnome.org/local/
+# get id from extension URL
+gnome_extension_ids:
+  # Alt-Tab Switcher Popup Delay Removal
+  - 1317
+  # Sound Input & Output Device Chooser
+  - 906
+  # System Monitor
+  - 120
+  # Open Weather
+  - 750
+  # Removable Drive Menu
+  - 7
+  # Ubuntu AppIndicators - show app icons on top bar
+  - 615
 
 # links to debian packages to install
 other_applications:
