@@ -70,7 +70,18 @@
     name: ~/.local/share/fonts
     state: directory
 
-- name: Monaco for Powerline font installed
-  copy:
-    src: files/Monaco-for-Powerline.ttf
-    dest: ~/.local/share/fonts/Monaco-for-Powerline.ttf
+- name: install custom fonts
+  block:
+    - name: get all custom fonts
+      command: "ls {{ font_src_dir }}"
+      register: fonts
+      changed_when: False
+
+    - name: install custom fonts
+      copy:
+        src: "{{ font_src_dir }}/{{ item }}"
+        dest: "~/.local/share/fonts/{{ item }}"
+      with_items: "{{ fonts.stdout_lines }}"
+  vars:
+    font_src_dir: "files/fonts"
+  tags: ['fonts']
