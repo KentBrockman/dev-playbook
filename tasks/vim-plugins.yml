@@ -1,8 +1,11 @@
 ---
 - name: vim plugin manager directory exists
   file:
-    name: ~/.vim/bundle
+    name: "~/.vim/{{ item }}"
     state: directory
+  with_items:
+    - autoload
+    - plugged
 
 - name: install vim plugin manager (vim-plug)
   get_url:
