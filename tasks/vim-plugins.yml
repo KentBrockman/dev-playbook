@@ -4,15 +4,11 @@
     name: ~/.vim/bundle
     state: directory
 
-- name: install vim plugin manager (vundle)
-  git:
-    repo: https://github.com/VundleVim/Vundle.vim.git
-    dest: ~/.vim/bundle/Vundle.vim
-    version: v0.10.2
+- name: install vim plugin manager (vim-plug)
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/0.10.0/plug.vim
+    dest: ~/.vim/autoload/plug.vim
 
-# Note: must have plugin lines uncommented for this to work
-# If you get a github prompt on this its possible you've mistyped a plugin name
-# https://github.com/VundleVim/Vundle.vim/issues/662
-# Double check them
+# If this step fails, double check plugin statements in .vimrc
 - name: install vim plugins
-  command: vim +PluginInstall +qall
+  command: vim +PlugInstall +qall
