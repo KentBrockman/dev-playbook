@@ -17,6 +17,7 @@ firefox_profiles:
       - ublock-origin
       - tridactyl-vim
       - lastpass-password-manager
+      - gnome-shell-integration
     preferences:
       privacy.donottrackheader.enabled: "true"
       privacy.trackingprotection.enabled: "true"
