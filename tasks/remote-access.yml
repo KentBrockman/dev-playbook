@@ -1,0 +1,15 @@
+# enable remote access tools
+# e.g. ssh, vnc
+# perhaps use this role for additional configurability: https://galaxy.ansible.com/willshersystems/sshd
+---
+- name: install sshd
+  become: true
+  apt:
+    name: openssh-server
+    state: present
+
+- name: sshd running
+  become: true
+  service:
+    name: sshd
+    state: started

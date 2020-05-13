@@ -42,3 +42,5 @@
       when: install_battery_management_tools
     - import_tasks: tasks/python-dev.yml
       tags: ["python-dev"]
+    - import_tasks: tasks/remote-access.yml
+      tags: ["remote-access"]
