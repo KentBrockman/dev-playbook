@@ -46,7 +46,7 @@
           line: "name = {{ your_full_name }}"
         - regexp: 'email\ =.*'
           line: "email = {{ your_email }}"
-  when: dotfiles.stat.exists == False and install_dotfiles == True
+  when: not dotfiles.stat.exists and install_dotfiles
 
 - name: Install oh-my-zsh
   git:

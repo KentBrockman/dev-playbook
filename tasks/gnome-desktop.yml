@@ -10,6 +10,6 @@
 
 - name: set GNOME desktop preferences
   dconf:
-    key: "{{item.key | string}}"
-    value: "{{item.value}}"
+    key: "{{ item.key | string }}"
+    value: "{{ item.value }}"
   with_items: "{{ gnome_desktop_settings }}"
