@@ -11,6 +11,5 @@
   pip:
     name:
       - wheel
-      - virtualenv
-      - virtualenvwrapper
+      - python-language-server
     executable: pip3
