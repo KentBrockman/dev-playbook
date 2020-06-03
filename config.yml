@@ -40,7 +40,6 @@ snap_applications:
 apt_applications:
   # googles browser
   - google-chrome-stable
-
   # containerization engine + tooling
   - docker.io
   - docker-compose
@@ -58,6 +57,8 @@ apt_applications:
   - peek
   # 3D parametric modelling
   - freecad
+  # backup utility that saves me when I wreck my system
+  - timeshift
   # great media player
   - vlc
   # sql database client

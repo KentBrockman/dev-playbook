@@ -15,3 +15,10 @@
 # If this step fails, double check plugin statements in .vimrc
 - name: install vim plugins
   command: vim +PlugInstall +qall
+
+- name: install vim plugin dependencies
+  pip:
+    name:
+      # deoplete
+      - pynvim
+    executable: pip3
