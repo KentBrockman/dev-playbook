@@ -39,4 +39,7 @@
       - python-language-server
       # pyenv and where I've PATH'd it hijacks system ansible. unsure what to do about this
       # let pyenv manage it? redo path? i dunno
+      # all of these dependencies are needed for ansible to run properly. experimentally discovered...
       - ansible
+      - requests
+      - psutil

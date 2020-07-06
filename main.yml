@@ -24,9 +24,10 @@
       changed_when: False
 
   tasks:
-    - name: set hostname
-      hostname:
-        name: "{{ hostname }}"
+    # Appears to be broken, unsure where
+    # - name: set hostname
+    #   hostname:
+    #     name: "{{ hostname }}"
     - import_tasks: tasks/editor.yml
       tags: ["editor"]
     - import_tasks: tasks/terminal.yml
