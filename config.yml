@@ -80,6 +80,8 @@ gnome_extension_ids:
   - 7
   # Ubuntu AppIndicators - show app icons on top bar
   - 615
+  # Automatic background slideshow
+  - 543
 
 # links to debian packages to install
 other_applications:
@@ -128,3 +130,11 @@ gnome_desktop_settings:
   # Escape is a far more useful key than capslock (at least for vim users) so remap it to escape
   - key: /org/gnome/desktop/input-sources/xkb-options
     value: "['caps:escape']"
+
+  # Backslide parameters
+  - key: /org/gnome/shell/extensions/backslide/delay
+    value: "20"
+  # TODO: check this directory, add each image. backslide takes images, not directories
+  # TODO: www.reddit.com/r/pop_os/comments/gbmkah/pop_os_2004_no_lock_screen_blur_effect
+  # - key: /org/gnome/shell/extensions/backslide/image-list
+  #   value: "/usr/share/backgrounds/pop"

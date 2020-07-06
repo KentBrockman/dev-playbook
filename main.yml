@@ -6,6 +6,8 @@
 
   roles:
     # TODO: search engines
+    # either do this: https://bugzilla.mozilla.org/show_bug.cgi?id=444284#c102
+    # or use bookmark keywords (these dont work in tridactyl)
     - name: firefox
       role: basvandenbrink.firefox
       tags: ["firefox"]
