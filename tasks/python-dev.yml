@@ -3,13 +3,40 @@
   become: true
   apt:
     name:
-      - python3-dev
-      - python3-pip
+      # install tkinter for visual things
       - python3-tk
 
-- name: install packages
+- name: install pyenv
+  vars:
+    # TODO: how to handle this as part of dotfiles...
+    # Initialize .bashrc and .zshrc shell scripts
+    # pyenv_init_shell: true
+    # Versions to install
+    pyenv_version: "v1.2.19"
+    # Not using vritualenv or virtualenvwrapper for now
+    # pyenv_virtualenv_version: "v1.1.5"
+    # pyenv_virtualenvwrapper_version: "v20140609"
+    # Latest Python versions
+    pyenv_python37_version: "3.7.5"
+    pyenv_python38_version: "3.8.2"
+    # Python versions to install
+    pyenv_python_versions:
+      - "{{ pyenv_python37_version }}"
+      - "{{ pyenv_python38_version }}"
+      - "2.7.18"
+    # Set global pyenv version
+    pyenv_global: "{{ pyenv_python37_version }} system"
+    # Install using package manager where available
+    pyenv_install_from_package_manager: true
+    # Detect existing install
+    pyenv_detect_existing_install: true
+  import_role:
+    name: markosamuli.pyenv
+
+- name: install development dependencies
   pip:
     name:
-      - wheel
       - python-language-server
-    executable: pip3
+      # pyenv and where I've PATH'd it hijacks system ansible. unsure what to do about this
+      # let pyenv manage it? redo path? i dunno
+      - ansible

@@ -9,6 +9,9 @@
 - node/js dev tooling
 - file sync service
 - handful of other nice tools (rerun, bat, fzf, rg, )
+- pin ansible-galaxy roles to versions
+- set up on some form of CI
+- Review dotfiles vs dev-playbook. Similar enough that we should consider merging them
 
 ## Multi Machine Usages
 

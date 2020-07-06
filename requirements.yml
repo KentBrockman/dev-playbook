@@ -1,3 +1,5 @@
 ---
 - name: basvandenbrink.firefox
 - name: jaredhocutt.gnome_extensions
+- name: markosamuli.pyenv
+  version: v3.0.1
