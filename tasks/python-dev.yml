@@ -5,6 +5,7 @@
     name:
       # install tkinter for visual things
       - python3-tk
+      - tk-dev
 
 - name: install pyenv
   vars:
