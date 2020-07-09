@@ -13,11 +13,7 @@
       # use clipboard from terminal
       - xclip
       - fzf
-
-- name: install ripgrep
-  become: true
-  apt:
-    deb: https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
+      - ripgrep
 
 - name: check if dotfiles are installed
   stat:
