@@ -20,6 +20,8 @@
       - bat
       # JSON formatter
       - jq
+      # show example usage of commands
+      - tldr
 
 - name: check if dotfiles are installed
   stat:
