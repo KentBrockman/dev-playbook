@@ -7,7 +7,6 @@
 - golang dev tooling
 - node/js dev tooling
 - file sync service
-- pin ansible-galaxy roles to versions
 - set up on some form of CI
 - Review dotfiles vs dev-playbook. Similar enough that we should consider merging them
 
