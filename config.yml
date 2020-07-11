@@ -2,7 +2,7 @@
 your_full_name: Kent Brockman
 your_email: brockman.ks@gmail.com
 # name your computer
-hostname: phoenix
+hostname: iroh
 # install github.com/KentBrockman/dotfiles
 # TODO: there is surely a way to let someone load their own dotfiles
 install_dotfiles: True
@@ -28,12 +28,16 @@ firefox_profiles:
 
 # all the applications you like and want managed by snap
 snap_applications:
-  # music client
-  - name: spotify
-    classic: false
   # REST client
   - name: insomnia
     classic: false
+
+flatpak_applications:
+  # sql database client
+  - io.dbeaver.DBeaverCommunity
+  - com.mattermost.Desktop
+  # music client
+  - com.spotify.Client
 
 # all the applications you like and want managed by apt
 # TODO: pin versions?
@@ -61,8 +65,6 @@ apt_applications:
   - timeshift
   # great media player
   - vlc
-  # sql database client
-  - dbeaver-ce
 
 # If using gnome, pick the extensions you like
 # https://extensions.gnome.org/local/
