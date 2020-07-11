@@ -133,7 +133,7 @@ gnome_desktop_settings:
 
   # Backslide parameters
   - key: /org/gnome/shell/extensions/backslide/delay
-    value: "20"
+    value: "416"    # 6 hours
   # TODO: check this directory, add each image. backslide takes images, not directories
   # TODO: www.reddit.com/r/pop_os/comments/gbmkah/pop_os_2004_no_lock_screen_blur_effect
   # - key: /org/gnome/shell/extensions/backslide/image-list
