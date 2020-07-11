@@ -2,7 +2,7 @@
 
 An ansible playbook to set up my development machine exactly how I like it!
 
-Currently targeting and tested against [Pop!\_OS 19.10](https://system76.com/pop).
+Currently targeting and tested against [Pop!\_OS 20.04](https://system76.com/pop).
 
 ## Installation
 
