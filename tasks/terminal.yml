@@ -12,8 +12,12 @@
       - vim
       # use clipboard from terminal
       - xclip
+      # great fuzzy finder utility
       - fzf
+      # nice grep replacement
       - ripgrep
+      # cat/less upgrade with syntax highlighting
+      - bat
 
 - name: check if dotfiles are installed
   stat:
