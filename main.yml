@@ -4,18 +4,6 @@
   vars_files:
     - config.yml
 
-  roles:
-    # TODO: search engines
-    # either do this: https://bugzilla.mozilla.org/show_bug.cgi?id=444284#c102
-    # or use bookmark keywords (these dont work in tridactyl)
-    - name: firefox
-      role: basvandenbrink.firefox
-      tags: ["firefox"]
-
-    - name: install gnome_extensions
-      role: jaredhocutt.gnome_extensions
-      tags: ["gnome_extensions"]
-
   pre_tasks:
     - name: update packages
       become: true
@@ -28,6 +16,8 @@
     # - name: set hostname
     #   hostname:
     #     name: "{{ hostname }}"
+    - import_tasks: tasks/web-browser.yml
+      tags: ["web-browser"]
     - import_tasks: tasks/editor.yml
       tags: ["editor"]
     - import_tasks: tasks/terminal.yml

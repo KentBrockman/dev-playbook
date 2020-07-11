@@ -18,6 +18,8 @@
       - ripgrep
       # cat/less upgrade with syntax highlighting
       - bat
+      # JSON formatter
+      - jq
 
 - name: check if dotfiles are installed
   stat:

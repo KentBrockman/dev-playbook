@@ -8,6 +8,10 @@
       # lots of extra gnome customizations
       - gnome-tweaks
 
+- name: install gnome extensions
+  import_role:
+    name: jaredhocutt.gnome_extensions
+
 - name: set GNOME desktop preferences
   dconf:
     key: "{{ item.key | string }}"
