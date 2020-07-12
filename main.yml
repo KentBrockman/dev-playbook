@@ -11,6 +11,15 @@
       apt:
         update_cache: yes
       changed_when: False
+    - name: install python dependencies for playbook
+      pip:
+        name:
+          # TODO: pyenv and where I've PATH'd it hijacks system ansible. unsure what to do about this
+          # HACK: Should this be a handler? Repeated in tasks/python-dev.yml. let pyenv manage it? redo path? i dunno
+          # all of these dependencies are needed for ansible to run properly. experimentally discovered...
+          - ansible
+          - requests
+          - psutil
 
   tasks:
     # Appears to be broken, unsure where

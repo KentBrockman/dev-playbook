@@ -39,10 +39,10 @@
 - name: install development dependencies
   pip:
     name:
-      - python-language-server
-      # pyenv and where I've PATH'd it hijacks system ansible. unsure what to do about this
-      # let pyenv manage it? redo path? i dunno
-      # all of these dependencies are needed for ansible to run properly. experimentally discovered...
-      - ansible
-      - requests
-      - psutil
+        # TODO: pyenv and where I've PATH'd it hijacks system ansible. unsure what to do about this
+        - python-language-server
+        # HACK: Should this be a handler? Repeated in main.yml. let pyenv manage it? redo path? i dunno
+        # all of these dependencies are needed for ansible to run properly. experimentally discovered...
+        - ansible
+        - requests
+        - psutil
