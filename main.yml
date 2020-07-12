@@ -23,6 +23,7 @@
       tags: ["editor"]
     - import_tasks: tasks/dotfiles.yml
       tags: ["dotfiles"]
+      when: install_dotfiles
     - import_tasks: tasks/terminal.yml
       tags: ["terminal"]
     - import_tasks: tasks/applications.yml
