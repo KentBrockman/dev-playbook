@@ -20,7 +20,23 @@ Currently targeting and tested against [Pop!\_OS 20.04](https://system76.com/pop
    ```
    ansible-galaxy install -r requirements.yml
    ```
-4. Run the playbook with sudo permission:
+
+4. Create a configuration file for your machine:
+   ```
+   touch config.custom.yml
+   ```
+
+   Or make a new configuration file and link it:
+   ```
+   touch config.yourconfig.yml
+   ln -s config.yourconfig.yml config.custom.yml
+   ```
+
+   This file can be empty, but it must exist.
+   You can override [`config.yml`](./config.yml) with settings in `configg.custom.yml` or overwrite `config.yml` directly.
+   The purpose of this file is to maintain machine-specific configurations (e.g. a desktop vs a laptop) but keep the bulk of the configuration the same
+
+5. Run the playbook with sudo permission:
    ```
    ansible-playbook main.yml -K
    ```

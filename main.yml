@@ -3,6 +3,7 @@
   connection: local
   vars_files:
     - config.yml
+    - config.custom.yml
 
   pre_tasks:
     - name: update packages
