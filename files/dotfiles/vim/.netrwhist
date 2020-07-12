@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/kent/code/plantmlbeta'
+let g:netrw_dirhist_2='/home/kent/code/plantmlbeta/gmail'
+let g:netrw_dirhist_3='/home/kent/code/plantmlbeta'
+let g:netrw_dirhist_4='/home/kent/code/plantmlbeta/mount'
+let g:netrw_dirhist_5='/home/kent/code/plantmlbeta'
+let g:netrw_dirhist_6='/home/kent/code/plantmlbeta/rmq'
+let g:netrw_dirhist_7='/home/kent/code/plantmlbeta'
+let g:netrw_dirhist_8='/home/kent/code/plantmlbeta/software'
+let g:netrw_dirhist_9='/home/kent/code/plantmlbeta'

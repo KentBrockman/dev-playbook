@@ -1,0 +1,28 @@
+---
+- name: vim directory exist
+  file:
+    dest: ~/.vim
+    state: directory
+
+- name: install dotfiles to home directory
+  file:
+    src: "{{ playbook_dir }}/files/dotfiles/{{ item }}"
+    dest: "~/.{{ item }}"
+    # symlink so improvements to any dotfile can be source controlled easily
+    state: link
+  with_items:
+    - aliases
+    - bashrc
+    - gitignore_global
+    - tmux.conf
+    - vimrc
+    # will fail to link if this directory already exists
+    # delete or rename it
+    - vim/colors
+    - zshrc
+    - cmds
+
+- name: install gitconfig
+  template:
+    src: "files/dotfiles/gitconfig"
+    dest: "~/.gitconfig"

@@ -1,0 +1,6 @@
+#!/bin/bash 
+# Delete a branch locally and on remote
+# $1 - Branch to delete
+
+git branch -D $1
+git push origin :$1

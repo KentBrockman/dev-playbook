@@ -1,0 +1,5 @@
+#!/bin/bash
+# MacOS Only
+# Programs are missing from spotlight - reindex them
+
+sudo mdutil -i on /

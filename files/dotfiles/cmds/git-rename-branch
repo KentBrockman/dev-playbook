@@ -1,0 +1,8 @@
+#!/bin/bash
+# Rename a branch locally and on remote
+# $1 - Old branch name
+# $2 - New branch name
+
+git branch -m $1 $2         	   # Rename branch locally    
+git push origin $1                 # Delete the old branch 
+git push --set-upstream origin $2  # Push the new branch, set local branch to track the new remote

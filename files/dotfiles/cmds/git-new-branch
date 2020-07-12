@@ -1,0 +1,5 @@
+#!/bin/bash
+# make a new branch
+
+git checkout -B $1
+git push --set-upstream origin $1

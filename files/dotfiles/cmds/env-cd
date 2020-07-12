@@ -1,0 +1,14 @@
+# Replace built in cd function with one that tweaks environment variables in a way that helps me
+# make sure to add this to your global gitignore
+# Inspired by https://stackoverflow.com/questions/2785161/how-can-i-set-environment-variables-depending-on-directory
+
+# What this does:
+# - include .extra_envs file in directory, those environment variables will be set
+# - unset these variables when you move away from that dir
+# - automatically activate/deactivate .venv
+# - evaluate second parameter like an expression for pwd
+
+cd() {
+    builtin cd "$@"
+    eval `env-cd.py`
+}

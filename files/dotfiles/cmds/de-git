@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Are you sure you wanna de-git?"
+select yn in "Yes" "No"; do
+	case $yn in
+		Yes ) $(rm -rf .git .gitignore) break;;
+		No ) exit;;
+	esac
+done
+
+rm -r .git .gitignore

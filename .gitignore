@@ -1,1 +1,2 @@
+# hide from source control - strategy is to symlink custom config from another file
 config.custom.yml

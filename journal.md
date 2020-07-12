@@ -8,7 +8,6 @@
 - node/js dev tooling
 - file sync service
 - set up on some form of CI
-- Review dotfiles vs dev-playbook. Similar enough that we should consider merging them
 - mc
 - pyenv tab autocomplete
 - venv explosions

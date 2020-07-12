@@ -1,0 +1,23 @@
+[core]
+    excludesFile = ~/.gitignore_global
+
+[alias]
+    # Show all of my configured aliases
+    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+    # show all tags
+    tags = tag -l
+    # For when you made that commit a bit too early, amend
+    amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+
+[url "https://github.com/"]
+    insteadOf = gh:
+
+[url "https://gist.github.com/"]
+    insteadOf = gist:
+
+[url "https://bitbucket.org/"]
+    insteadOf = bb:
+
+[user]
+    name = "{{ your_full_name }}"
+    email = "{{ your_email }}"

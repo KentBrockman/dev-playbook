@@ -1,0 +1,9 @@
+#/bin/sh
+# Print processes bound to port
+
+if [ -z "$1"  ]; then
+    echo "Please provide a port"
+    exit 1
+fi
+
+lsof -i:$1

@@ -1,0 +1,216 @@
+set nocompatible 
+
+set scrolloff=5     " show 5 lines above cursor
+
+" PATHS
+set path+=**	" add current directory to vim path
+set wildignore+=**/__pycache__/**
+set wildignore+=**/node_modules/**
+
+" TAB BEHAVIOR
+set tabstop=4		" show existing tab with 4 spaces width
+set shiftwidth=4	" when indenting with '>', use 4 spaces width
+set expandtab		" On pressing tab, insert 4 spaces
+set smarttab        " <BS> deletes <Tab> in insert mode
+
+" FILE FINDING
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+" BUFFER MANAGEMENT
+set autoread                                    " automatically read buffers that have changed outside Vim
+set hidden                                      " hide buffers instead of unloading
+" Reread buffer when entering
+au FocusGained,BufEnter * :silent! !
+" Auto save buffer when leaving it
+au FocusLost,WinLeave * :silent! noautocmd w
+
+" SYNTAX HIGHLIGHTING
+syntax enable						
+filetype indent on	" Load file type specific indenting rules 
+filetype plugin indent on
+
+" LINE NUMBERS
+set cursorline		" Highlight the row the cursor is one
+set number		    " show absolute line number under cursor
+" set relativenumber	" show line numbers relative to cursor
+
+" MISCELLANEOUS
+set mouse=a				        " Enable the mouse
+set wildmenu			        " In GUI mode, tab will suggest commands for you
+set showmatch 			        " Show corresponding end braces
+set backspace=indent,eol,start  " Modern backspacing behaviour
+
+" Fix for delay on <Esc>Shift+o sequence
+" https://github.com/vim/vim/issues/24
+set timeout timeoutlen=5000 ttimeoutlen=100
+
+" SEARCH
+set ic				" Ignore case when searching by default
+set hlsearch		" Highlight search matches
+set incsearch		" Search as characters are entered
+" // in Visual mode will search for visually selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>'")
+
+" SPELLING
+" z= gives suggestions on misspelling
+" zg marks bad as good
+" zw marks good and bad
+set spelllang=en_us	" Set spell checking dictionary to English
+" set spell			" Turn on spell checking 
+set nospell			" Turn off spell checking
+
+
+" FOLDING
+set foldmethod=indent
+set foldlevel=99
+
+" PLUGINS
+" https://github.com/junegunn/vim-plug#usage
+" Specify a directory for plugins. Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Language support
+Plug 'sheerun/vim-polyglot'
+
+" Interactive file finder
+Plug 'preservim/nerdtree'
+let NERDTreeShowHidden=1				" Show hidden files in nerd tree
+" Toggle NERDTree by Ctrl+n
+nnoremap <C-N> :NERDTreeToggle<CR>
+
+" Status and buffer line 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='base16_eighties'		" Start airline with this this theme
+let g:airline_powerline_fonts=1                 " Use powerline fonts
+let g:airline#extensions#tabline#enabled = 1	" Show open buffers at top
+" abbreviate mode to one letter, remove RHS stuff
+
+" nouns and motions to modify surroundings
+Plug 'tpope/vim-surround'
+
+" Pair up brackets!
+Plug 'jiangmiao/auto-pairs'
+
+" Show indents with lines
+Plug 'yggdroot/indentline'
+
+Plug 'tpope/vim-commentary'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'michaeljsmith/vim-indent-object'
+
+" Fuzzy File Finding
+" requires fzf: https://github.com/junegunn/fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'junegunn/fzf.vim'
+" HOTKEY: Open fuzzy finder with <C-P>
+nnoremap <C-P> :FZF<Cr>
+
+" grep style searching
+" https://github.com/dyng/ctrlsf.vim
+Plug 'dyng/ctrlsf.vim' 
+" trying their recommended mappings
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+" Commands In CtrlSF window:
+    " Enter, o, double-click - Open corresponding file of current line in the window which CtrlSF is launched from.
+    " <C-O> - Like Enter but open file in a horizontal split window.
+    " t - Like Enter but open file in a new tab.
+    " p - Like Enter but open file in a preview window.
+    " P - Like Enter but open file in a preview window and switch focus to it.
+    " O - Like Enter but always leave CtrlSF window opening.
+    " T - Like t but focus CtrlSF window instead of new opened tab.
+    " M - Switch result window between normal view and compact view.
+    " q - Quit CtrlSF window.
+    " <C-J> - Move cursor to next match.
+    " <C-K> - Move cursor to previous match.
+    " <C-C> - Stop a background searching process.
+
+
+Plug 'dense-analysis/ale'
+let g:ale_linters = {'python': ['flake8', 'pydocstyle']}
+let g:ale_linters_explicit = 1
+
+Plug 'vim-test/vim-test'
+let test#strategy = "vimterminal"
+
+" LSP
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/vim-lsp-settings'
+let g:lsp_diagnostics_enabled = 0
+
+" deoplete for autocompletion
+" needs: pip3 install --user pynvim
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'deoplete-plugins/deoplete-jedi'
+endif
+let g:deoplete#enable_at_startup = 1
+" TAB autocompletion https://github.com/Shougo/deoplete.nvim/issues/816
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
+" show docstring in preview window
+let g:deoplete#sources#jedi#show_docstring = 1
+" close the preview window after autocomplete is finished
+autocmd CompleteDone * pclose!
+
+" Some plugins I'd like to try out:
+" Plug 'tpope/vim-fugitive'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'mattn/emmet-vim'
+" Plug 'junegunn/limelight.vim'
+" Plug 'SirVer/ultisnips'
+
+call plug#end()
+
+" COLORS
+" load colors after plugins if using plugin color instead of ~/.vimrc/colors
+set t_Co=256						" Set 256 color mode. Your terminal must support this
+" colorschemes at ~/.vimrc/colors
+" colorscheme solarized
+" set background=dark
+" colorscheme lucius
+" LuciusLight
+" colorscheme seoul256
+" set background=light
+
+" CUSTOM COMMANDS
+command LightMode :colorscheme lucius | :set background=light
+command DarkMode :colorscheme monokai | :set background=dark
+command ReloadVimrc :source $MYVIMRC
+command NukeIt :%bdelete|:edit .
+" TODO: make color mode contingent on time. LightMode during day, DarkMode
+" during night
+" https://stackoverflow.com/questions/3368748/conditional-colorscheme-in-vimrc
+LightMode        " use lightmode by default
+" DarkMode         " use darkmode by default
+" Close all other buffers but current one
+" https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
+command CloseOthers :%bd|e#
+
+" KEY MAPPINGS
+" I don't think I know the default commands well enough to know what should be
+" overwritten. Try to learn defaults better and use custom remaps sparingly
+" CTRL-H go to previous buffer
+nnoremap <C-L> :bnext!<CR>
+" CTRL-L go to next buffer 
+nnoremap <C-H> :bprevious!<CR>

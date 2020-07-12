@@ -21,6 +21,8 @@
       tags: ["web-browser"]
     - import_tasks: tasks/editor.yml
       tags: ["editor"]
+    - import_tasks: tasks/dotfiles.yml
+      tags: ["dotfiles"]
     - import_tasks: tasks/terminal.yml
       tags: ["terminal"]
     - import_tasks: tasks/applications.yml

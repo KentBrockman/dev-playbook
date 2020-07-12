@@ -1,0 +1,12 @@
+#!/bin/bash
+# open a file with the default program
+# TODO: "multi mode" - open multiple files
+
+if [[ -z $1 ]];
+then
+    # no argument provided - use fzf to search for one
+    xdg-open "$(fzf)"
+else
+    # open file specified in argument
+    xdg-open $1
+fi
