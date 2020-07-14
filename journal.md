@@ -8,7 +8,6 @@
 - node/js dev tooling
 - file sync service
 - set up on some form of CI
-- mc
 - pyenv tab autocomplete
 - venv explosions
 - vim python environment
