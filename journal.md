@@ -31,7 +31,10 @@ in vim - interpreter is still correct. but sys.path are WACKY
 vim is linked to python directly. `ldd $(which vim | grep python`
 I don't see a "clear" way to override this, but it appears....we may be able to do so through plugin configuration instead (i.e. this isn't something we deal with in vim, it is something we deal with in a vim-python plugin)
 
-https://github.com/deoplete-plugins/deoplete-jedi
+### What to do next
+
+- Read `:help python` . It is possible that what I'm trying to configure here is wrong. I want autocomplete to come from venv/pyenv, but I dont need the plugin to use venv/pyenv to execute the plugin...This leads to the next step.
+- deoplete specifically is complaining. Can I configure its behaviour? It appears to use the linked python version...https://github.com/deoplete-plugins/deoplete-jedi - can I set up a specific environment for deoplete? That would be nice for not having to reinstall dev specific tooling in every venv...
 
 This might be a vim-python plugin issue. I've got a few plugins that interact with python so i'll add those to the list of things to explore to see if there are any answers
 Some additional context on plugins I'm using 
