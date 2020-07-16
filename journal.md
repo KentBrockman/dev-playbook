@@ -3,14 +3,13 @@
 - vscode setup
 - collect manual setup tasks for things that shouldnt be automated (logging in to things, setting up ssh keys, etc)
 - vim plugins - some require external dependencies. install dependencies for those plugins when they are installed (e.g. fzf, rg, deoplete)
+- vim python environment
 - 3D printing tools - cura
 - golang dev tooling
 - node/js dev tooling
 - file sync service
 - set up on some form of CI
-- pyenv tab autocomplete
-- venv explosions
-- vim python environment
+- venv explosions on cd and env-cd
 
 ## Multi Machine Usages
 

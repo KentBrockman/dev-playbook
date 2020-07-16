@@ -3,9 +3,26 @@
   become: true
   apt:
     name:
+      # markosamuli.pyenv doesnt have variable files defined for Pop!_OS
+      # Ubuntu/Debian not used, so required libs dont get installed
+      # Do it here instad
+      - git
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncurses5-dev
+      - libncursesw5-dev
+      - xz-utils
       # install tkinter for visual things
-      - python3-tk
       - tk-dev
+      - python3-tk
 
 - name: install pyenv
   vars:
@@ -19,7 +36,7 @@
     # pyenv_virtualenvwrapper_version: "v20140609"
     # Latest Python versions
     pyenv_python37_version: "3.7.5"
-    pyenv_python38_version: "3.8.2"
+    pyenv_python38_version: "3.8.3"
     # Python versions to install
     pyenv_python_versions:
       - "{{ pyenv_python37_version }}"
