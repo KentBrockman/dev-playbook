@@ -3,13 +3,43 @@
 - vscode setup
 - collect manual setup tasks for things that shouldnt be automated (logging in to things, setting up ssh keys, etc)
 - vim plugins - some require external dependencies. install dependencies for those plugins when they are installed (e.g. fzf, rg, deoplete)
-- vim python environment
 - 3D printing tools - cura
 - golang dev tooling
 - node/js dev tooling
 - file sync service
 - set up on some form of CI
 - venv explosions on cd and env-cd
+
+## vim python environment
+
+unsure how vim constructs its python environment.
+
+terminal - things work fine. the interpreter is right. .venv sitepackages are in sys.path
+```
+> python -c "import sys; print(sys.executable); print(sys.path);"
+/home/kent/code/plantmlbeta/.venv/bin/python
+['', '/home/kent/code/plantmlbeta', '/home/kent/.pyenv/versions/3.7.5/lib/python37.zip', '/home/kent/.pyenv/versions/3.7.5/lib/python3.7', '/home/kent/.pyenv/versions/3.7.5/lib/python3.7/lib-dynload', '/home/kent/code/plantmlbeta/.venv/lib/python3.7/site-packages']
+```
+
+in vim - interpreter is still correct. but sys.path are WACKY
+```
+:pythonx import sys; print(sys.executable); print(sys.path)
+/home/kent/code/plantmlbeta/.venv/bin/python3
+['/home/kent/code/plantmlbeta', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '_vim_path_']
+```
+
+vim is linked to python directly. `ldd $(which vim | grep python`
+I don't see a "clear" way to override this, but it appears....we may be able to do so through plugin configuration instead (i.e. this isn't something we deal with in vim, it is something we deal with in a vim-python plugin)
+
+https://github.com/deoplete-plugins/deoplete-jedi
+
+This might be a vim-python plugin issue. I've got a few plugins that interact with python so i'll add those to the list of things to explore to see if there are any answers
+Some additional context on plugins I'm using 
+- vim-python/python-syntax via vim-polyglot
+- deoplete
+- deoplete-jedi plugin (also nvim-yarp/roxma/vim-hug-neovim-rpc but that might be cruft from me sucking at vim config :/) 
+- ALE (unlikely? but worth seeing how they do it...)
+- vim-lsp
 
 ## Multi Machine Usages
 
