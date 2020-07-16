@@ -41,6 +41,15 @@ Some additional context on plugins I'm using
 - ALE (unlikely? but worth seeing how they do it...)
 - vim-lsp
 
+This might shed some light:
+"/usr/share/vim/vim81/doc/if_pyth.txt"
+
+This looks like what I'm trying to do also: https://github.com/python-mode/python-mode
+Frankly I like keeping things a bit more self managed than offloading to "black boxes" (I know it is FOSS, but its more free beer not free speech)
+I see this being a good reference for "what plugins a bunch of other smart python and vim people recommend?"
+
+Someone else struggling with this
+
 ## Multi Machine Usages
 
 ### Use Cases
