@@ -23,7 +23,15 @@
       # show example usage of commands
       - tldr
 
-- name: Install oh-my-zsh
+# TODO: some environment variables should be set for tool configurations above
+# right now I'm storing these in ~/.profile
+# but they should be condition (i.e. if the right tools arent installed, dont set them)
+# Listing below:
+# use ripgrep to find files before passing them to fzf (default is find, which doesnt respect .gitignore)
+# export FZF_DEFAULT_COMMAND="rg --files ."
+# not as related here, but pyenv init is another one
+
+ -name: Install oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
