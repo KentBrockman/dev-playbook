@@ -9,6 +9,7 @@
 - file sync service
 - set up on some form of CI
 - venv explosions on cd and env-cd
+- training wheels on dotfiles
 
 ## vim python environment
 
@@ -26,6 +27,19 @@ in vim - interpreter is still correct. but sys.path are WACKY
 :pythonx import sys; print(sys.executable); print(sys.path)
 /home/kent/code/plantmlbeta/.venv/bin/python3
 ['/home/kent/code/plantmlbeta', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '_vim_path_']
+```
+
+outside venv:
+terminal:
+```
+/home/kent/.pyenv/versions/3.7.5/bin/python
+['', '/home/kent/code/plantmlbeta', '/home/kent/.pyenv/versions/3.7.5/lib/python37.zip', '/home/kent/.pyenv/versions/3.7.5/lib/python3.7', '/home/kent/.pyenv/versions/3.7.5/lib/python3.7/lib-dynload', '/home/kent/.local/lib/python3.7/site-packages', '/home/kent/.pyenv/versions/3.7.5/lib/python3.7/site-packages']
+```
+
+vim:
+```
+/home/kent/.pyenv/shims/python3
+['/home/kent/code/plantmlbeta', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '/home/kent/.local/lib/python3.8/site-packages', '/usr/local/lib/python3.8/dist-packages', '/usr/lib/python3/dist-packages', '_vim_path_']
 ```
 
 vim is linked to python directly. `ldd $(which vim | grep python`
