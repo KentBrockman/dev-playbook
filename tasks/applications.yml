@@ -12,6 +12,33 @@
     classic: "{{ item.classic }}"
   with_items: "{{ snap_applications }}"
 
+# - name: Add the flathub flatpak repository remote to the user installation
+#   flatpak_remote:
+#     name: flathub
+#     state: present
+#     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+#     method: user
+
+# - name: install applications via flatpak
+#   become: true
+#   flatpak:
+#     name: "{{ item }}"
+#     state: present
+#     method: user
+#   with_items: "{{ flatpak_applications }}"
+
+- name: install standalone binaries
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.dest }}"
+    mode: +x
+  with_items: "{{ binary_applications }}"
+
+- name: install applications via apt
+  become: true
+  apt:
+    pkg: "{{ apt_applications }}"
+
 - name: docker group exists
   become: true
   group:
@@ -24,8 +51,3 @@
     name: "{{ ansible_user_id }}"
     group: docker
     append: yes
-
-- name: install applications via apt
-  become: true
-  apt:
-    pkg: "{{ apt_applications }}"

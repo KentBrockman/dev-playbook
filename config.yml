@@ -3,7 +3,6 @@ your_full_name: Kent Brockman
 your_email: brockman.ks@gmail.com
 # name your computer
 hostname: phoenix
-# install github.com/KentBrockman/dotfiles
 # TODO: there is surely a way to let someone load their own dotfiles
 install_dotfiles: True
 preferred_shell: /usr/bin/zsh
@@ -66,6 +65,10 @@ apt_applications:
   - timeshift
   # great media player
   - vlc
+
+binary_applications:
+  - url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2020-03-14T01-23-37Z
+    dest: ~/.local/bin/mc
 
 # If using gnome, pick the extensions you like
 # https://extensions.gnome.org/local/

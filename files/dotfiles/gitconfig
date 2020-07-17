@@ -8,6 +8,8 @@
     tags = tag -l
     # For when you made that commit a bit too early, amend
     amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+    # getting new changes in one command
+    up = !git stash && git pull && git stash pop
 
 [url "https://github.com/"]
     insteadOf = gh:

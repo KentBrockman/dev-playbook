@@ -2,7 +2,6 @@
 
 - vscode setup
 - collect manual setup tasks for things that shouldnt be automated (logging in to things, setting up ssh keys, etc)
-- vim plugins - some require external dependencies. install dependencies for those plugins when they are installed (e.g. fzf, rg, deoplete)
 - 3D printing tools - cura
 - golang dev tooling
 - node/js dev tooling
@@ -16,6 +15,7 @@
 unsure how vim constructs its python environment.
 
 terminal - things work fine. the interpreter is right. .venv sitepackages are in sys.path
+
 ```
 > python -c "import sys; print(sys.executable); print(sys.path);"
 /home/kent/code/plantmlbeta/.venv/bin/python
@@ -23,6 +23,7 @@ terminal - things work fine. the interpreter is right. .venv sitepackages are in
 ```
 
 in vim - interpreter is still correct. but sys.path are WACKY
+
 ```
 :pythonx import sys; print(sys.executable); print(sys.path)
 /home/kent/code/plantmlbeta/.venv/bin/python3
@@ -51,10 +52,11 @@ I don't see a "clear" way to override this, but it appears....we may be able to 
 - deoplete specifically is complaining. Can I configure its behaviour? It appears to use the linked python version...https://github.com/deoplete-plugins/deoplete-jedi - can I set up a specific environment for deoplete? That would be nice for not having to reinstall dev specific tooling in every venv...
 
 This might be a vim-python plugin issue. I've got a few plugins that interact with python so i'll add those to the list of things to explore to see if there are any answers
-Some additional context on plugins I'm using 
+Some additional context on plugins I'm using
+
 - vim-python/python-syntax via vim-polyglot
 - deoplete
-- deoplete-jedi plugin (also nvim-yarp/roxma/vim-hug-neovim-rpc but that might be cruft from me sucking at vim config :/) 
+- deoplete-jedi plugin (also nvim-yarp/roxma/vim-hug-neovim-rpc but that might be cruft from me sucking at vim config :/)
 - ALE (unlikely? but worth seeing how they do it...)
 - vim-lsp
 
@@ -82,26 +84,24 @@ Would like to address these eventually:
 ### Proposed Approach
 
 - fork repo for your own configs.
-- copy `config.example.yml` to `config.yml` and check in 
-    - TLY: pull upstream changes to `config.example.yml` and diff with `config.yml` to see new upstream stuff, gives you a chance to review to see what you want to pull over
+- copy `config.example.yml` to `config.yml` and check in
+  - TLY: pull upstream changes to `config.example.yml` and diff with `config.yml` to see new upstream stuff, gives you a chance to review to see what you want to pull over
 - make changes to `config.yml` for your machine
 
 Alternative:
 
 - Can we define a new config in layers? That way you dont have to keep switching branches and rebasing anytime you want to create a new config
-    - e.g.
-        ```
-        var:
-            - myconfig.yml  <-- my machine specific config (hostname, specific packages you like)
-            - config.yml    <-- my "root" config
-        ```
-        merge lists and dicts, overwrite dict keys in `config.yml` with `myconfig.yml`
+  - e.g.
+    ```
+    var:
+        - myconfig.yml  <-- my machine specific config (hostname, specific packages you like)
+        - config.yml    <-- my "root" config
+    ```
+    merge lists and dicts, overwrite dict keys in `config.yml` with `myconfig.yml`
 
 #### To manage multiple machines
 
 - make new branch for each machine; recommend `git checkout -b $HOST`
 - make changes to `config.yml` for your machine
-    - TLY: rebase your machine-specific customizations branch onto `origin/master` 
-    - TLY: interact with `upstream/master` to pull/submit changes
-
-
+  - TLY: rebase your machine-specific customizations branch onto `origin/master`
+  - TLY: interact with `upstream/master` to pull/submit changes

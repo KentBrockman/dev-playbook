@@ -22,7 +22,8 @@
       - jq
       # show example usage of commands
       - tldr
-
+      # nicer ping too
+      - prettyping
 # TODO: some environment variables should be set for tool configurations above
 # right now I'm storing these in ~/.profile
 # but they should be condition (i.e. if the right tools arent installed, dont set them)
@@ -31,7 +32,7 @@
 # export FZF_DEFAULT_COMMAND="rg --files ."
 # not as related here, but pyenv init is another one
 
- -name: Install oh-my-zsh
+- name: Install oh-my-zsh
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
