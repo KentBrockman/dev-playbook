@@ -1,3 +1,7 @@
 # This is my laptop
 hostname: phoenix
 install_battery_management_tools: true
+
+# TODO: add section for machine specific applications 
+# not sure how to "add" to another list in yaml, might need a new section
+# sudo apt install network-manager-openvpn-gnome
