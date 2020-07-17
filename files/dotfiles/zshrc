@@ -1,4 +1,5 @@
-# echo '.zshrc loaded'
+# show loading cause i'm trying to figure out order and when these are called for login/non login/ssh shells
+echo '.zshrc loaded'
 
 # export SOLARIZED_THEME=light
 export SOLARIZED_THEME=dark

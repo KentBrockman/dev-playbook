@@ -8,7 +8,6 @@
 - file sync service
 - set up on some form of CI
 - venv explosions on cd and env-cd
-- training wheels on dotfiles
 
 ## vim python environment
 

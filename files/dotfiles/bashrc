@@ -2,7 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# echo '.bashrc loaded'
+# show loading cause i'm trying to figure out order and when these are called for login/non login/ssh shells
+echo '.bashrc loaded'
 
 # If not running interactively, don't do anything
 case $- in
