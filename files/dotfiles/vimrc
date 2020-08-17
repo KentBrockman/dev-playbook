@@ -152,6 +152,8 @@ let test#strategy = "vimterminal"
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/vim-lsp-settings'
+" Plugin to manage LSP servers (e.g. installing, starting, stoppping)
+" Plug 'mattn/vim-lsp-settings'
 let g:lsp_diagnostics_enabled = 0
 
 " deoplete for autocompletion
@@ -162,8 +164,11 @@ else
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
-  Plug 'deoplete-plugins/deoplete-jedi'
 endif
+" common deoplete plugins
+Plug 'deoplete-plugins/deoplete-jedi'
+" Alternative lsp completion plugin
+" Plug 'lighttiger2505/deoplete-vim-lsp'
 let g:deoplete#enable_at_startup = 1
 " TAB autocompletion https://github.com/Shougo/deoplete.nvim/issues/816
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"

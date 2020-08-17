@@ -25,12 +25,6 @@ firefox_profiles:
       browser.ctrlTab.recentlyUsedOrder: "false"
       browser.search.defaultenginename: "'DuckDuckGo'"
 
-# all the applications you like and want managed by snap
-snap_applications:
-  # REST client
-  - name: insomnia
-    classic: false
-
 flatpak_applications:
   # sql database client
   - io.dbeaver.DBeaverCommunity
