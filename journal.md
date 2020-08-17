@@ -8,6 +8,8 @@
 - file sync service
 - set up on some form of CI
 - venv explosions on cd and env-cd
+- set up nvim
+- setup script to run playbook
 
 ## vim python environment
 

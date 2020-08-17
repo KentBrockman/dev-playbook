@@ -1,17 +1,4 @@
 ---
-- name: install snapd
-  become: true
-  apt:
-    name: snapd
-    state: present
-
-- name: install applications via snap
-  become: true
-  snap:
-    name: "{{ item.name }}"
-    classic: "{{ item.classic }}"
-  with_items: "{{ snap_applications }}"
-
 # - name: Add the flathub flatpak repository remote to the user installation
 #   flatpak_remote:
 #     name: flathub
