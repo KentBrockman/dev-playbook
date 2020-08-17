@@ -24,6 +24,7 @@
   tasks:
     # Appears to be broken, unsure where
     # - name: set hostname
+    #   tags: ["hostname"]
     #   hostname:
     #     name: "{{ hostname }}"
     - import_tasks: tasks/web-browser.yml
