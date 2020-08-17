@@ -1,0 +1,21 @@
+---
+# This task depends on vim-plugins
+# Specifically - my neovim config heavily depends on vim configuration
+
+- name: install neovim
+  become: true
+  apt:
+    name: neovim
+    state: present
+
+- name: neovim configuration directory exists
+  file:
+    dest: ~/.config/nvim
+    state: directory
+
+- name: install neovim config
+  file:
+    src: "{{ playbook_dir }}/files/neovim/init.vim"
+    dest: "~/.config/nvim/init.vim"
+    state: link
+

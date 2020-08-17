@@ -29,13 +29,15 @@
     #     name: "{{ hostname }}"
     - import_tasks: tasks/web-browser.yml
       tags: ["web-browser"]
-    - import_tasks: tasks/editor.yml
-      tags: ["editor"]
+    - import_tasks: tasks/vscode.yml
+      tags: ["vscode"]
     - import_tasks: tasks/dotfiles.yml
       tags: ["dotfiles"]
       when: install_dotfiles
     - import_tasks: tasks/terminal.yml
       tags: ["terminal"]
+    - import_tasks: tasks/neovim.yml
+      tags: ["neovim"]
     - import_tasks: tasks/applications.yml
       tags: ["applications"]
     - import_tasks: tasks/tmux-plugins.yml
