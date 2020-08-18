@@ -27,7 +27,7 @@
     #   tags: ["hostname"]
     #   hostname:
     #     name: "{{ hostname }}"
-    - name: add run_dev_playbook script to local binaries
+    - name: add run_dev_playbook to local scripts
       tags: ["run_dev_playbook"]
       template:
         src: "{{ playbook_dir }}/files/run_dev_playbook"
