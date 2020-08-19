@@ -32,6 +32,8 @@ flatpak_applications:
   - com.mattermost.Desktop
   # music client
   - com.spotify.Client
+  # handy data science prototyping tool
+  - org.octave.Octave
 
 # all the applications you like and want managed by apt
 # TODO: pin versions?

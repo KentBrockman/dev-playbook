@@ -24,6 +24,8 @@
       - tldr
       # nicer ping too
       - prettyping
+      # show directory structure as indented tree
+      - tree
 # TODO: some environment variables should be set for tool configurations above
 # right now I'm storing these in ~/.profile
 # but they should be condition (i.e. if the right tools arent installed, dont set them)
