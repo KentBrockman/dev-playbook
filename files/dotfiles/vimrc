@@ -26,9 +26,9 @@ let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 set autoread                                    " automatically read buffers that have changed outside Vim
 set hidden                                      " hide buffers instead of unloading
 " Reread buffer when entering
-au FocusGained,BufEnter * :silent! !
+autocmd FocusGained,BufEnter * :silent! !
 " Auto save buffer when leaving it
-au FocusLost,WinLeave * :silent! noautocmd w
+autocmd FocusLost,WinLeave * :silent! noautocmd w
 
 " SYNTAX HIGHLIGHTING
 syntax enable						
@@ -219,3 +219,17 @@ command CloseOthers :%bd|e#
 nnoremap <C-L> :bnext!<CR>
 " CTRL-L go to next buffer 
 nnoremap <C-H> :bprevious!<CR>
+
+" Experimenting with autocmd
+function CallPythonFormatters()
+    " run black + isort on python files saved
+    " hide all output
+    :silent !black %
+    :silent !isort %
+    " reload the file in editor
+    " save + restore the view to prevent centering on the cursor
+    :let v = winsaveview()
+    :edit
+    :call winrestview(v)
+endfunction
+autocmd BufWritePost *.py call CallPythonFormatters()
