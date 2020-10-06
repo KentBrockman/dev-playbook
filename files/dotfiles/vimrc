@@ -219,6 +219,8 @@ command CloseOthers :%bd|e#
 nnoremap <C-L> :bnext!<CR>
 " CTRL-L go to next buffer 
 nnoremap <C-H> :bprevious!<CR>
+nnoremap g] :LspDefinition<CR>
+nnoremap g[ :LspReferences<CR>
 
 " Experimenting with autocmd
 function CallPythonFormatters()
