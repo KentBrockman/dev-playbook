@@ -8,6 +8,7 @@
 - file sync service
 - set up on some form of CI
 - venv explosions on cd and env-cd
+- add ~/.cmds to PATH...
 
 ## vim python environment
 
