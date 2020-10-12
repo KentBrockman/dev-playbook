@@ -1,18 +1,17 @@
 ---
-# - name: Add the flathub flatpak repository remote to the user installation
-#   flatpak_remote:
-#     name: flathub
-#     state: present
-#     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-#     method: user
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
 
-# - name: install applications via flatpak
-#   become: true
-#   flatpak:
-#     name: "{{ item }}"
-#     state: present
-#     method: user
-#   with_items: "{{ flatpak_applications }}"
+- name: install applications via flatpak
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  with_items: "{{ flatpak_applications }}"
 
 - name: install standalone binaries
   get_url:
