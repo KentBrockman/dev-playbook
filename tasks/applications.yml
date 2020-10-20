@@ -7,7 +7,7 @@
     method: user
 
 - name: install applications via flatpak
-  community.general.flatpak:
+  flatpak:
     name: "{{ item }}"
     state: present
     method: user
