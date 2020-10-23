@@ -178,6 +178,9 @@ let g:deoplete#sources#jedi#show_docstring = 1
 " close the preview window after autocomplete is finished
 autocmd CompleteDone * pclose!
 
+Plug 'easymotion/vim-easymotion'
+nmap s <Plug>(easymotion-s2)
+
 " Some plugins I'd like to try out:
 " Plug 'tpope/vim-fugitive'
 " Plug 'terryma/vim-multiple-cursors'
