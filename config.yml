@@ -3,7 +3,6 @@ your_full_name: Kent Brockman
 your_email: brockman.ks@gmail.com
 # name your computer
 hostname: phoenix
-# TODO: there is surely a way to let someone load their own dotfiles
 install_dotfiles: True
 preferred_shell: /usr/bin/zsh
 install_battery_management_tools: true
@@ -24,6 +23,7 @@ firefox_profiles:
       datareporting.healthreport.uploadEnabled: "false"
       browser.ctrlTab.recentlyUsedOrder: "false"
       browser.search.defaultenginename: "'DuckDuckGo'"
+      browser.urlbar.matchBuckets: "general:5,suggestion:Infinity"
 
 flatpak_applications:
   # sql database client
@@ -36,7 +36,6 @@ flatpak_applications:
   - org.octave.Octave
 
 # all the applications you like and want managed by apt
-# TODO: pin versions?
 apt_applications:
   # googles browser
   - google-chrome-stable
