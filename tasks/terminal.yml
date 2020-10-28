@@ -14,6 +14,9 @@
       - xclip
       # great fuzzy finder utility
       - fzf
+      # BUG: The ubuntu package repository mucks up how it handles rust packages (ripgrep + batcat)
+      # need to apply this workaround manually to avoid this step producing an error
+      # https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517/comments/32
       # nice grep replacement
       - ripgrep
       # cat/less upgrade with syntax highlighting
