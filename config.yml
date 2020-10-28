@@ -82,8 +82,6 @@ gnome_extension_ids:
   - 750
   # Removable Drive Menu
   - 7
-  # Ubuntu AppIndicators - show app icons on top bar
-  - 615
   # Automatic background slideshow
   - 543
 
