@@ -94,6 +94,8 @@ let g:airline#extensions#tabline#enabled = 1	" Show open buffers at top
 
 " nouns and motions to modify surroundings
 Plug 'tpope/vim-surround'
+" ability to repeat surround operations
+Plug 'tpope/vim-repeat'
 
 " Pair up brackets!
 Plug 'jiangmiao/auto-pairs'
@@ -107,7 +109,12 @@ Plug 'airblade/vim-gitgutter'
 
 Plug 'michaeljsmith/vim-indent-object'
 
-" Fuzzy File Finding
+" make html editing easier
+" tpope/vim-surround used above
+Plug 'tmhedberg/matchit'
+Plug 'mattn/emmet-vim'
+
+"" Fuzzy File Finding
 " requires fzf: https://github.com/junegunn/fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
@@ -184,7 +191,6 @@ nmap s <Plug>(easymotion-s2)
 " Some plugins I'd like to try out:
 " Plug 'tpope/vim-fugitive'
 " Plug 'terryma/vim-multiple-cursors'
-" Plug 'mattn/emmet-vim'
 " Plug 'junegunn/limelight.vim'
 " Plug 'SirVer/ultisnips'
 
