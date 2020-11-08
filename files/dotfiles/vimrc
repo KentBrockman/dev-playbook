@@ -188,11 +188,15 @@ autocmd CompleteDone * pclose!
 Plug 'easymotion/vim-easymotion'
 nmap s <Plug>(easymotion-s2)
 
+" super handy git integrations
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
+Plug 'mg979/vim-visual-multi'
+
 " Some plugins I'd like to try out:
-" Plug 'tpope/vim-fugitive'
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'junegunn/limelight.vim'
 " Plug 'SirVer/ultisnips'
+" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 
 call plug#end()
 
