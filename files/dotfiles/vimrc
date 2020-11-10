@@ -194,6 +194,8 @@ Plug 'tpope/vim-rhubarb'
 
 Plug 'mg979/vim-visual-multi'
 
+Plug 'tweekmonster/django-plus.vim'
+
 " Some plugins I'd like to try out:
 " Plug 'SirVer/ultisnips'
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
