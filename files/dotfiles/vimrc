@@ -236,6 +236,7 @@ nnoremap <C-L> :bnext!<CR>
 nnoremap <C-H> :bprevious!<CR>
 nnoremap g] :LspDefinition<CR>
 nnoremap g[ :LspReferences<CR>
+nnoremap <C-j> :LspHover<CR>
 
 " Experimenting with autocmd
 function CallPythonFormatters()
