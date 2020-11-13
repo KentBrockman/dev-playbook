@@ -23,6 +23,7 @@
     - cmds
 
 - name: install gitconfig
+  tags: ["gitconfig"]
   template:
     src: "files/dotfiles/gitconfig"
     dest: "~/.gitconfig"

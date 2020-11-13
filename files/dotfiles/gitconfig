@@ -11,6 +11,8 @@
     # getting new changes in one command
     # if you CTRL-C out of git pull, you'll have to git stash pop manually
     up = "!sh -c 'git diff --exit-code --quiet; DIFF=$?; if [ $DIFF -eq 1 ]; then echo Changes detected, Stashing now...; git stash; fi; echo Pull changes...; git pull; if [ $DIFF -eq 1 ]; then echo Pop changes back...; git stash pop; fi;'"
+    graph = log --all --graph --decorate --oneline
+    commita = "!sh -c 'git commit -v -a && if [ ! -z $(git remote) ]; then git push; fi'"
 
 [url "https://github.com/"]
     insteadOf = gh:
