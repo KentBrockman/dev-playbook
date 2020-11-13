@@ -1,5 +1,14 @@
 #!/bin/bash
 # make a new branch
 
+if [ -z $1 ]; then
+	echo "Please supply a branch name";
+	exit 1;
+fi
+
 git checkout -B $1
-git push --set-upstream origin $1
+
+REMOTE=$(git remote)
+if [[ $REMOTE != "" ]]; then
+	git push --set-upstream $REMOTE $1;
+fi

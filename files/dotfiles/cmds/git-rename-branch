@@ -3,6 +3,29 @@
 # $1 - Old branch name
 # $2 - New branch name
 
-git branch -m $1 $2         	   # Rename branch locally    
-git push origin $1                 # Delete the old branch 
-git push --set-upstream origin $2  # Push the new branch, set local branch to track the new remote
+EXIT=0
+
+if [ -z $1 ]; then
+	echo "Please supply a target branch name";
+	EXIT=1;
+fi
+
+if [ -z $2 ]; then
+	echo "Please supply a new branch name";
+	EXIT=1;
+fi
+
+if [ $EXIT -eq 1 ]; then
+	exit 1;
+fi
+
+# Rename branch locally
+git branch --move $1 $2
+
+REMOTE=$(git remote)
+if [[ $REMOTE != "" ]]; then
+	# Delete the old branch
+	git push $REMOTE $1;
+	# Push the new branch, set local branch to track the new remote
+	git push --set-upstream $REMOTE $2;
+fi

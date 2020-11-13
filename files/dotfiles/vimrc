@@ -201,10 +201,10 @@ Plug 'tweekmonster/django-plus.vim'
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 
 Plug 'sedm0784/vim-you-autocorrect'
-augroup ILoveCorrections
-    autocmd!
-    autocmd BufEnter * EnableAutocorrect
-augroup END
+" augroup ILoveCorrections
+"     autocmd!
+"     autocmd BufEnter * EnableAutocorrect
+" augroup END
 
 call plug#end()
 

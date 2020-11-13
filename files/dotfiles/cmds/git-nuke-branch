@@ -1,0 +1,22 @@
+#!/bin/bash 
+# Delete a branch locally and on remote
+# $1 - Branch to delete
+
+if [ -z $1 ]; then
+	echo "Please supply a branch name";
+	exit 1;
+fi
+
+if [[ $1 -eq $(git name-rev --name-only HEAD) ]]; then
+	# checkout another branch
+	echo 'Deleting current branch - switching branches';
+	git checkout master 2>&1 > /dev/null;
+fi
+
+git branch -D $1
+
+# handle remote
+REMOTE=$(git remote)
+if [[ $REMOTE != "" ]]; then
+	git push $REMOTE :$1
+fi
