@@ -1,0 +1,32 @@
+- name: confirm preferred_shell installed
+  stat:
+    path: "{{ preferred_shell }}"
+  register: stat_results
+
+- name: set up root shell
+  become: true
+  block:
+    - name: set root user to preferred_shell
+      user:
+        name: root
+        shell: "{{preferred_shell}}"
+
+    - name: install zshrc to root
+      copy:
+        src: "{{ playbook_dir }}/files/dotfiles/zshrc_root"
+        dest: /root/.zshrc
+        owner: root
+        group: root
+
+    - name: root config exists
+      file:
+        dest: /root/.config
+        state: directory
+
+    - name: install starship config
+      file:
+        src: "{{ playbook_dir }}/files/dotfiles/starship.toml"
+        dest: "/root/.config/starship.toml"
+        # symlink so improvements to any dotfile can be source controlled easily
+        state: link
+  when: stat_results.stat.exists

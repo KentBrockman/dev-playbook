@@ -1,5 +1,5 @@
 # show loading cause i'm trying to figure out order and when these are called for login/non login/ssh shells
-echo '.aliases loaded'
+# echo '.aliases loaded'
 
 # Naviation Helpers
 alias ~='cd ~'

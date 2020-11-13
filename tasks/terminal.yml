@@ -85,3 +85,7 @@
   vars:
     font_src_dir: "files/fonts"
   tags: ['fonts']
+
+- name: setup root shell
+  tags: ['root-shell']
+  import_tasks: tasks/root-shell.yml
