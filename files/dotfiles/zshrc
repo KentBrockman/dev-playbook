@@ -127,3 +127,7 @@ prompt_context() {
   # prompt_segment $SOLARIZED_THEME default "${emojis[$RAND_EMOJI_N]} $USER@$HOST"
   prompt_segment black default "$USER@$HOST"
 }
+
+if [ $(command -v starship) ]; then
+	eval "$(starship init zsh)"
+fi

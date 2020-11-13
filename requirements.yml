@@ -3,3 +3,5 @@
 - name: jaredhocutt.gnome_extensions
 - name: markosamuli.pyenv
   version: v3.0.1
+- name: andrewrothstein.starship
+  version: v1.0.8

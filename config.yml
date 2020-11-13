@@ -78,7 +78,8 @@ gnome_extension_ids:
   # Sound Input & Output Device Chooser
   - 906
   # System Monitor
-  - 120
+  # this is not stable right now
+  # - 120
   # Open Weather
   - 750
   # Removable Drive Menu

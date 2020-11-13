@@ -8,8 +8,9 @@
     name: openssh-server
     state: present
 
-- name: sshd running
-  become: true
-  service:
-    name: sshd
-    state: started
+#   BUG: https://github.com/ansible/ansible/issues/71528
+# - name: sshd running
+#   become: true
+#   service:
+#     name: sshd
+#     state: started
