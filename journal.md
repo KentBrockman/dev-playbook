@@ -10,6 +10,7 @@
 - add ~/.cmds to PATH...
 - pyenv - do we have to install ansible/neovim there?
 - deoplete setup - need pynvim, jedi for python...how to mesh this with pyenv?
+- scrub oh-my-zsh?
 
 ## Multi Machine Usages
 
