@@ -17,3 +17,7 @@
     key: "{{ item.key | string }}"
     value: "{{ item.value }}"
   with_items: "{{ gnome_desktop_settings }}"
+
+- name: get wallpapers
+  tags: ["wallpapers"]
+  import_tasks: tasks/wallpapers.yml

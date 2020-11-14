@@ -138,7 +138,14 @@ gnome_desktop_settings:
   # Backslide parameters
   - key: /org/gnome/shell/extensions/backslide/delay
     value: "416"    # 6 hours
-  # TODO: check this directory, add each image. backslide takes images, not directories
-  # TODO: www.reddit.com/r/pop_os/comments/gbmkah/pop_os_2004_no_lock_screen_blur_effect
-  # - key: /org/gnome/shell/extensions/backslide/image-list
-  #   value: "/usr/share/backgrounds/pop"
+
+wallpapers:
+  # directory to store wallpapers
+  directory: ~/Pictures/wallpapers
+  # put in wallpaper page - proper resolution will be selected + downloaded
+  urls:
+    - http://wallpaperswide.com/mountains_nature_lake-wallpapers.html
+    - http://wallpaperswide.com/galaxy_4-wallpapers.html
+    - http://wallpaperswide.com/spirit_island_maligne_lake_jasper_national_park_alberta_canada-wallpapers.html
+    - http://wallpaperswide.com/hdr_mountains_lake-wallpapers.html
+    - http://wallpaperswide.com/undercover_cat-wallpapers.html
