@@ -8,24 +8,29 @@
   register: xrandr_output
   changed_when: false
 
-- name: parse resolution out of xrandr output
-  set_fact:
-    screen_resolution: "{{ xrandr_output.stdout_lines[0] | regex_replace('\\+.*$', '') }}"
+- name: set wallpapers
+  block:
 
-- name: get wallpapers from wallpaperscraft.com
-  get_url:
-    url: "{{ item + '_' + screen_resolution + '.jpg'}}"
-    dest: "{{ wallpapers.directory }}/{{ item | basename }}"
-  # modify URL to resolution-appropriate version
-  with_items: '{{ wallpapers.urls | map("regex_replace", "/wallpaper/", "/image/") | map("regex_replace", "wallpaperscraft", "images.wallpaperscraft") }}'
+  - name: parse resolution out of xrandr output
+    set_fact:
+      screen_resolution: "{{ xrandr_output.stdout_lines[0] | regex_replace('\\+.*$', '') }}"
 
-- name: get images list
-  # need to do this cause dconf needs a very specific string format
-  shell: ls -d {{ wallpapers.directory }}/* | python -c "import sys, os; print(list([x.replace(os.linesep, '') for x in sys.stdin]))"
-  register: images
-  changed_when: false
+  - name: get wallpapers from wallpaperscraft.com
+    get_url:
+      url: "{{ item + '_' + screen_resolution + '.jpg'}}"
+      dest: "{{ wallpapers.directory }}/{{ item | basename }}"
+    # modify URL to resolution-appropriate version
+    with_items: '{{ wallpapers.urls | map("regex_replace", "/wallpaper/", "/image/") | map("regex_replace", "wallpaperscraft", "images.wallpaperscraft") }}'
 
-- name: add images to backslide config
-  dconf:
-    key: /org/gnome/shell/extensions/backslide/image-list
-    value: "{{ images.stdout_lines[0] }}"
+  - name: get images list
+    # need to do this cause dconf needs a very specific string format
+    shell: ls -d {{ wallpapers.directory }}/* | python -c "import sys, os; print(list([x.replace(os.linesep, '') for x in sys.stdin]))"
+    register: images
+    changed_when: false
+
+  - name: add images to backslide config
+    dconf:
+      key: /org/gnome/shell/extensions/backslide/image-list
+      value: "{{ images.stdout_lines[0] }}"
+
+  when: not "Can't open display" in xrandr_output.stderr
