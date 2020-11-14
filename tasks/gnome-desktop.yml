@@ -7,6 +7,7 @@
       - python3-psutil
       # lots of extra gnome customizations
       - gnome-tweaks
+      - unzip
 
 - name: install gnome extensions
   import_role:
