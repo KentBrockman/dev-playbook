@@ -7,7 +7,6 @@
 - node/js dev tooling
 - file sync service
 - set up on some form of CI
-- venv explosions on cd and env-cd
 - add ~/.cmds to PATH...
 - pyenv - do we have to install ansible/neovim there?
 - deoplete setup - need pynvim, jedi for python...how to mesh this with pyenv?
