@@ -21,6 +21,7 @@
       dest: "{{ wallpapers.directory }}/{{ item | basename }}"
     # modify URL to resolution-appropriate version
     with_items: '{{ wallpapers.urls | map("regex_replace", "/wallpaper/", "/image/") | map("regex_replace", "wallpaperscraft", "images.wallpaperscraft") }}'
+    when: wallpapers.download
 
   - name: get images list
     # need to do this cause dconf needs a very specific string format

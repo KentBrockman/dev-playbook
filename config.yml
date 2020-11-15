@@ -142,6 +142,9 @@ gnome_desktop_settings:
 wallpapers:
   # directory to store wallpapers
   directory: ~/Pictures/wallpapers
+  # only download if set to true
+  # downloading can take a awhile. some websites also think you're scraping them
+  download: false
   # put in wallpaper page - proper resolution will be selected + downloaded
   urls:
     - https://wallpaperscraft.com/wallpaper/moon_tree_starry_sky_132139
