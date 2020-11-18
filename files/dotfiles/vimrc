@@ -81,8 +81,9 @@ Plug 'sheerun/vim-polyglot'
 " Interactive file finder
 Plug 'preservim/nerdtree'
 let NERDTreeShowHidden=1				" Show hidden files in nerd tree
-" Toggle NERDTree by Ctrl+n
-nnoremap <C-N> :NERDTreeToggle<CR>
+" Set NERDTree aliases
+:command NTT NERDTreeToggle
+:command NTF NERDTreeFind
 
 " Status and buffer line 
 Plug 'vim-airline/vim-airline'
@@ -206,6 +207,8 @@ Plug 'sedm0784/vim-you-autocorrect'
 "     autocmd BufEnter * EnableAutocorrect
 " augroup END
 
+Plug 'junegunn/seoul256.vim'
+
 call plug#end()
 
 " COLORS
@@ -220,8 +223,8 @@ set t_Co=256						" Set 256 color mode. Your terminal must support this
 " set background=light
 
 " CUSTOM COMMANDS
-command LightMode :colorscheme lucius | :set background=light
-command DarkMode :colorscheme monokai | :set background=dark
+command LightMode :colorscheme seoul256 | :set background=light
+command DarkMode :colorscheme seoul256 | :set background=dark
 command ReloadVimrc :source $MYVIMRC
 command NukeIt :%bdelete|:edit .
 " TODO: make color mode contingent on time. LightMode during day, DarkMode
