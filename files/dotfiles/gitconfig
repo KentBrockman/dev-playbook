@@ -13,6 +13,8 @@
     # if you CTRL-C out of git pull, you'll have to git stash pop manually
     up = "!sh -c 'git diff --exit-code --quiet; DIFF=$?; if [ $DIFF -eq 1 ]; then echo Changes detected, Stashing now...; git stash; fi; echo Pull changes...; git pull; if [ $DIFF -eq 1 ]; then echo Pop changes back...; git stash pop; fi;'"
     graph = log --all --graph --decorate --oneline
+    logshort = log --graph --pretty=format:'%cd - %Cred%h%Creset %Cgreen(%cr) - %C(bold blue)%an -%C(yellow)%d%Creset %s' --abbrev-commit --date=iso
+    pristine = reset --hard && git clean -f
     go = "!sh -c 'git add -A && git commit -v -a && if [ ! -z $(git remote) ]; then git push; fi'"
     nuke-branch = "!sh -c '~/.cmds/git-nuke-branch'"
     new-branch = "!sh -c '~/.cmds/git-new-branch'"

@@ -1,3 +1,4 @@
+#!/bin/bash
 # show loading cause i'm trying to figure out order and when these are called for login/non login/ssh shells
 # echo '.aliases loaded'
 
@@ -11,8 +12,6 @@ alias ....='cd ../../../..'
 # Git Helpers
 alias st='git status'
 alias gd='git diff'
-alias git-reset='git reset --hard && git clean -f'
-alias gitlog="git log --graph --pretty=format:'%cd - %Cred%h%Creset %Cgreen(%cr) - %C(bold blue)%an -%C(yellow)%d%Creset %s' --abbrev-commit --date=iso"
 
 # Directory Listing Helpers
 alias la='ls -al'
@@ -23,7 +22,10 @@ alias diskusage='du -h -d 1 .'
 
 alias ssh-key-make='ssh-keygen -t rsa -b 2048 -C'
 
-source ~/dotfiles/cmds/env-cd
+if [ -f "~/.cmds/env-cd" ]; then
+    alias env-cd='~/.cmds/env-cd.py':
+    source ~/.cmds/env-cd;
+fi
 
 alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 

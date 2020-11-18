@@ -230,8 +230,8 @@ command NukeIt :%bdelete|:edit .
 " TODO: make color mode contingent on time. LightMode during day, DarkMode
 " during night
 " https://stackoverflow.com/questions/3368748/conditional-colorscheme-in-vimrc
-LightMode        " use lightmode by default
-" DarkMode         " use darkmode by default
+" LightMode        " use lightmode by default
+DarkMode         " use darkmode by default
 " Close all other buffers but current one
 " https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
 command CloseOthers :%bd|e#

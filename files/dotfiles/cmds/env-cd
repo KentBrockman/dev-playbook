@@ -10,5 +10,5 @@
 
 cd() {
     builtin cd "$@"
-    eval `env-cd.py`
+    eval `~/.cmds/env-cd.py`
 }
