@@ -1,9 +1,6 @@
----
-- name: basvandenbrink.firefox
-- name: jaredhocutt.gnome_extensions
-- name: markosamuli.pyenv
-  version: v3.0.1
-- name: andrewrothstein.starship
-  version: v1.0.8
-- name: spk.syncthing-debian
-  version: v2.4.0
+- markosamuli.pyenv, v3.0.1
+- andrewrothstein.unarchive-deps, v1.1.5
+- jaredhocutt.gnome_extensions, master
+- spk.syncthing-debian, v2.4.0
+- basvandenbrink.firefox, master
+- andrewrothstein.starship, v1.0.8
