@@ -113,6 +113,10 @@ gnome_desktop_settings:
   - key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
     value: "true"
 
+  # enable location services
+  - key: /org/gnome/system/location
+    value: "true"
+
   # determine where in the world we are for weather purposes
   - key: /org/gnome/shell/weather/automatic-location
     value: "true"
