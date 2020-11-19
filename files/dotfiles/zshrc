@@ -19,7 +19,9 @@ complete -o nospace -C $(which mc) mc
 
 # load keyboard customizations
 # https://unix.stackexchange.com/questions/31970/remap-capslock-to-escape-and-control-system-wide
-xmodmap ~/.Xmodmap
+if [ -n "${DISPLAY+x}" ]; then
+	xmodmap ~/.Xmodmap
+fi
 
 # starship for prompt goodness
 if [ $(command -v starship) ]; then
