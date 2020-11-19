@@ -37,6 +37,11 @@
 # export FZF_DEFAULT_COMMAND="rg --files ."
 # not as related here, but pyenv init is another one
 
+- name: Install oh-my-zsh
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+
 - name: confirm preferred shell executable is installed
   stat:
     path: "{{ preferred_shell }}"

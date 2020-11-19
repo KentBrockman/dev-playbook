@@ -24,11 +24,17 @@ alias diskusage='du -h -d 1 .'
 alias ssh-key-make='ssh-keygen -t rsa -b 2048 -C'
 
 if [ -f "~/.cmds/env-cd" ]; then
-    alias env-cd='~/.cmds/env-cd.py':
+    alias env-cd='~/.cmds/env-cd.py';
     source ~/.cmds/env-cd;
 fi
 
-alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+if [ -f "~/.cmds/open" ]; then
+    alias open='~/.cmds/open';
+fi
+
+if [ $(command -v docker) ]; then
+    alias ctop='docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
+fi
 
 # use neovim in place of vim if installed
 if [ $(command -v nvim) ]; then

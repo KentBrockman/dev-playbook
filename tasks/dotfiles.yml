@@ -21,6 +21,7 @@
     - vim/colors
     - zshrc
     - cmds
+    - Xmodmap
 
 - name: install gitconfig
   tags: ["gitconfig"]

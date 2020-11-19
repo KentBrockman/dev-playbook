@@ -11,14 +11,17 @@ stty -ixon
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Dont share history between sessions
-# https://stackoverflow.com/questions/32057760/is-it-possible-to-not-share-history-between-panes-windows-in-tmux-with-zsh
-setopt noincappendhistory
-setopt nosharehistory
+# use oh-my-zsh for nice tab-autocompletion UX
+source ~/.oh-my-zsh/oh-my-zsh.sh
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C $(which mc) mc
 
+# load keyboard customizations
+# https://unix.stackexchange.com/questions/31970/remap-capslock-to-escape-and-control-system-wide
+xmodmap ~/.Xmodmap
+
+# starship for prompt goodness
 if [ $(command -v starship) ]; then
 	eval "$(starship init zsh)"
 fi
