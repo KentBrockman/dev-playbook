@@ -5,7 +5,7 @@
 - 3D printing tools - cura
 - golang dev tooling
 - node/js dev tooling
-- file sync service
+- IaC dev tooling
 - set up on some form of CI
 - pyenv - do we have to install ansible/neovim there?
 - deoplete setup - need pynvim, jedi for python...how to mesh this with pyenv?

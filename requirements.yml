@@ -5,3 +5,5 @@
   version: v3.0.1
 - name: andrewrothstein.starship
   version: v1.0.8
+- name: spk.syncthing-debian
+  version: v2.4.0

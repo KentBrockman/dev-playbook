@@ -1,0 +1,12 @@
+---
+- name: install syncthing service
+  become: true
+  vars:
+    # https://github.com/syncthing/syncthing/tags
+    syncthing_version: "1.11.1"
+  import_role: 
+    name: spk.syncthing-debian
+
+    # TODO: enable syncthing.service
+    # TODO: setup sync.localhost alias to 127.0.0.1:8384
+    # sort out config and directories to share. how should we be doing this?

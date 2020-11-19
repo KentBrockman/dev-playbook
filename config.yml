@@ -6,6 +6,7 @@ hostname: phoenix
 install_dotfiles: True
 preferred_shell: /usr/bin/zsh
 install_battery_management_tools: true
+sync_content: true
 
 firefox_profiles:
   default-release:
