@@ -12,6 +12,7 @@ alias ....='cd ../../../..'
 # Git Helpers
 alias st='git status'
 alias gd='git diff'
+alias gdw='git diff --word-diff'
 
 # Directory Listing Helpers
 alias la='ls -al'
