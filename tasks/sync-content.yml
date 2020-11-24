@@ -27,5 +27,13 @@
     state: started
     daemon_reload: yes
 
+- name: raise inotify limits cause we sync a lot of content
+  # https://docs.syncthing.net/users/faq.html#inotify-limits
+  become: true
+  lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^fs.inotify.max_user_watches'
+    line: fs.inotify.max_user_watches=204800
+
     # TODO: setup sync.localhost alias to 127.0.0.1:8384
     # sort out config and directories to share. how should we be doing this?
