@@ -3,10 +3,29 @@
   become: true
   vars:
     # https://github.com/syncthing/syncthing/tags
+    # review task 'define syncthing.service unit file' when updating
     syncthing_version: "1.11.1"
   import_role: 
     name: spk.syncthing-debian
 
-    # TODO: enable syncthing.service
+  # start syncthing as a system service so syncing happens without user logging in
+  # this falls down when multiple users may want multiple syncthing agents running on a single box
+- name: define syncthing.service unit file
+  become: true
+  template:
+    # HACK: this ought to be part of role above
+    src: files/sync-content/syncthing.service
+    dest: /etc/systemd/system/syncthing.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: start syncthing.service
+  become: true
+  systemd:
+    name: syncthing.service
+    state: started
+    daemon_reload: yes
+
     # TODO: setup sync.localhost alias to 127.0.0.1:8384
     # sort out config and directories to share. how should we be doing this?
