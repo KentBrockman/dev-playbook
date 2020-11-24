@@ -24,11 +24,8 @@
   become: true
   systemd:
     name: syncthing.service
-    state: started
+    enabled: yes
     daemon_reload: yes
-  # HACK: this step always fails, fixed in ansible 2.9.16 which is unreleased at this time
-  # https://github.com/ansible/ansible/issues/71528#issuecomment-729778048
-  ignore_errors: yes
 
 - name: raise inotify limits cause we sync a lot of content
   # https://docs.syncthing.net/users/faq.html#inotify-limits
