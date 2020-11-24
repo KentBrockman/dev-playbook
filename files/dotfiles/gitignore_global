@@ -13,8 +13,6 @@
 .idea
 # ctag files
 tags
-# https://github.com/ycm-core/YouCompleteMe/blob/master/.ycm_extra_conf.py
-.ycm_extra_conf.py
 
 # personal stuff
 # personal scratch files
