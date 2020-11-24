@@ -1,6 +1,10 @@
 # Temp files
 *.swp
 *.swo
+*.swn
+*.tmp
+
+# file explorer
 .DS_Store
 
 # python files
