@@ -48,6 +48,13 @@
   register: preferred_shell_executable
 
 - name: install starship
+  # BUG: believe vars/Debian.yml not being loaded in andrewrothstein.unarchive_deps
+  # Hypothesis: Pop!_OS not detected as a Debian-based OS, so attempts to install 'xz'
+  # from defaults/main.yml. xz doesn't exist on debian
+  # Set it manually instead
+  vars:
+    unarchive_deps_xz_pkgs:
+      - xz-utils
   import_role:
     name: andrewrothstein.starship
 
