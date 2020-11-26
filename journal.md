@@ -2,13 +2,12 @@
 
 - vscode setup
 - collect manual setup tasks for things that shouldnt be automated (logging in to things, setting up ssh keys, etc)
-- 3D printing tools - cura
 - golang dev tooling
 - node/js dev tooling
-- IaC dev tooling
 - set up on some form of CI
 - pyenv - do we have to install ansible/neovim there?
 - deoplete setup - need pynvim, jedi for python...how to mesh this with pyenv?
+- modify hosts to deploy playbook changes to all machines simultaneously
 
 ## Multi Machine Usages
 
