@@ -21,7 +21,12 @@
     - vim/colors
     - zshrc
     - cmds
+    # largely for remapping capslock to escape
+    # HACK: this only works for x-window sessions, not for TTYs
+    # TODO: for TTYs, explore a lower level option for remapping
+    # https://superuser.com/questions/729585/remap-keys-without-xmodmap-or-any-x-tools
     - Xmodmap
+    - xinitrc
 
 - name: install gitconfig
   tags: ["gitconfig"]

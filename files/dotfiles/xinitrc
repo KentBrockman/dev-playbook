@@ -1,0 +1,3 @@
+# load keyboard customizations
+# https://unix.stackexchange.com/questions/31970/remap-capslock-to-escape-and-control-system-wide
+xmodmap ~/.Xmodmap
