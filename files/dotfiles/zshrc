@@ -27,3 +27,8 @@ fi
 if [ $(command -v starship) ]; then
 	eval "$(starship init zsh)"
 fi
+
+# initialize pyenv if installed
+if [ $(command -v pyenv) ]; then
+	eval "$(pyenv init -)"
+fi
