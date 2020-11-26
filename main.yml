@@ -22,17 +22,19 @@
           - psutil
 
   tasks:
-    # Appears to be broken, unsure where
-    # - name: set hostname
-    #   tags: ["hostname"]
-    #   hostname:
-    #     name: "{{ hostname }}"
+    - name: set hostname
+      tags: ["hostname"]
+      hostname:
+        name: "{{ hostname }}"
+        use: systemd
+
     - name: add run_dev_playbook to local scripts
       tags: ["run_dev_playbook"]
       template:
         src: "{{ playbook_dir }}/files/run_dev_playbook"
         dest: ~/.local/bin/run_dev_playbook
         mode: 0544
+
     - import_tasks: tasks/web-browser.yml
       tags: ["web-browser"]
     - import_tasks: tasks/vscode.yml
