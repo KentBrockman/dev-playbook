@@ -1,0 +1,12 @@
+---
+- name: check terraform install
+  stat:
+    path: ~/.local/bin/terraform
+  register: terraform
+
+- name: install terraform
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
+    dest: ~/.local/bin/
+    remote_src: yes 
+  when: not terraform.stat.exists
