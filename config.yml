@@ -55,16 +55,16 @@ apt_applications:
   - gimp
   # for recording parts of screen and turning it into gifs
   - peek
-  # 3D parametric modelling
-  - freecad
-  # backup utility that saves me when I wreck my system
-  - timeshift
   # great media player
   - vlc
   # typing tutor
   - gtypist
   # irc chat client
   - irssi
+  # 3D parametric modelling
+  - freecad
+  # slicing software to turn 3d models into printable gcode
+  - cura
 
 binary_applications:
   - url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2020-03-14T01-23-37Z
