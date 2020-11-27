@@ -79,14 +79,27 @@ gnome_extension_ids:
   # Sound Input & Output Device Chooser
   - 906
   # System Monitor
-  # this is not stable right now
-  # - 120
+  # TODO: save configurations from dconf dump /org/gnome/shell/extensions/
+  - 120
   # Open Weather
   - 750
   # Removable Drive Menu
   - 7
   # Automatic background slideshow
   - 543
+  # Alt+Tab menu will not group applications
+  # TODO: save configurations from dconf dump /org/gnome/shell/extensions/
+  - 15
+  # Clipboard history
+  - 779
+  # StealMyFocus - remove "Window is ready" notification and focus on it
+  - 234
+  # remove blur effect from lockscreen
+  - 2935
+  # gTile - specify window sizes nicely (if not using pop shell tiling)
+  # - 28
+  # reboot with options from grub
+  # - 893
 
 # links to debian packages to install
 other_applications:
