@@ -96,3 +96,7 @@
 - name: setup root shell
   tags: ['root-shell']
   import_tasks: tasks/root-shell.yml
+
+- name: link python executables
+  tags: ['link-python']
+  import_tasks: tasks/link-python.yml

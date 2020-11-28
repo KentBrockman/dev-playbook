@@ -1,5 +1,21 @@
-# show loading cause i'm trying to figure out order and when these are called for login/non login/ssh shells
+# .zshrc sourced on interactive shells
+# http://zsh.sourceforge.net/Intro/intro_3.html
 # echo '.zshrc loaded'
+
+# https://www.cyberciti.biz/faq/redhat-linux-pathmunge-command-in-shell-script/
+pathmunge () {
+	if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" && -d $1 ; then
+		if [ "$2" = "after" ] ; then
+			PATH=$PATH:$1
+		else
+			PATH=$1:$PATH
+		fi
+	fi
+}
+
+# list directories you wish to have on your path
+pathmunge "$HOME/.local/bin"
+pathmunge "$HOME/.cmds"
 
 # Use root profile for common stuff 
 source ~/.aliases
@@ -15,7 +31,10 @@ COMPLETION_WAITING_DOTS="true"
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
 autoload -U +X bashcompinit && bashcompinit
+# Add generated tab autocompletion flags to these programs
+# It is better than nothing
 complete -o nospace -C $(which mc) mc
+complete -o nospace -C $(which terraform) terraform
 
 # starship for prompt goodness
 if [ $(command -v starship) ]; then
@@ -23,7 +42,14 @@ if [ $(command -v starship) ]; then
 fi
 
 # initialize pyenv if installed
+# BUG: if in zshenv (which might be nice so pyenv is on all shells) vim buffer become super slow
+# unsure how to troubleshoot this at this time
+if [ -d "$HOME/.pyenv/bin" ]; then
+	pathmunge "$HOME/.pyenv/bin"
+fi
 if [ $(command -v pyenv) ]; then
+	# BUG: this will create a duplicate path entry for ~/.pyenv/shims
+	# this is because pyenv init - doesn't set PATH using pathmunge
 	eval "$(pyenv init -)"
-	# eval "$(pyenv virtualenv-init -)"
+	eval "$(pyenv virtualenv-init -)"
 fi

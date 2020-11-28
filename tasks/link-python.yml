@@ -1,0 +1,14 @@
+# making an executive decision: not sure ALL my machines will use pyenv
+# so make it easy to scrub out
+# for that, let's make sure a python/pip executable are available to user
+---
+- name: link python3 executables
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  with_items:
+    - src: /usr/bin/python3
+      dest: ~/.local/bin/python
+    - src: /usr/bin/pip3
+      dest: ~/.local/bin/pip

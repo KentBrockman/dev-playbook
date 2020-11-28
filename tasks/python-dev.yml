@@ -43,7 +43,7 @@
       - "{{ pyenv_python38_version }}"
       - "2.7.18"
     # Set global pyenv version
-    pyenv_global: "{{ pyenv_python37_version }} system"
+    pyenv_global: system
     # Install using package manager where available
     pyenv_install_from_package_manager: true
     # Detect existing install
