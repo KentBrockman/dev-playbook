@@ -46,4 +46,23 @@
       - python-language-server
     state: latest
 
-# TODO: consider setting up neovim Python providers in pyenv now that we have it
+- name: add pyenv module
+  tags: pyenv-environments
+  import_role:
+    name: suzuki-shunsuke.pyenv-module
+
+# setup neovim Python providers in pyenv now that we have it
+- name: set up virtual environments
+  tags: pyenv-environments
+  include_tasks: tasks/python-environment.yml
+  with_items:
+    # Python 2 neovim provider
+    - virtualenv_name: neovim2
+      version: 2.7.18
+      packages:
+        - neovim
+    # Python 3 neovim provider
+    - virtualenv_name: neovim3
+      version: 3.7.9
+      packages:
+        - neovim

@@ -10,3 +10,5 @@
   version: master
 - name: andrewrothstein.starship
   version:  v1.0.8
+- name: suzuki-shunsuke.pyenv-module
+  version:  v2.3.1
