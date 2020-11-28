@@ -164,16 +164,12 @@ gnome_desktop_settings:
     value: "false"
   - key: /org/gnome/shell/extensions/system-monitor/compact-display
     value: "true"
-  - key: /org/gnome/shell/extensions/system-monitor/cpu-graph-width
-    value: "50"
   - key: /org/gnome/shell/extensions/system-monitor/cpu-individual-cores
     value: "false"
   - key: /org/gnome/shell/extensions/system-monitor/cpu-refresh-time
     value: "1000"
   - key: /org/gnome/shell/extensions/system-monitor/disk-display
     value: "true"
-  - key: /org/gnome/shell/extensions/system-monitor/disk-graph-width
-    value: "50"
   - key: /org/gnome/shell/extensions/system-monitor/disk-refresh-time
     value: "1000"
   - key: /org/gnome/shell/extensions/system-monitor/disk-show-text
@@ -184,28 +180,20 @@ gnome_desktop_settings:
     value: "false"
   - key: /org/gnome/shell/extensions/system-monitor/freq-display
     value: "false"
-  - key: /org/gnome/shell/extensions/system-monitor/freq-style
-    value: "'digit'"
   - key: /org/gnome/shell/extensions/system-monitor/gpu-display
     value: "true"
-  - key: /org/gnome/shell/extensions/system-monitor/gpu-graph-width
-    value: "50"
   - key: /org/gnome/shell/extensions/system-monitor/gpu-refresh-time
     value: "1000"
   - key: /org/gnome/shell/extensions/system-monitor/gpu-show-menu
     value: "true"
   - key: /org/gnome/shell/extensions/system-monitor/icon-display
     value: "false"
-  - key: /org/gnome/shell/extensions/system-monitor/memory-graph-width
-    value: "50"
   - key: /org/gnome/shell/extensions/system-monitor/memory-refresh-time
     value: "1000"
   - key: /org/gnome/shell/extensions/system-monitor/move-clock
     value: "false"
   - key: /org/gnome/shell/extensions/system-monitor/net-display
     value: "true"
-  - key: /org/gnome/shell/extensions/system-monitor/net-graph-width
-    value: "50"
   - key: /org/gnome/shell/extensions/system-monitor/net-show-menu
     value: "true"
   - key: /org/gnome/shell/extensions/system-monitor/net-show-text
@@ -214,8 +202,6 @@ gnome_desktop_settings:
     value: "true"
   - key: /org/gnome/shell/extensions/system-monitor/swap-display
     value: "false"
-  - key: /org/gnome/shell/extensions/system-monitor/swap-graph-width
-    value: "50"
   - key: /org/gnome/shell/extensions/system-monitor/thermal-display
     value: "true"
 
