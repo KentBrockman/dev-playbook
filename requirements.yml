@@ -1,5 +1,5 @@
 - name: markosamuli.pyenv
-  version: v3.0.1
+  version: v4.0.2
 - name: andrewrothstein.unarchive-deps
   version: v1.1.5
 - name: jaredhocutt.gnome_extensions

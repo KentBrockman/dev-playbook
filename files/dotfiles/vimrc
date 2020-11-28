@@ -70,6 +70,16 @@ set nospell			" Turn off spell checking
 set foldmethod=indent
 set foldlevel=99
 
+" set up python3 interpreters
+if filereadable($HOME . "/.pyenv/versions/neovim3/bin/python")
+    " if using pyenv/virtualenv, follow https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
+    " should default to /usr/bin/python3 if not installed
+    let g:python3_host_prog = $HOME . "/.pyenv/versions/neovim3/bin/python"
+endif
+if filereadable($HOME . "/.pyenv/versions/neovim2/bin/python")
+    let g:python_host_prog = $HOME . "/.pyenv/versions/neovim2/bin/python"
+endif
+
 " PLUGINS
 " https://github.com/junegunn/vim-plug#usage
 " Specify a directory for plugins. Avoid using standard Vim directory names like 'plugin'
@@ -147,17 +157,6 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
     " <C-J> - Move cursor to next match.
     " <C-K> - Move cursor to previous match.
     " <C-C> - Stop a background searching process.
-
-" set up python interpreters
-" https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
-let g:py3_interpreter = $HOME . "/.pyenv/versions/neovim3/bin/python"
-if filereadable(g:py3_interpreter)
-    let g:python3_host_prog = g:py3_interpreter
-endif
-let g:py2_interpreter = $HOME . "/.pyenv/versions/neovim2/bin/python"
-if filereadable(g:py2_interpreter)
-    let g:python_host_prog = g:py2_interpreter
-endif
 
 Plug 'dense-analysis/ale'
 let g:ale_linters = {'python': ['flake8', 'pydocstyle']}

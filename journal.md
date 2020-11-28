@@ -8,6 +8,9 @@
 - node/js dev tooling
 - set up on some form of CI
 - modify hosts to deploy playbook changes to all machines simultaneously
+- nuke ~/.vim
+- reorder main.yml
+    - e.g. *-dev before editors
 
 ## Multi Machine Usages
 

@@ -1,65 +1,34 @@
 ---
-- name: install python3 for development
-  become: true
-  apt:
-    name:
-      # markosamuli.pyenv doesnt have variable files defined for Pop!_OS
-      # Ubuntu/Debian not used, so required libs dont get installed
-      # Do it here instad
-      - git
-      - make
-      - build-essential
-      - libssl-dev
-      - zlib1g-dev
-      - libbz2-dev
-      - libreadline-dev
-      - libsqlite3-dev
-      - wget
-      - curl
-      - llvm
-      - libncurses5-dev
-      - libncursesw5-dev
-      - xz-utils
-      # install tkinter for visual things
-      - tk-dev
-      - python3-tk
-
 - name: install pyenv
   vars:
-    # TODO: how to handle this as part of dotfiles...
-    # Initialize .bashrc and .zshrc shell scripts
-    # pyenv_init_shell: true
-    # Versions to install
+    # pyenv/virtualenv versions to install
     pyenv_version: "v1.2.21"
-    # Not using vritualenv or virtualenvwrapper for now
-    # pyenv_virtualenv_version: "v1.1.5"
-    # pyenv_virtualenvwrapper_version: "v20140609"
-    # Latest Python versions
-    pyenv_python37_version: "3.7.9"
-    pyenv_python38_version: "3.8.6"
+    pyenv_virtualenv_version: "v1.1.5"
     # Python versions to install
     pyenv_python_versions:
-      - "{{ pyenv_python37_version }}"
-      - "{{ pyenv_python38_version }}"
+      - "3.7.9"
+      - "3.8.6"
       - "2.7.18"
-    # Set global pyenv version
+    # what python environment should be used by default
     pyenv_global: system
-    # Install using package manager where available
-    pyenv_install_from_package_manager: true
-    # Detect existing install
+    pyenv_install_from_package_manager: false
     pyenv_detect_existing_install: true
-    # Dont modify dotfiles - will do it cleaner
+    # Dont modify dotfiles - will do it our own way
     pyenv_init_shell: false
   import_role:
     name: markosamuli.pyenv
 
+- name: confirm pyenv global is system
+  lineinfile:
+    path: ~/.pyenv/version
+    line: system
+
 - name: install development dependencies
   pip:
     name:
-        # TODO: pyenv and where I've PATH'd it hijacks system ansible. unsure what to do about this
-        - python-language-server
-        # HACK: Should this be a handler? Repeated in main.yml. let pyenv manage it? redo path? i dunno
-        # all of these dependencies are needed for ansible to run properly. experimentally discovered...
-        - ansible
-        - requests
-        - psutil
+      # TODO: this should be in tasks/neovim.yml
+      - neovim
+      - python-language-server
+    state: latest
+
+# TODO: consider setting up neovim Python providers in pyenv now that we have it

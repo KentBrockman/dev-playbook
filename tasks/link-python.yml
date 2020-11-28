@@ -1,6 +1,7 @@
-# making an executive decision: not sure ALL my machines will use pyenv
-# so make it easy to scrub out
-# for that, let's make sure a python/pip executable are available to user
+# pyenv global system requires python and pip to be discoverable on path
+# ubuntu >=20.04 doesnt ship with these
+# for that, let's make sure a python/pip executable are available to user/on path
+# this is also just generally handy for using python/pip keywords
 ---
 - name: link python3 executables
   file:
