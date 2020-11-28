@@ -79,7 +79,6 @@ gnome_extension_ids:
   # Sound Input & Output Device Chooser
   - 906
   # System Monitor
-  # TODO: save configurations from dconf dump /org/gnome/shell/extensions/
   - 120
   # Open Weather
   - 750
@@ -88,7 +87,6 @@ gnome_extension_ids:
   # Automatic background slideshow
   - 543
   # Alt+Tab menu will not group applications
-  # TODO: save configurations from dconf dump /org/gnome/shell/extensions/
   - 15
   # Clipboard history
   - 779
@@ -152,6 +150,74 @@ gnome_desktop_settings:
   # Backslide parameters
   - key: /org/gnome/shell/extensions/backslide/delay
     value: "416"    # 6 hours
+
+  # system monitor settings
+  - key: /org/gnome/shell/extensions/system-monitor/background
+    value: "'ffffff16'"
+  - key: /org/gnome/shell/extensions/system-monitor/battery-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/battery-hidesystem
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/battery-show-menu
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/center-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/compact-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/cpu-graph-width
+    value: "50"
+  - key: /org/gnome/shell/extensions/system-monitor/cpu-individual-cores
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/cpu-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-graph-width
+    value: "50"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-show-text
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-usage-style
+    value: "'bar'"
+  - key: /org/gnome/shell/extensions/system-monitor/fan-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/freq-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/freq-style
+    value: "'digit'"
+  - key: /org/gnome/shell/extensions/system-monitor/gpu-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/gpu-graph-width
+    value: "50"
+  - key: /org/gnome/shell/extensions/system-monitor/gpu-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/gpu-show-menu
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/icon-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/memory-graph-width
+    value: "50"
+  - key: /org/gnome/shell/extensions/system-monitor/memory-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/move-clock
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/net-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/net-graph-width
+    value: "50"
+  - key: /org/gnome/shell/extensions/system-monitor/net-show-menu
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/net-show-text
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/show-tooltip
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/swap-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/swap-graph-width
+    value: "50"
+  - key: /org/gnome/shell/extensions/system-monitor/thermal-display
+    value: "true"
 
 wallpapers:
   # directory to store wallpapers
