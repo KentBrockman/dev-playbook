@@ -19,15 +19,13 @@
     name: markosamuli.pyenv
 
 - name: confirm pyenv global is system
-  lineinfile:
-    path: ~/.pyenv/version
-    line: system
+  copy:
+    src: files/python-dev/pyenv_version
+    dest: ~/.pyenv/version
 
 - name: install development dependencies
   pip:
     name:
-      # TODO: this should be in tasks/neovim.yml
-      - neovim
       - python-language-server
     state: latest
 

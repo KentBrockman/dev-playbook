@@ -19,3 +19,8 @@
     dest: "~/.config/nvim/init.vim"
     state: link
 
+- name: install neovim pip package
+  pip:
+    name:
+      - neovim
+    state: latest
