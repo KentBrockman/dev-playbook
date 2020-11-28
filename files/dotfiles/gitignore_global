@@ -11,6 +11,7 @@
 *__pycache__*
 *.pyc
 .venv
+.python-version
 
 # Files to help editors do their thing
 .vscode

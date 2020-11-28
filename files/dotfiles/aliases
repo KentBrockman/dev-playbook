@@ -52,3 +52,11 @@ then
     alias less=batcat
     alias cat=batcat
 fi
+
+# configure PulseAudio to change audio output device from commandline
+# if command -v pacmd &> /dev/null
+# then
+# TODO: correct these aliases to actually work
+#     alias audio-speakers="pacmd set-card-profile 0 off"
+#     alias audio-headphones="pacmd set-card-profile 0 output:analog-stereo"
+# fi

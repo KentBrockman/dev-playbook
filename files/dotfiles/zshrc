@@ -25,4 +25,5 @@ fi
 # initialize pyenv if installed
 if [ $(command -v pyenv) ]; then
 	eval "$(pyenv init -)"
+	# eval "$(pyenv virtualenv-init -)"
 fi

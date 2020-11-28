@@ -82,8 +82,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree'
 let NERDTreeShowHidden=1				" Show hidden files in nerd tree
 " Set NERDTree aliases
-:command NTT NERDTreeToggle
-:command NTF NERDTreeFind
+:command! NTT NERDTreeToggle
+:command! NTF NERDTreeFind
 
 " Status and buffer line 
 Plug 'vim-airline/vim-airline'
@@ -148,6 +148,16 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
     " <C-K> - Move cursor to previous match.
     " <C-C> - Stop a background searching process.
 
+" set up python interpreters
+" https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
+let g:py3_interpreter = $HOME . "/.pyenv/versions/neovim3/bin/python"
+if filereadable(g:py3_interpreter)
+    let g:python3_host_prog = g:py3_interpreter
+endif
+let g:py2_interpreter = $HOME . "/.pyenv/versions/neovim2/bin/python"
+if filereadable(g:py2_interpreter)
+    let g:python_host_prog = g:py2_interpreter
+endif
 
 Plug 'dense-analysis/ale'
 let g:ale_linters = {'python': ['flake8', 'pydocstyle']}
@@ -223,10 +233,10 @@ set t_Co=256						" Set 256 color mode. Your terminal must support this
 " set background=light
 
 " CUSTOM COMMANDS
-command LightMode :colorscheme seoul256 | :set background=light
-command DarkMode :colorscheme seoul256 | :set background=dark
-command ReloadVimrc :source $MYVIMRC
-command NukeIt :%bdelete|:edit .
+command! LightMode :colorscheme seoul256 | :set background=light
+command! DarkMode :colorscheme seoul256 | :set background=dark
+command! SourceVimrc :source $MYVIMRC
+command! NukeIt :%bdelete|:edit .
 " TODO: make color mode contingent on time. LightMode during day, DarkMode
 " during night
 " https://stackoverflow.com/questions/3368748/conditional-colorscheme-in-vimrc
@@ -234,7 +244,7 @@ command NukeIt :%bdelete|:edit .
 DarkMode         " use darkmode by default
 " Close all other buffers but current one
 " https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
-command CloseOthers :%bd|e#
+command! CloseOthers :%bd|e#
 
 " KEY MAPPINGS
 " I don't think I know the default commands well enough to know what should be
