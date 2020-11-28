@@ -4,7 +4,7 @@
 
 # https://www.cyberciti.biz/faq/redhat-linux-pathmunge-command-in-shell-script/
 pathmunge () {
-	if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" && -d $1 ; then
+	if ! echo $PATH | /bin/egrep -q "(^|:)$1($|:)" ; then
 		if [ "$2" = "after" ] ; then
 			PATH=$PATH:$1
 		else
