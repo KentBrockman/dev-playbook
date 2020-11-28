@@ -33,6 +33,13 @@
     src: files/python-dev/pyenv_version
     dest: ~/.pyenv/version
 
+- name: install additional python dev packages
+  become: true
+  apt:
+    name:
+      - tox
+    state: present
+
 - name: install development dependencies
   pip:
     name:
