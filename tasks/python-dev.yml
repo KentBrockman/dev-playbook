@@ -44,6 +44,7 @@
   pip:
     name:
       - python-language-server
+      - jedi
     state: latest
 
 - name: add pyenv module
@@ -61,8 +62,12 @@
       version: 2.7.18
       packages:
         - neovim
+        - python-language-server
+        - jedi
     # Python 3 neovim provider
     - virtualenv_name: neovim3
       version: 3.7.9
       packages:
         - neovim
+        - python-language-server
+        - jedi

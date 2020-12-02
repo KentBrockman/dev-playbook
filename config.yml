@@ -65,6 +65,8 @@ apt_applications:
   - freecad
   # slicing software to turn 3d models into printable gcode
   - cura
+  # ebook manager
+  - calibre=4.99.4+dfsg+really4.12.0-1build1
 
 binary_applications:
   - url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2020-03-14T01-23-37Z
