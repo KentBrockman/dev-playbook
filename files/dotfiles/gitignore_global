@@ -25,3 +25,6 @@ tags
 # to be paired with cmds/env-cd
 .extra_envs
 secrets.env
+
+# JS/Node
+node_modules

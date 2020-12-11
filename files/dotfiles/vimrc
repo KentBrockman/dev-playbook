@@ -46,15 +46,11 @@ set wildmenu			        " In GUI mode, tab will suggest commands for you
 set showmatch 			        " Show corresponding end braces
 set backspace=indent,eol,start  " Modern backspacing behaviour
 
-" Fix for delay on <Esc>Shift+o sequence
-" https://github.com/vim/vim/issues/24
-set timeout timeoutlen=5000 ttimeoutlen=100
-
 " SEARCH
 set ic				" Ignore case when searching by default
 set hlsearch		" Highlight search matches
 set incsearch		" Search as characters are entered
-" // in Visual mode will search for visually selected text
+" '//' in Visual mode will search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>'")
 
 " SPELLING
@@ -65,14 +61,14 @@ set spelllang=en_us	" Set spell checking dictionary to English
 " set spell			" Turn on spell checking 
 set nospell			" Turn off spell checking
 
-
 " FOLDING
 set foldmethod=indent
 set foldlevel=99
 
-" set up python3 interpreters
+" Set up python interpreters for neovim
 if filereadable($HOME . "/.pyenv/versions/neovim3/bin/python")
-    " if using pyenv/virtualenv, follow https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
+    " if using pyenv/virtualenv:
+    " follow https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
     " should default to /usr/bin/python3 if not installed
     let g:python3_host_prog = $HOME . "/.pyenv/versions/neovim3/bin/python"
 endif
@@ -85,65 +81,52 @@ endif
 " Specify a directory for plugins. Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Language support
-Plug 'sheerun/vim-polyglot'
-
-" Interactive file finder
-Plug 'preservim/nerdtree'
+Plug 'sheerun/vim-polyglot'                             " Language support
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Better python syntax highlighting
+Plug 'preservim/nerdtree'               " Interactive file finder
 let NERDTreeShowHidden=1				" Show hidden files in nerd tree
 " Set NERDTree aliases
 :command! NTT NERDTreeToggle
 :command! NTF NERDTreeFind
-
-" Status and buffer line 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='base16_eighties'		" Start airline with this this theme
-let g:airline_powerline_fonts=1                 " Use powerline fonts
-let g:airline#extensions#tabline#enabled = 1	" Show open buffers at top
-" abbreviate mode to one letter, remove RHS stuff
-
-" nouns and motions to modify surroundings
-Plug 'tpope/vim-surround'
-" ability to repeat surround operations
-Plug 'tpope/vim-repeat'
-
-" Pair up brackets!
-Plug 'jiangmiao/auto-pairs'
-
-" Show indents with lines
-Plug 'yggdroot/indentline'
-
-Plug 'tpope/vim-commentary'
-
-Plug 'airblade/vim-gitgutter'
-
-Plug 'michaeljsmith/vim-indent-object'
-
-" make html editing easier
-" tpope/vim-surround used above
-Plug 'tmhedberg/matchit'
-Plug 'mattn/emmet-vim'
-
-"" Fuzzy File Finding
-" requires fzf: https://github.com/junegunn/fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'vim-airline/vim-airline'                          " Status and buffer line 
+Plug 'vim-airline/vim-airline-themes'                   " Airline colors
+let g:airline_theme='bubblegum'		                    " Start airline with this this theme
+let g:airline_powerline_fonts=1                         " Use powerline fonts
+let g:airline#extensions#tabline#enabled = 1	        " Show open buffers at top
+Plug 'tpope/vim-surround'                               " Text objects and motions for surroundings
+Plug 'tpope/vim-repeat'                                 " ability to repeat surround operations
+Plug 'jiangmiao/auto-pairs'                             " Pair up brackets as you type
+Plug 'yggdroot/indentline'                              " Show indents with lines
+Plug 'tpope/vim-commentary'                             " Verb for commenting lines
+Plug 'airblade/vim-gitgutter'                           " Show version control changes in the gutter
+Plug 'michaeljsmith/vim-indent-object'                  " Text objects for indentation
+Plug 'tmhedberg/matchit'                                " Better pair matching with %
+Plug 'mattn/emmet-vim'                                  " Make HTML easier to write
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }   " Fuzzy File Finding
 Plug 'junegunn/fzf.vim'
-" HOTKEY: Open fuzzy finder with <C-P>
-nnoremap <C-P> :FZF<Cr>
-
-" grep style searching
-" https://github.com/dyng/ctrlsf.vim
-Plug 'dyng/ctrlsf.vim' 
-" trying their recommended mappings
+nnoremap <C-P>f :Files<Cr>
+nnoremap <C-P>b :Buffers<Cr>
+nnoremap <C-P>t :Tags<Cr>
+nnoremap <C-P>g :Commits<Cr>
+nnoremap <C-P>l :Lines<Cr>
+nnoremap <C-P>m :Marks<Cr>
+nnoremap <C-P>h :History<Cr>
+nnoremap <C-P>s :Snippets<Cr>
+nnoremap <C-P>r :Rg<Cr>
+Plug 'dyng/ctrlsf.vim'                      " Grep style full text searching
+" prompt search
 nmap     <C-F>f <Plug>CtrlSFPrompt
-vmap     <C-F>f <Plug>CtrlSFVwordPath
-vmap     <C-F>F <Plug>CtrlSFVwordExec
+" search for visual selection
+vmap     <C-F>f <Plug>CtrlSFVwordExec
+" search word udner cursor
 nmap     <C-F>n <Plug>CtrlSFCwordPath
+" search last buffer search
 nmap     <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
-inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+" focus on search window
+let g:ctrlsf_auto_focus = {
+    \ "at": "done",
+    \ }
 " Commands In CtrlSF window:
     " Enter, o, double-click - Open corresponding file of current line in the window which CtrlSF is launched from.
     " <C-O> - Like Enter but open file in a horizontal split window.
@@ -157,22 +140,22 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
     " <C-J> - Move cursor to next match.
     " <C-K> - Move cursor to previous match.
     " <C-C> - Stop a background searching process.
-
-Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'                   " Asyncronous linting engine
 let g:ale_linters = {'python': ['flake8', 'pydocstyle']}
 let g:ale_linters_explicit = 1
-
-Plug 'vim-test/vim-test'
+Plug 'vim-test/vim-test'                    " Run tests from vim
 let test#strategy = "vimterminal"
-
 " LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/vim-lsp-settings'
+nnoremap g] :LspDefinition<CR>
+nnoremap g[ :LspReferences<CR>
+nnoremap <C-j> :LspHover<CR>
 " Plugin to manage LSP servers (e.g. installing, starting, stopping)
+" TODO: review this
 " Plug 'mattn/vim-lsp-settings'
 let g:lsp_diagnostics_enabled = 0
-
 " deoplete for autocompletion
 " needs: pip3 install --user pynvim
 if has('nvim')
@@ -194,53 +177,42 @@ inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
 let g:deoplete#sources#jedi#show_docstring = 1
 " close the preview window after autocomplete is finished
 autocmd CompleteDone * pclose!
-
-Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'                    " Go to two-letter combination similar to f/F
 nmap s <Plug>(easymotion-s2)
-
-" super handy git integrations
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-
-Plug 'mg979/vim-visual-multi'
-
-Plug 'tweekmonster/django-plus.vim'
-
-" Some plugins I'd like to try out:
-" Plug 'SirVer/ultisnips'
-" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
-
-Plug 'sedm0784/vim-you-autocorrect'
+Plug 'tpope/vim-fugitive'                           " Git operations directly in vim
+Plug 'tpope/vim-rhubarb'                            " Github backend for vim-fugitive
+Plug 'mg979/vim-visual-multi'                       " Sublime Text/VS Code <C-n> style multi select
+Plug 'tweekmonster/django-plus.vim'                 " Better django html completions and indentation behaviour
+Plug 'sedm0784/vim-you-autocorrect'                 " Fix typos automatically
 " augroup ILoveCorrections
 "     autocmd!
 "     autocmd BufEnter * EnableAutocorrect
 " augroup END
+Plug 'junegunn/seoul256.vim'                        " Preferred colorscheme
+Plug 'psliwka/vim-smoothie'                         " Smooth line scrolling
+Plug 'SirVer/ultisnips'                             " Snippets engine
+Plug 'honza/vim-snippets'                           " Snippet repository
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }    " Show Markdown as you type
 
-Plug 'junegunn/seoul256.vim'
+" Some plugins I'd like to try out:
+" https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
 
 call plug#end()
 
 " COLORS
 " load colors after plugins if using plugin color instead of ~/.vimrc/colors
 set t_Co=256						" Set 256 color mode. Your terminal must support this
-" colorschemes at ~/.vimrc/colors
-" colorscheme solarized
-" set background=dark
-" colorscheme lucius
-" LuciusLight
-" colorscheme seoul256
-" set background=light
-
-" CUSTOM COMMANDS
 command! LightMode :colorscheme seoul256 | :set background=light
 command! DarkMode :colorscheme seoul256 | :set background=dark
-command! SourceVimrc :source $MYVIMRC
-command! NukeIt :%bdelete|:edit .
 " TODO: make color mode contingent on time. LightMode during day, DarkMode
 " during night
 " https://stackoverflow.com/questions/3368748/conditional-colorscheme-in-vimrc
 " LightMode        " use lightmode by default
 DarkMode         " use darkmode by default
+
+" CUSTOM COMMANDS
+command! SourceVimrc :source $MYVIMRC
+command! NukeIt :%bdelete|:edit .
 " Close all other buffers but current one
 " https://stackoverflow.com/questions/4545275/vim-close-all-buffers-but-this-one
 command! CloseOthers :%bd|e#
@@ -252,9 +224,6 @@ command! CloseOthers :%bd|e#
 nnoremap <C-L> :bnext!<CR>
 " CTRL-L go to next buffer 
 nnoremap <C-H> :bprevious!<CR>
-nnoremap g] :LspDefinition<CR>
-nnoremap g[ :LspReferences<CR>
-nnoremap <C-j> :LspHover<CR>
 
 " Experimenting with autocmd
 function CallPythonFormatters()
