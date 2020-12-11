@@ -115,31 +115,31 @@ nnoremap <C-P>s :Snippets<Cr>
 nnoremap <C-P>r :Rg<Cr>
 Plug 'dyng/ctrlsf.vim'                      " Grep style full text searching
 " prompt search
-nmap     <C-F>f <Plug>CtrlSFPrompt
+nmap <C-F>f <Plug>CtrlSFPrompt
 " search for visual selection
-vmap     <C-F>f <Plug>CtrlSFVwordExec
+vmap <C-F>f <Plug>CtrlSFVwordExec
 " search word udner cursor
-nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap <C-F>n <Plug>CtrlSFCwordPath
 " search last buffer search
-nmap     <C-F>p <Plug>CtrlSFPwordPath
+nmap <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>t :CtrlSFToggle<CR>
 " focus on search window
 let g:ctrlsf_auto_focus = {
     \ "at": "done",
     \ }
 " Commands In CtrlSF window:
-    " Enter, o, double-click - Open corresponding file of current line in the window which CtrlSF is launched from.
-    " <C-O> - Like Enter but open file in a horizontal split window.
-    " t - Like Enter but open file in a new tab.
-    " p - Like Enter but open file in a preview window.
-    " P - Like Enter but open file in a preview window and switch focus to it.
-    " O - Like Enter but always leave CtrlSF window opening.
-    " T - Like t but focus CtrlSF window instead of new opened tab.
-    " M - Switch result window between normal view and compact view.
-    " q - Quit CtrlSF window.
-    " <C-J> - Move cursor to next match.
-    " <C-K> - Move cursor to previous match.
-    " <C-C> - Stop a background searching process.
+" Enter, o, double-click - Open corresponding file of current line
+" <C-O> - Like Enter but open file in a horizontal split window.
+" t - Open file in a new tab
+" p - Open file in a preview window
+" P - Open file in a preview window and switch focus to it
+" O - Always leave CtrlSF window opening
+" T - Open in new tab but keep focus on CtrlSF window
+" M - Switch result window between normal view and compact view
+" q - Quit CtrlSF window.
+" <C-J> - Move cursor to next match.
+" <C-K> - Move cursor to previous match.
+" <C-C> - Stop a background searching process.
 Plug 'dense-analysis/ale'                   " Asyncronous linting engine
 let g:ale_linters = {'python': ['flake8', 'pydocstyle']}
 let g:ale_linters_explicit = 1
@@ -188,11 +188,12 @@ Plug 'sedm0784/vim-you-autocorrect'                 " Fix typos automatically
 "     autocmd!
 "     autocmd BufEnter * EnableAutocorrect
 " augroup END
-Plug 'junegunn/seoul256.vim'                        " Preferred colorscheme
-Plug 'psliwka/vim-smoothie'                         " Smooth line scrolling
-Plug 'SirVer/ultisnips'                             " Snippets engine
-Plug 'honza/vim-snippets'                           " Snippet repository
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }    " Show Markdown as you type
+Plug 'junegunn/seoul256.vim'                 " Preferred colorscheme
+Plug 'psliwka/vim-smoothie'                  " Smooth line scrolling
+Plug 'SirVer/ultisnips'                      " Snippets engine
+Plug 'honza/vim-snippets'                    " Snippet repository
+Plug 'iamcco/markdown-preview.nvim',         " Show Markdown as you type
+    \ { 'do': 'cd app && yarn install'  }
 
 " Some plugins I'd like to try out:
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
