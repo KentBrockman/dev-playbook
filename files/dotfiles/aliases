@@ -24,7 +24,7 @@ alias diskusage='du -h -d 1 .'
 
 alias ssh-key-make='ssh-keygen -t rsa -b 2048 -C'
 
-if [ -f "~/.cmds/env-cd" ]; then
+if [ -f ~/.cmds/env-cd ]; then
     alias env-cd='~/.cmds/env-cd.py';
     source ~/.cmds/env-cd;
 fi

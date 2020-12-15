@@ -1,0 +1,18 @@
+---
+# TODO: install a node interpreter to home directory instead of using system use nvm?
+- name: install nodejs and npm tools
+  become: true
+  apt:
+    name:
+      - nodejs
+      - npm
+
+- name: install packages with npm
+  become: true
+  npm:
+    name: "{{ item.name }}"
+    global: yes
+  with_items:
+    - name: yarn
+      version: latest
+
