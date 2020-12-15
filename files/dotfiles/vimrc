@@ -104,25 +104,25 @@ Plug 'tmhedberg/matchit'                                " Better pair matching w
 Plug 'mattn/emmet-vim'                                  " Make HTML easier to write
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }   " Fuzzy File Finding
 Plug 'junegunn/fzf.vim'
-nnoremap <C-P>f :Files<Cr>
-nnoremap <C-P>b :Buffers<Cr>
-nnoremap <C-P>t :Tags<Cr>
-nnoremap <C-P>g :Commits<Cr>
-nnoremap <C-P>l :Lines<Cr>
-nnoremap <C-P>m :Marks<Cr>
-nnoremap <C-P>h :History<Cr>
-nnoremap <C-P>s :Snippets<Cr>
-nnoremap <C-P>r :Rg<Cr>
+nnoremap <C-P><C-f> :Files<Cr>
+nnoremap <C-P><C-b> :Buffers<Cr>
+nnoremap <C-P><C-t> :Tags<Cr>
+nnoremap <C-P><C-g> :Commits<Cr>
+nnoremap <C-P><C-l> :Lines<Cr>
+nnoremap <C-P><C-m> :Marks<Cr>
+nnoremap <C-P><C-h> :History<Cr>
+nnoremap <C-P><C-s> :Snippets<Cr>
+nnoremap <C-P><C-r> :Rg<Cr>
 Plug 'dyng/ctrlsf.vim'                      " Grep style full text searching
 " prompt search
-nmap <C-F>f <Plug>CtrlSFPrompt
+nmap <C-F><C-f> <Plug>CtrlSFPrompt
 " search for visual selection
-vmap <C-F>f <Plug>CtrlSFVwordExec
+vmap <C-F><C-f> <Plug>CtrlSFVwordExec
 " search word udner cursor
-nmap <C-F>n <Plug>CtrlSFCwordPath
+nmap <C-F><C-n> <Plug>CtrlSFCwordPath
 " search last buffer search
-nmap <C-F>p <Plug>CtrlSFPwordPath
-nnoremap <C-F>t :CtrlSFToggle<CR>
+nmap <C-F><C-p> <Plug>CtrlSFPwordPath
+nnoremap <C-F><C-t> :CtrlSFToggle<CR>
 " focus on search window
 let g:ctrlsf_auto_focus = {
     \ "at": "done",

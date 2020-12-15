@@ -5,7 +5,6 @@
     - see your own gists https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54
 - collect manual setup tasks for things that shouldnt be automated (logging in to things, setting up ssh keys, etc)
 - golang dev tooling
-- node/js dev tooling
 - set up on some form of CI
 - modify hosts to deploy playbook changes to all machines simultaneously
 - nuke ~/.vim

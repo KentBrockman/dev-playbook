@@ -7,13 +7,14 @@
       - nodejs
       - npm
 
-# HACK: use npx to run npm executables
-- name: install packages with npm
+# HACK: use npx to run npm executables as binaries not in PATH
+- name: install global dev packages
   become: true
   npm:
     name: "{{ item.name }}"
     global: yes
+    state: latest
   with_items:
     - name: yarn
-      version: latest
+    - name: neovim
 
