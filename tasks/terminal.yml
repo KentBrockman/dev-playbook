@@ -71,20 +71,9 @@
     state: directory
 
 - name: install custom fonts
-  block:
-    - name: get all custom fonts
-      command: "ls {{ font_src_dir }}"
-      register: fonts
-      changed_when: False
-
-    - name: install custom fonts
-      copy:
-        src: "{{ font_src_dir }}/{{ item }}"
-        dest: "~/.local/share/fonts/{{ item }}"
-      with_items: "{{ fonts.stdout_lines }}"
-  vars:
-    font_src_dir: "files/fonts"
-  tags: ['fonts']
+  synchronize:
+    src: files/fonts/
+    dest: ~/.local/share/fonts/
 
 - name: setup root shell
   tags: ['root-shell']
@@ -93,3 +82,9 @@
 - name: link python executables
   tags: ['link-python']
   import_tasks: tasks/link-python.yml
+
+- name: install python dev tools
+  pip:
+    name:
+      # rerun commands as files change. super handy
+      - rerun

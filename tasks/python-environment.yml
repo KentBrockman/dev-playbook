@@ -6,6 +6,7 @@
     subcommand: virtualenv
     version: "{{ item.version }}"
     virtualenv_name: "{{ item.virtualenv_name }}"
+    pyenv_root: "{{ pyenv_root }}"
 
 - name: install packages to {{ item.virtualenv_name }}
   tags: pyenv-environments

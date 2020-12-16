@@ -106,6 +106,8 @@ other_applications:
   # tool for making USB sticks that boot multiple OS's http://multibootusb.org
   # - https://github.com/mbusb/multibootusb/releases/download/v9.2.0/python3-multibootusb_9.2.0-1_all.deb
 
+pyenv_root: ~/.pyenv
+
 # gnome-desktop uses the dconf database under the hood for managing settings
 # dconf is a key-value storage and how you specify values can be a little finicky
 # see this for a good guide: https://docs.ansible.com/ansible/latest/modules/dconf_module.html#notes

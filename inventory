@@ -1,1 +1,28 @@
-localhost ansible_connection=local ansible_python_interpreter=python3
+all:
+  hosts:
+    phoenix:
+    aang:
+    thinkserver:
+    anycubici3:
+    benchpi:
+    localhost:
+        ansible_connection: local
+        # interpreter discovery is unreliable and finds python3.7
+        # force env python3, assume ansible is installed there
+        ansible_python_interpreter: /usr/bin/python3
+  children:
+    dev_boxes:
+      hosts:
+        phoenix:
+        aang:
+      vars:
+        # interpreter discovery is unreliable and finds python3.7
+        # force env python3, assume ansible is installed there
+        ansible_python_interpreter: /usr/bin/python3
+    servers:
+      hosts:
+        thinkserver:
+    rpis:
+      hosts:
+        anycubici3:
+        benchpi:

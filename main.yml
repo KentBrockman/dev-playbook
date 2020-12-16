@@ -1,9 +1,7 @@
 ---
-- hosts: localhost
-  connection: local
-  vars_files:
-    - config.yml
-    - config.custom.yml
+- hosts:
+  - dev_boxes
+  # - localhost   # uncomment if you want to run against local machine and use local connection mechanism
 
   pre_tasks:
     - name: update packages
