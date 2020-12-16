@@ -60,6 +60,8 @@
       tags: ["python-dev"]
     - import_tasks: tasks/javascript-dev.yml
       tags: ["javascript-dev"]
+    - import_tasks: tasks/golang-dev.yml
+      tags: ["golang-dev"]
     - import_tasks: tasks/ops-dev.yml
       tags: ["ops-dev"]
 

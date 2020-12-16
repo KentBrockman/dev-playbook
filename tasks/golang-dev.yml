@@ -1,0 +1,5 @@
+---
+- name: install golang
+  become: true
+  apt:
+    name: golang-go
