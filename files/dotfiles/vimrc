@@ -34,6 +34,7 @@ autocmd FocusLost,WinLeave * :silent! noautocmd w
 syntax enable						
 filetype indent on	" Load file type specific indenting rules 
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete    " Use i_<C-X><C-O> to see autocomplete options
 
 " LINE NUMBERS
 set cursorline		" Highlight the row the cursor is one
@@ -75,6 +76,8 @@ endif
 if filereadable($HOME . "/.pyenv/versions/neovim2/bin/python")
     let g:python_host_prog = $HOME . "/.pyenv/versions/neovim2/bin/python"
 endif
+let g:loaded_ruby_provider = 0      " disable ruby provider for neovim
+
 
 " PLUGINS
 " https://github.com/junegunn/vim-plug#usage
@@ -140,43 +143,42 @@ let g:ctrlsf_auto_focus = {
 " <C-J> - Move cursor to next match.
 " <C-K> - Move cursor to previous match.
 " <C-C> - Stop a background searching process.
-Plug 'dense-analysis/ale'                   " Asyncronous linting engine
-let g:ale_linters = {'python': ['flake8', 'pydocstyle']}
-let g:ale_linters_explicit = 1
 Plug 'vim-test/vim-test'                    " Run tests from vim
 let test#strategy = "vimterminal"
+Plug 'SirVer/ultisnips'                      " Snippets engine
+let g:UltiSnipsExpandTrigger="<C-e>"
 " LSP
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/vim-lsp-settings'
+" review this on neovim 0.5.0 with:
+" https://github.com/neovim/nvim-lspconfig
+" https://github.com/nvim-lua/completion-nvim
+Plug 'prabirshrestha/async.vim'             " Standard async job API for neovim and vim8
+Plug 'prabirshrestha/vim-lsp'               " LSP client
 nnoremap g] :LspDefinition<CR>
 nnoremap g[ :LspReferences<CR>
 nnoremap <C-j> :LspHover<CR>
-" Plugin to manage LSP servers (e.g. installing, starting, stopping)
-" TODO: review this
-" Plug 'mattn/vim-lsp-settings'
 let g:lsp_diagnostics_enabled = 0
-" deoplete for autocompletion
-" needs: pip3 install --user pynvim
+Plug 'mattn/vim-lsp-settings'               " Manage LSP servers for vim-lsp (e.g. installing, starting, stopping, etc)
+Plug 'dense-analysis/ale'                   " Asyncronous linting engine
+" let g:ale_linters = {'python': ['flake8', 'pydocstyle']}
+" let g:#:ale_linters_explicit = 1
+" Autocompletion engine
+" require pip package 'pynvim'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
+" TODO: disable deoplete on vim8? we never use it for this anyways
   Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  Plug 'roxma/nvim-yarp'                " vim-based remote plugin behaviour (i.e. allow vim to make RPC calls)
+  Plug 'roxma/vim-hug-neovim-rpc'       " experimental compatibility layer for neovim rpc client working on vim8
 endif
-" common deoplete plugins
-Plug 'deoplete-plugins/deoplete-jedi'
-" Alternative lsp completion plugin
-" Plug 'lighttiger2505/deoplete-vim-lsp'
 let g:deoplete#enable_at_startup = 1
-" TAB autocompletion https://github.com/Shougo/deoplete.nvim/issues/816
+inoremap <expr> <C-n> deoplete#manual_complete()
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<TAB>"
-" show docstring in preview window
-let g:deoplete#sources#jedi#show_docstring = 1
-" close the preview window after autocomplete is finished
-autocmd CompleteDone * pclose!
+autocmd CompleteDone * pclose!                      " close the preview window after autocomplete is finished
+" deoplete plugins
+Plug 'lighttiger2505/deoplete-vim-lsp'              " LSP completion
+" Plug 'deoplete-plugins/deoplete-jedi'             " Jedi completion
 Plug 'easymotion/vim-easymotion'                    " Go to two-letter combination similar to f/F
 nmap s <Plug>(easymotion-s2)
 Plug 'tpope/vim-fugitive'                           " Git operations directly in vim
@@ -190,13 +192,13 @@ Plug 'sedm0784/vim-you-autocorrect'                 " Fix typos automatically
 " augroup END
 Plug 'junegunn/seoul256.vim'                 " Preferred colorscheme
 Plug 'psliwka/vim-smoothie'                  " Smooth line scrolling
-Plug 'SirVer/ultisnips'                      " Snippets engine
 Plug 'honza/vim-snippets'                    " Snippet repository
 Plug 'iamcco/markdown-preview.nvim',         " Show Markdown as you type
     \ { 'do': 'cd app && yarn install'  }
 
 " Some plugins I'd like to try out:
 " https://www.gregjs.com/vim/2016/neovim-deoplete-jspc-ultisnips-and-tern-a-config-for-kickass-autocompletion/
+" Plug 'ryanoasis/nerd-fonts'
 
 call plug#end()
 
