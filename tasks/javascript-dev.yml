@@ -1,5 +1,9 @@
 ---
-# TODO: install a node interpreter to home directory instead of using system use nvm?
+# TODO: install a node interpreter to home directory instead of using system
+# TODO: use a node version manager. some options:
+# https://github.com/nvm-sh/nvm/blob/master/README.md
+# https://www.npmjs.com/package/nave
+# https://www.npmjs.com/package/n
 - name: install nodejs and npm tools
   become: true
   apt:

@@ -1,4 +1,4 @@
-set nocompatible 
+set nocompatible
 
 set scrolloff=5     " show 5 lines above cursor
 
@@ -31,8 +31,8 @@ autocmd FocusGained,BufEnter * :silent! !
 autocmd FocusLost,WinLeave * :silent! noautocmd w
 
 " SYNTAX HIGHLIGHTING
-syntax enable						
-filetype indent on	" Load file type specific indenting rules 
+syntax enable
+filetype indent on	" Load file type specific indenting rules
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete    " Use i_<C-X><C-O> to see autocomplete options
 
@@ -59,7 +59,7 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>'")
 " zg marks bad as good
 " zw marks good and bad
 set spelllang=en_us	" Set spell checking dictionary to English
-" set spell			" Turn on spell checking 
+" set spell			" Turn on spell checking
 set nospell			" Turn off spell checking
 
 " FOLDING
@@ -91,7 +91,7 @@ let NERDTreeShowHidden=1				" Show hidden files in nerd tree
 " Set NERDTree aliases
 :command! NTT NERDTreeToggle
 :command! NTF NERDTreeFind
-Plug 'vim-airline/vim-airline'                          " Status and buffer line 
+Plug 'vim-airline/vim-airline'                          " Status and buffer line
 Plug 'vim-airline/vim-airline-themes'                   " Airline colors
 let g:airline_theme='bubblegum'		                    " Start airline with this this theme
 let g:airline_powerline_fonts=1                         " Use powerline fonts
@@ -159,8 +159,29 @@ nnoremap <C-j> :LspHover<CR>
 let g:lsp_diagnostics_enabled = 0
 Plug 'mattn/vim-lsp-settings'               " Manage LSP servers for vim-lsp (e.g. installing, starting, stopping, etc)
 Plug 'dense-analysis/ale'                   " Asyncronous linting engine
-" let g:ale_linters = {'python': ['flake8', 'pydocstyle']}
-" let g:#:ale_linters_explicit = 1
+" Set linting tools
+let g:ale_linters = {
+\    'javascript': ['eslint'],
+\    'python': ['flake8', 'pydocstyle']
+\}
+" Set fixing tools
+let g:ale_fixers = {
+\    'python': [ 'remove_trailing_lines', 'trim_whitespace', 'black' ],
+\    'javascript': [ 'remove_trailing_lines', 'trim_whitespace', 'prettier'],
+\    'scss': [ 'remove_trailing_lines', 'trim_whitespace', 'prettier'],
+\    'html': [ 'remove_trailing_lines', 'trim_whitespace', 'prettier'],
+\    'yaml': [ 'remove_trailing_lines', 'trim_whitespace' ],
+\    'vim': [ 'remove_trailing_lines', 'trim_whitespace' ],
+\}
+let g:ale_fix_on_save = 1                               " Run fixers on save
+let g:ale_completion_autoimport = 1                     " Attempt fix missing imports. Does this even work?
+let g:ale_sign_error = '❌'                             " change error sign to something clearer
+let g:ale_sign_warning = '⚠️'                            " change warning sign to something clearer
+let g:ale_echo_msg_format = '[%linter%][%severity%] %s' " Make cmd bar ALE messages clearer
+let g:ale_open_list = 1                                 " Open window at bottom of screen
+" ALE key remaps
+nnoremap <C-A><C-n> :ALENextWrap<CR>
+nnoremap <C-A><C-p> :ALEPreviousWrap<CR>
 " Autocompletion engine
 " require pip package 'pynvim'
 if has('nvim')
@@ -225,7 +246,7 @@ command! CloseOthers :%bd|e#
 " overwritten. Try to learn defaults better and use custom remaps sparingly
 " CTRL-H go to previous buffer
 nnoremap <C-L> :bnext!<CR>
-" CTRL-L go to next buffer 
+" CTRL-L go to next buffer
 nnoremap <C-H> :bprevious!<CR>
 
 " Experimenting with autocmd
