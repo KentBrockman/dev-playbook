@@ -6,41 +6,41 @@ Currently targeting and tested against [Pop!\_OS 20.04](https://system76.com/pop
 
 ## Installation
 
-1. Checkout this repository
-   ```
-   git clone https://github.com/KentBrockman/dev-playbook.git
-   cd dev-playbook
-   ```
-2. Install Ansible. Confirm version >=2.8
-   ```
-   sudo apt install ansible
-   ansible-playbook --version
-   ```
-3. Install roles:
-   ```
-   ansible-galaxy install -r requirements.yml
-   ```
+### 1. Checkout this repository
+```
+git clone https://github.com/KentBrockman/dev-playbook.git
+cd dev-playbook
+```
+### 2. Install Ansible. Confirm version >=2.8
+```
+sudo apt install ansible
+ansible-playbook --version
+```
+### 3. Install roles:
+```
+ansible-galaxy install -r requirements.yml
+```
 
-4. Create a configuration file for your machine.
-   The purpose of this file is to maintain machine-specific configurations (e.g. a desktop vs a laptop) but keep the bulk of the configuration the same
-   ```
-   touch config.custom.yml
-   ```
+### 4. Set up host configurations for your boxes
 
-   `config.custom.yml` can be empty, but it must exist.
-   Or make a new configuration file and link it:
-   ```
-   touch config.yourconfig.yml
-   ln -s config.yourconfig.yml config.custom.yml
-   ```
+`host_vars `should contain machine specific configurations in a directory that matches the hostname of your machine (e.g. a laptop should have battery management tools, a desktop does not need those)
 
-   Linking enables you to use a custom configuration without having to update `main.yml` with a different configuration per machine.
-   You can override [`config.yml`](./config.yml) with settings in `config.custom.yml` or overwrite `config.yml` directly.
+`group_vars/dev_boxes/vars.yml` contain shared configurations you wish to
+apply across all of your hosts.
 
-5. Run the playbook with sudo permission:
-   ```
-   ansible-playbook main.yml -K
-   ```
+On first setup, you may have to change the `host_vars` directory name or set up your machines hostname ahead of time.
+Make sure your host names match what is in [inventory](./inventory) and are accessible by SSH.
+The slicker way to do this is to set up an [ssh config](https://linuxize.com/post/using-the-ssh-config-file/) as aliases to `host_var` directory names.
+
+#### Forget SSH, use localhost
+
+Alternatively, use the `localhost` connection adapter if you wish to run against only your local machine by commenting out line in [main.yml](./main.yml:4) and not worry about SSH access at all.
+
+### 5. Run the playbook with sudo permission:
+
+```
+ansible-playbook main.yml -K
+```
 
 ## After Installing
 
