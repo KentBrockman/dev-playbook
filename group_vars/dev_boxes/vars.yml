@@ -68,6 +68,11 @@ apt_applications:
   # ebook manager
   - calibre=4.99.4+dfsg+really4.12.0-1build1
 
+# TODO: fold this into above list
+deb_packages:
+  # vnc client
+  - https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.20.529-Linux-x64.deb
+
 binary_applications:
   - url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2020-03-14T01-23-37Z
     dest: ~/.local/bin/mc

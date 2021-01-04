@@ -25,6 +25,12 @@
   apt:
     pkg: "{{ apt_applications }}"
 
+- name: install deb packages from network
+  become: true
+  apt:
+    deb: "{{ item }}"
+  with_items: "{{ deb_packages }}"
+
 - name: docker group exists
   become: true
   group:
