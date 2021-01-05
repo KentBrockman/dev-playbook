@@ -67,6 +67,8 @@ apt_applications:
   - cura
   # ebook manager
   - calibre=4.99.4+dfsg+really4.12.0-1build1
+  # VM manager
+  - vagrant
 
 # TODO: fold this into above list
 deb_packages:
