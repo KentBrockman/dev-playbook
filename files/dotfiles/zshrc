@@ -27,22 +27,26 @@ stty -ixon
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# use oh-my-zsh for nice tab-autocompletion UX
+# use oh-my-zsh for nice tab-autocompletion on specific commands
+plugins=(
+	vagrant
+	terraform
+)
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
-autoload -U +X bashcompinit && bashcompinit
 # Add generated tab autocompletion flags to these programs
 # It is better than nothing
-complete -o nospace -C $(which mc) mc
-complete -o nospace -C $(which terraform) terraform
+if [ $(command -v mc) ]; then complete -o nospace -C $(which mc) mc; fi;
+
+# add ability to load bash completion files
+# https://stackoverflow.com/questions/3249432/can-a-bash-tab-completion-script-be-used-in-zsh
+# autoload -U +X bashcompinit && bashcompinit
 
 # starship for prompt goodness
-if [ $(command -v starship) ]; then
-	eval "$(starship init zsh)"
-fi
+if [ $(command -v starship) ]; then; eval "$(starship init zsh)"; fi;
 
 # initialize pyenv if installed
-# BUG: if in zshenv (which might be nice so pyenv is on all shells) vim buffer become super slow
+# BUG: if in zshenv (which might be nice so pyenv is on all shells) vim buffers become super slow
 # unsure how to troubleshoot this at this time
 if [ -d "$HOME/.pyenv/bin" ]; then
 	pathmunge "$HOME/.pyenv/bin"
