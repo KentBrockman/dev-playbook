@@ -8,5 +8,5 @@ then
     xdg-open "$(fzf)"
 else
     # open file specified in argument
-    xdg-open $1
+    xdg-open "$@"
 fi

@@ -66,7 +66,7 @@ setopt APPEND_HISTORY
 
 if [ $(command -v fzf) ]; then
 	# use ripgrep to find files before passing them to fzf (default is find, which doesnt respect .gitignore)
-	# export FZF_DEFAULT_COMMAND="rg --files ."
+	export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
 
 	# Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
 	# To see this in action:
