@@ -19,14 +19,16 @@
 
   tasks:
     - name: set hostname
-      tags: ["hostname"]
+      tags:
+        - hostname
       hostname:
         name: "{{ hostname }}"
         use: systemd
 
     # make it easy to run this playbook
     - name: add run-dev-playbook to local scripts
-      tags: ["run-dev-playbook"]
+      tags:
+        - run-dev-playbook
       template:
         src: "{{ playbook_dir }}/files/run-dev-playbook.sh"
         dest: ~/.local/bin/run-dev-playbook.sh
@@ -34,10 +36,12 @@
 
     # set up terminal experience
     - import_tasks: tasks/dotfiles.yml
-      tags: ["dotfiles"]
+      tags:
+       - dotfiles
       when: install_dotfiles
     - import_tasks: tasks/terminal.yml
-      tags: ["terminal"]
+      tags:
+        - terminal
     - import_tasks: tasks/tmux-plugins.yml
       tags: ["tmux-plugins"]
     - import_tasks: tasks/vim-plugins.yml

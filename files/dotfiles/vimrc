@@ -1,6 +1,8 @@
 set nocompatible
 
 set scrolloff=5     " show 5 lines above cursor
+set wrap            " wrap long lines around instead of spilling off the screen
+set linebreak       " dont break words across a wrap, just put the whole word on the next line
 
 " Paths
 set path+=**	" add current directory to vim path
@@ -12,6 +14,10 @@ set tabstop=4		" show existing tab with 4 spaces width
 set shiftwidth=4	" when indenting with '>', use 4 spaces width
 set expandtab		" On pressing tab, insert 4 spaces
 set smarttab        " <BS> deletes <Tab> in insert mode
+
+" Motion behaviour
+set iskeyword+=^(   " Stop on (
+set iskeyword+=^)   " Stop on )
 
 " File Finding
 " Tweaks for browsing
@@ -54,9 +60,10 @@ set showmatch 			        " Show corresponding end braces
 set backspace=indent,eol,start  " Modern backspacing behaviour
 
 " Search
-set ic				" Ignore case when searching by default
+set ignorecase smartcase		" Ignore case when searching unless using a capital letter
 set hlsearch		" Highlight search matches
 set incsearch		" Search as characters are entered
+set ruler
 " '//' in Visual mode will search for visually selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>'")
 
@@ -71,6 +78,10 @@ set nospell			" Turn off spell checking
 " Folding
 set foldmethod=indent
 set foldlevel=99
+
+" Window fun
+" Augment window management prefix to close preview window
+noremap <C-W><C-P> :pclose<CR>
 
 " Set up python interpreters for neovim
 if filereadable($HOME . "/.pyenv/versions/neovim3/bin/python")
@@ -92,11 +103,12 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'sheerun/vim-polyglot'                             " Language support
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Better python syntax highlighting
+
 Plug 'preservim/nerdtree'               " Interactive file finder
 let NERDTreeShowHidden=1				" Show hidden files in nerd tree
 " Set NERDTree aliases
-:command! NTT NERDTreeToggle
-:command! NTF NERDTreeFind
+command! NTT NERDTreeToggle
+command! NTF NERDTreeFind
 nnoremap <C-n><C-n> :NTT<Cr>
 nnoremap <C-n><C-f> :NTF<Cr>
 Plug 'vim-airline/vim-airline'                          " Status and buffer line
@@ -197,6 +209,7 @@ let g:ale_open_list = 1                                 " Open window at bottom 
 nnoremap <C-A><C-n> :ALENextWrap<CR>
 nnoremap <C-A><C-p> :ALEPreviousWrap<CR>
 
+Plug 'vim-scripts/AutoComplPop'         " Automatically show completion menu in insert mode
 " Autocompletion engine
 " require pip package 'pynvim'
 if has('nvim')
@@ -209,7 +222,6 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 " inoremap <expr> <C-n> deoplete#manual_complete()
-set omnifunc=deoplete#manual_complete()
 autocmd CompleteDone * pclose!                      " close the preview window after autocomplete is finished
 " deoplete plugins
 Plug 'lighttiger2505/deoplete-vim-lsp'              " LSP completion
@@ -257,8 +269,6 @@ command! NukeIt :%bdelete|:edit .
 command! CloseOthers :%bd|e#
 
 " KEY MAPPINGS
-" I don't think I know the default commands well enough to know what should be
-" overwritten. Try to learn defaults better and use custom remaps sparingly
 " CTRL-H go to previous buffer
 nnoremap <C-L> :bnext!<CR>
 " CTRL-L go to next buffer
@@ -277,3 +287,20 @@ function CallPythonFormatters()
     :call winrestview(v)
 endfunction
 autocmd BufWritePost *.py call CallPythonFormatters()
+
+" Ctrl-C in visual mode copies to clipboard
+vmap <C-c> "+y
+
+" Enter a command that produces a ton of text, this will open a new buffer and
+" paste the text into that buffer so you can search/copy it/save it/etc
+function s:more(command)
+    new
+    redir => m | silent execute a:command | silent redir END | silent put=m
+    normal gg
+endfunction
+command! -nargs=+ -complete=command More call s:more(<q-args>)
+
+function s:search(question)
+    silent execute "!xdg-open \"https://google.ca/search?q=" . a:question "\""
+endfunction
+command! -nargs=+ -complete=command Search call s:search(<q-args>)
