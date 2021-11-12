@@ -28,3 +28,6 @@ secrets.env
 
 # JS/Node
 node_modules
+
+# vagrant
+.vagrant
