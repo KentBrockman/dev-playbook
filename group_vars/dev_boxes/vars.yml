@@ -45,8 +45,6 @@ apt_applications:
   - docker-compose
   # team chat
   - slack-desktop
-  # virtual machines
-  - virtualbox
   # timer to help me work using pomodoro technique: https://en.wikipedia.org/wiki/Pomodoro_Technique
   - gnome-shell-pomodoro
   # view developer documentation offline. nice for working on an offline/airplane/roadtrip
@@ -66,7 +64,7 @@ apt_applications:
   # slicing software to turn 3d models into printable gcode
   - cura
   # ebook manager
-  - calibre=4.99.4+dfsg+really4.12.0-1build1
+  - calibre=4.99.4+dfsg+really4.12.0-1ubuntu1
   # VM automation
   - vagrant
   # TODO: install from zip file online to get latest package

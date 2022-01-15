@@ -1,8 +1,11 @@
 ---
+# couple different install guides
+# https://code.visualstudio.com/docs/setup/linux
+# https://code.visualstudio.com/docs/?dv=linux64_deb
 - name: install vscode
   become: true
   apt:
-    deb: https://vscode-update.azurewebsites.net/latest/linux-deb-x64/stable
+    deb: https://go.microsoft.com/fwlink/?LinkID=760868
 
 # TODO: automate configuring VSCode using the following gist - https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54
 # code --install-extension Shan.code-settings-sync
