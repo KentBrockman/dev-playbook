@@ -58,6 +58,11 @@ if [ $(command -v pyenv) ]; then
 	eval "$(pyenv virtualenv-init -)"
 fi
 
+# initialize node if installed
+if [ -d "$HOME/.node/bin" ]; then
+  pathmunge "$HOME/.node/bin"
+fi
+
 # set up hustory
 # http://zsh.sourceforge.net/Doc/Release/Options.html#index-APPEND_005fHISTORY
 HISTFILE=~/.zsh_history
@@ -84,3 +89,20 @@ if [ $(command -v fzf) ]; then
 	# cd **<TAB> or cd ../**<TAB>
 	source /usr/share/doc/fzf/examples/completion.zsh
 fi
+
+# >>> conda initialize >>>
+# TODO: this hijacks my default python environment. make this conditional based on projects or something?
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/kent/.pyenv/versions/anaconda3-2021.05/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/kent/.pyenv/versions/anaconda3-2021.05/etc/profile.d/conda.sh" ]; then
+#         . "/home/kent/.pyenv/versions/anaconda3-2021.05/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/kent/.pyenv/versions/anaconda3-2021.05/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+

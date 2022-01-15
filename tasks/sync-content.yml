@@ -4,9 +4,21 @@
   vars:
     # https://github.com/syncthing/syncthing/tags
     # review task 'define syncthing.service unit file' when updating
-    syncthing_version: "1.11.1"
-  import_role: 
-    name: spk.syncthing-debian
+    syncthing_version: "1.18.5"
+  block:
+    - name: Add the release PGP key
+      ansible.builtin.apt_key:
+        url: https://syncthing.net/release-key.gpg
+        state: present
+    - name: Add the "stable" channel to APT sources
+      apt_repository:
+        repo: deb https://apt.syncthing.net/ syncthing stable
+        state: present
+    - name: install syncthing
+      apt:
+        name: syncthing
+        state: present
+        update_cache: yes
 
   # start syncthing as a system service so syncing happens without user logging in
   # this falls down when multiple users may want multiple syncthing agents running on a single box

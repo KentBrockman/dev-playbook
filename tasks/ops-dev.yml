@@ -10,3 +10,7 @@
     dest: ~/.local/bin/
     remote_src: yes 
   when: not terraform.stat.exists
+
+# if installing vagrant-libvirt
+# include these apt packages: libvirt-dev libvirt-clients
+# ensure libvirtd is running. ensure qemu-kvm is installed

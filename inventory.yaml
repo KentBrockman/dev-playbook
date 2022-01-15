@@ -10,6 +10,13 @@ all:
         # interpreter discovery is unreliable and finds python3.7
         # force env python3, assume ansible is installed there
         ansible_python_interpreter: /usr/bin/python3
+    dummybox:
+        # https://docs.ansible.com/ansible/latest/scenario_guides/guide_vagrant.html
+        ansible_connection: ssh
+        ansible_user: vagrant
+        ansible_host: pop-os.local
+        ansible_ssh_private_key_file: '.vagrant/machines/default/libvirt/private_key'
+        ansible_ssh_extra_args: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -o PasswordAuthentication=no -o IdentitiesOnly=yes'
   children:
     dev_boxes:
       hosts:

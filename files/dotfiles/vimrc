@@ -188,7 +188,8 @@ Plug 'dense-analysis/ale'                   " Asyncronous linting engine
 " Set linting tools
 let g:ale_linters = {
 \    'javascript': ['eslint'],
-\    'python': ['flake8', 'pydocstyle']
+\    'python': []
+"\    'python': ['flake8', 'pydocstyle']
 \}
 " Set fixing tools
 let g:ale_fixers = {

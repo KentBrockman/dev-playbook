@@ -2,6 +2,7 @@
 - hosts:
   - dev_boxes
   # - localhost   # uncomment if you want to run against local machine and use local connection mechanism
+  - dummybox
 
   pre_tasks:
     - name: update packages
