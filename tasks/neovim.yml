@@ -15,7 +15,7 @@
 
 - name: install neovim config
   file:
-    src: "{{ playbook_dir }}/files/neovim/init.vim"
+    src: "{{ dev_playbook_directory }}/files/neovim/init.vim"
     dest: "~/.config/nvim/init.vim"
     state: link
 

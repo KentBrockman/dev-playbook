@@ -6,8 +6,9 @@
 
 - name: install dotfiles to home directory
   file:
-    src: "{{ playbook_dir }}/files/dotfiles/{{ item }}"
+    src: "{{ dev_playbook_directory }}/files/dotfiles/{{ item }}"
     dest: "~/.{{ item }}"
+    force: yes
     # symlink so improvements to any dotfile can be source controlled easily
     state: link
   with_items:

@@ -254,8 +254,8 @@ call plug#end()
 " COLORS
 " load colors after plugins if using plugin color instead of ~/.vimrc/colors
 set t_Co=256						" Set 256 color mode. Your terminal must support this
-command! LightMode :colorscheme seoul256 | :set background=light
-command! DarkMode :colorscheme seoul256 | :set background=dark
+command! LightMode :silent! colorscheme seoul256 | :set background=light
+command! DarkMode :silent! colorscheme seoul256 | :set background=dark
 " TODO: make color mode contingent on time. LightMode during day, DarkMode
 " during night
 " https://stackoverflow.com/questions/3368748/conditional-colorscheme-in-vimrc

@@ -53,7 +53,7 @@
 
 - name: install starship config
   file:
-    src: "{{ playbook_dir }}/files/dotfiles/starship.toml"
+    src: "{{ dev_playbook_directory }}/files/dotfiles/starship.toml"
     dest: "~/.config/starship.toml"
     # symlink so improvements to any dotfile can be source controlled easily
     state: link

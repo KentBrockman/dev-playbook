@@ -9,7 +9,7 @@
 # use bookmark keywords (but know these dont work in tridactyl)
 - name: install search engines
   file:
-    src: "{{ playbook_dir }}/files/web-browser/search.json.mozlz4"
+    src: "{{ dev_playbook_dir }}/files/web-browser/search.json.mozlz4"
     dest: "{{ create_profile.profile_path }}/search.json.mozlz4"
     state: hard
     force: true

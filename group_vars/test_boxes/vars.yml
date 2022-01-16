@@ -7,8 +7,6 @@ install_dotfiles: True
 preferred_shell: /usr/bin/zsh
 install_battery_management_tools: true
 sync_content: true
-# this setup script requires a local checkout on the target machine
-# set the location of that checkout
 dev_playbook_checkout_dir: "{{ ansible_facts.env.HOME }}/code/dev-playbook"
 
 firefox_profiles:

@@ -1,8 +1,11 @@
 ---
 - hosts:
   - dev_boxes
-  # - localhost   # uncomment if you want to run against local machine and use local connection mechanism
-  - dummybox
+  - test_boxes
+  - localhost
+
+  vars:
+    dev_playbook_directory: "{{ playbook_dir if ansible_connection == 'local' else dev_playbook_checkout_dir }}"
 
   pre_tasks:
     - name: update packages
@@ -25,13 +28,28 @@
       hostname:
         name: "{{ hostname }}"
         use: systemd
+      when: set_hostname
 
     # make it easy to run this playbook
+    - name: ensure various directories exist
+      file:
+        dest: "{{ item }}"
+        state: directory
+      with_items:
+        - ~/.local/bin
+        - ~/code
+
+    - name: make sure this repo exists on dev box
+      git:
+        repo: https://github.com/kentbrockman/dev-playbook.git
+        dest: ~/code/dev-playbook/
+        update: no
+
     - name: add run-dev-playbook to local scripts
       tags:
         - run-dev-playbook
       template:
-        src: "{{ playbook_dir }}/files/run-dev-playbook.sh"
+        src: files/run-dev-playbook.sh
         dest: ~/.local/bin/run-dev-playbook.sh
         mode: 0544
 

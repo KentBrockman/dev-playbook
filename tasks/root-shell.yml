@@ -9,11 +9,11 @@
     - name: set root user to preferred_shell
       user:
         name: root
-        shell: "{{preferred_shell}}"
+        shell: "{{ preferred_shell }}"
 
     - name: install zshrc to root
       copy:
-        src: "{{ playbook_dir }}/files/dotfiles/zshrc_root"
+        src: "files/dotfiles/zshrc_root"
         dest: /root/.zshrc
         owner: root
         group: root
@@ -25,7 +25,7 @@
 
     - name: install starship config
       file:
-        src: "{{ playbook_dir }}/files/dotfiles/starship.toml"
+        src: "{{ dev_playbook_directory }}/files/dotfiles/starship.toml"
         dest: "/root/.config/starship.toml"
         # symlink so improvements to any dotfile can be source controlled easily
         state: link
