@@ -36,6 +36,10 @@ flatpak_applications:
   - com.spotify.Client
   # handy data science prototyping tool
   - org.octave.Octave
+  # 3D parametric modelling
+  - org.freecadweb.FreeCAD
+  # ebook manager
+  - com.calibe_ebook.calibre
 
 # all the applications you like and want managed by apt
 apt_applications:
@@ -60,12 +64,6 @@ apt_applications:
   - gtypist
   # irc chat client
   - irssi
-  # 3D parametric modelling
-  - freecad
-  # slicing software to turn 3d models into printable gcode
-  - cura
-  # ebook manager
-  - calibre=4.99.4+dfsg+really4.12.0-1ubuntu1
   # VM automation
   - vagrant
   # TODO: install from zip file online to get latest package
