@@ -40,6 +40,7 @@ flatpak_applications:
   - org.freecadweb.FreeCAD
   # ebook manager
   - com.calibe_ebook.calibre
+  # TODO: prusaslicer
 
 # all the applications you like and want managed by apt
 apt_applications:

@@ -20,15 +20,14 @@
     - name: install python dependencies for playbook
       pip:
         name:
-          # TODO: reverify this
+          # TODO: re-verify these requirements
           # all of these dependencies are needed for ansible to run properly. experimentally discovered...
           - requests
           - psutil
 
   tasks:
     - name: set hostname
-      tags:
-        - hostname
+      tags: ["hostname"]
       hostname:
         name: "{{ hostname }}"
         use: systemd
@@ -50,8 +49,7 @@
         update: no
 
     - name: add run-dev-playbook to local scripts
-      tags:
-        - run-dev-playbook
+      tags: ["run-dev-playbook"]
       template:
         src: files/run-dev-playbook.sh
         dest: ~/.local/bin/run-dev-playbook.sh

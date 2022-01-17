@@ -1,7 +1,7 @@
 # Establish virtual environments with a given name and list of packages
 ---
 - name: create virtual environment '{{ item.virtualenv_name }}'
-  tags: pyenv-environments
+  tags: ["pyenv-environments"]
   pyenv:
     subcommand: virtualenv
     version: "{{ item.version }}"
@@ -9,7 +9,7 @@
     pyenv_root: "{{ pyenv_root }}"
 
 - name: install packages to {{ item.virtualenv_name }}
-  tags: pyenv-environments
+  tags: ["pyenv-environments"]
   pip:
     name: "{{ item.packages }}"
     executable: "{{ pyenv_root }}/versions/{{ item.virtualenv_name }}/bin/pip"
