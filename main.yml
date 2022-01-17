@@ -5,6 +5,9 @@
   - localhost
 
   vars:
+    # determine where the playbook is on the target machine
+    # when local: use playbook_dir, which is a built in var for where playbook is on the host
+    # when on ssh: dev_playbook_checkout_dir is supplied by host or group vars to check it out
     dev_playbook_directory: "{{ playbook_dir if ansible_connection == 'local' else dev_playbook_checkout_dir }}"
 
   pre_tasks:
@@ -17,6 +20,7 @@
     - name: install python dependencies for playbook
       pip:
         name:
+          # TODO: reverify this
           # all of these dependencies are needed for ansible to run properly. experimentally discovered...
           - requests
           - psutil
@@ -55,12 +59,10 @@
 
     # set up terminal experience
     - import_tasks: tasks/dotfiles.yml
-      tags:
-       - dotfiles
+      tags: ["dotfiles"]
       when: install_dotfiles
     - import_tasks: tasks/terminal.yml
-      tags:
-        - terminal
+      tags: ["terminal"]
     - import_tasks: tasks/tmux-plugins.yml
       tags: ["tmux-plugins"]
     - import_tasks: tasks/vim-plugins.yml
