@@ -1,5 +1,8 @@
+# BUG: v5.0.0 is not available on ansible-galaxy: https://galaxy.ansible.com/markosamuli/pyenv
+# Asked markosamuli if this will happen 16 Jan 2022: https://github.com/markosamuli/ansible-pyenv/pull/39#issuecomment-1014069043
+# HACK: check out github.com/markosamuli/ansible-pyenv/ to ~/.ansible/roles/markosamuli.pyenv manually @ tag v5.0.0
 - name: markosamuli.pyenv
-  version: v4.0.2
+  version: v5.0.0
 - name: andrewrothstein.unarchive-deps
   version: v1.1.5
 - name: jaredhocutt.gnome_extensions

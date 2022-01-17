@@ -12,6 +12,30 @@
 # - then being satisfied there is no right way to do this, theres only a best way, which is the way you can understand or troubleshoot in the smallest amount of time
 # It is good to remember ANY PYTHON INSTALL is just a collection of files installed somewhere on your machine and linked through path-based resolution mechanics, which are often haphazard and environment based
 ---
+
+# from https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+- name: install python-dev dependencies
+  become: true
+  apt:
+    name:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - llvm
+      - libncursesw5-dev
+      - xz-utils
+      - tk-dev
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libffi-dev
+      - liblzma-dev
+
 - name: install pyenv
   vars:
     # pyenv/virtualenv versions to install
@@ -22,7 +46,7 @@
     # Python versions to install
     pyenv_python_versions:
       - "3.7.9"
-      - "3.8.6"
+      - "3.10.1"
       - "2.7.18"
     # what python environment should be used by default
     pyenv_global: system
@@ -32,11 +56,6 @@
     pyenv_init_shell: false
   include_role:
     name: markosamuli.pyenv
-  # markosamuli.pyenv requires pyenv to be available on the path, which isnt standard for non interactive login shells (ssh)
-  # HACK: add ~/.zshenv with associated environment setup (add pyenv to path, call pyenv init, etc)
-  # TODO: fully qualify pyenv system check, submit PR
-  # HACK: enable on local host now only
-  # when: ansible_connection == "local"
 
 - name: confirm pyenv global is system
   copy:
