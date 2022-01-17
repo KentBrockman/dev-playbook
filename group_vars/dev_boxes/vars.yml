@@ -2,7 +2,6 @@
 your_full_name: Kent Brockman
 your_email: brockman.ks@gmail.com
 # name your computer
-hostname: phoenix
 install_dotfiles: True
 preferred_shell: /usr/bin/zsh
 install_battery_management_tools: true
@@ -34,10 +33,24 @@ flatpak_applications:
   - io.dbeaver.DBeaverCommunity
   # team chat
   - com.mattermost.Desktop
+  # another chat client
+  - org.signal.Signal
+  # another chat client
+  - org.telegram
   # music client
   - com.spotify.Client
   # handy data science prototyping tool
   - org.octave.Octave
+  # 3D parametric modelling
+  - org.freecadweb.FreeCAD
+  # ebook manager
+  - com.calibe_ebook.calibre
+  # software for generating 3D printer CAM files
+  - com.prusa3d.PrusaSlicer
+  # digital notebook tool
+  - net.cozic.joplin_desktop
+  # vector graphics editor
+  - org.inkscape.Inkscape
 
 # all the applications you like and want managed by apt
 apt_applications:
@@ -62,12 +75,6 @@ apt_applications:
   - gtypist
   # irc chat client
   - irssi
-  # 3D parametric modelling
-  - freecad
-  # slicing software to turn 3d models into printable gcode
-  - cura
-  # ebook manager
-  - calibre=4.99.4+dfsg+really4.12.0-1ubuntu1
   # VM automation
   - vagrant
   # TODO: install from zip file online to get latest package
@@ -109,10 +116,6 @@ gnome_extension_ids:
   - 234
   # remove blur effect from lockscreen
   - 2935
-  # gTile - specify window sizes nicely (if not using pop shell tiling)
-  # - 28
-  # reboot with options from grub
-  # - 893
 
 # links to debian packages to install
 other_applications:
@@ -227,6 +230,7 @@ wallpapers:
   directory: ~/Pictures/wallpapers
   # only download if set to true
   # downloading can take a awhile. some websites also think you're scraping them
+  # TODO: host our wallpapers somewhere else...
   download: false
   # put in wallpaper page - proper resolution will be selected + downloaded
   urls:

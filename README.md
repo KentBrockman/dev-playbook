@@ -34,12 +34,18 @@ The slicker way to do this is to set up an [ssh config](https://linuxize.com/pos
 
 #### Forget SSH, use localhost
 
-Alternatively, use the `localhost` connection adapter if you wish to run against only your local machine by commenting out line in [main.yml](./main.yml:4) and not worry about SSH access at all.
+Alternatively, use the `localhost` connection adapter if you wish to run against only your local machine by targetting localhost with `ansible-playbook -l localhost` and not worry about SSH access at all.
 
-### 5. Run the playbook with sudo permission:
+### 5. Run the playbook
 
+Typically you should run with `sudo` permission:
 ```
-ansible-playbook main.yml -K
+ansible-playbook main.yml -l dev_boxes -K
+```
+
+If running against localhost, you will have to specify variables manually
+```
+ansible-playbook main.yml -l localhost --extra-vars @group_vars/dev_boxes/vars.yml --extra-vars @host_vars/<YOUR HOST NAME>/vars.yml
 ```
 
 ## After Installing

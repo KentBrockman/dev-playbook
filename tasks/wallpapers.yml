@@ -8,6 +8,7 @@
   register: xrandr_output
   changed_when: false
 
+  # TODO: https://github.com/adi1090x/dynamic-wallpaper?
 - name: set wallpapers
   block:
 
@@ -30,6 +31,11 @@
     shell: ls -d {{ wallpapers.directory }}/* | python3 -c "import sys, os; print(list([x.replace(os.linesep, '') for x in sys.stdin]))"
     register: images
     changed_when: false
+
+  - name: Report any failures with generating image list
+    debug:
+      msg: "Failed to generate image list: {{ images }}"
+    when: images.stderr != ""
 
   - name: add images to backslide config
     dconf:
