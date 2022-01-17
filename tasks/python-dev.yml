@@ -1,13 +1,16 @@
 # Install tools for python development
 # pyenv - tool for quicky changing python versions and virtualenvs
-# pyenv's shim system CAN hijack env python,python2 and python3 where no the package or binaries you need may not be installed
-# If ANY of python environments are having problems, 95% of the time it is a matter of:
+# pyenv's shim system CAN hijack env python,python2 and python3 where the package or binaries you need may not be installed
+# If ANY python environments are having problems, 95% of the time it is a matter of:
 # - troubleshooting PATH resolutions
 # - reverse engineering shell construction
 # - reading scripts to figure out who is referencing what
-# - typing `which python` or `pyenv which python` a million times
-# - then being satisfied there is no right way to do this
-# It is good to remember ANY PYTHON INSTALL is just a collection of files installed god-knows-where on your machine and linked through path-based resolution mechanics, which are often haphazard
+# - typing the following a million times:
+#   - which python
+#   - pyenv which python
+#   - python -c "import sys; print sys.path"
+# - then being satisfied there is no right way to do this, theres only a best way, which is the way you can understand or troubleshoot in the smallest amount of time
+# It is good to remember ANY PYTHON INSTALL is just a collection of files installed somewhere on your machine and linked through path-based resolution mechanics, which are often haphazard and environment based
 ---
 - name: install pyenv
   vars:
@@ -40,21 +43,15 @@
     src: files/python-dev/pyenv_version
     dest: ~/.pyenv/version
 
-- name: install additional python dev packages
-  become: true
-  apt:
-    name:
-      - tox
-    state: present
-
 - name: install development dependencies
   pip:
     name:
       - python-language-server
       - jedi
+      - tox
     state: latest
 
-- name: add pyenv module
+- name: install pyenv ansible module to set up virtual environments
   tags: pyenv-environments
   import_role:
     name: suzuki-shunsuke.pyenv-module
