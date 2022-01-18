@@ -14,9 +14,6 @@
       - xclip
       # great fuzzy finder utility
       - fzf
-      # BUG: The ubuntu package repository mucks up how it handles rust packages (ripgrep + batcat)
-      # need to apply this workaround manually to avoid this step producing an error
-      # https://bugs.launchpad.net/ubuntu/+source/rust-bat/+bug/1868517/comments/32
       # nice grep replacement
       - ripgrep
       # cat/less upgrade with syntax highlighting
@@ -34,6 +31,19 @@
   git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
+
+- name: set permissions on .oh-my-zsh directories for security
+  file:
+    path: "{{ item.path }}"
+    recurse: "{{ item.recurse }}"
+    mode: g-w,o-w
+  with_items:
+    - path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh"
+      recurse: false
+    - path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/plugins"
+      recurse: true
+    - path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/cache"
+      recurse: false
 
 - name: confirm preferred shell executable is installed
   stat:

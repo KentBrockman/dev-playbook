@@ -1,3 +1,4 @@
+# vi: ft=gitconfig
 [core]
     excludesFile = ~/.gitignore_global
     editor = "vim"
