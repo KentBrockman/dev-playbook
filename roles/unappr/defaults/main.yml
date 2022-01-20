@@ -1,0 +1,8 @@
+# the directory where AppImages should be installed
+# Ensure this directory is in your path
+app_image_directory: "{{ ansible_facts.env.HOME }}/.local/bin"
+
+# list of applications to install from providers
+applications:
+  - name: joplin
+    provider: flatpak

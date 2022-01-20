@@ -1,0 +1,10 @@
+- block:
+  - name: confirm application is available from specified provider
+    debug:
+
+  - name: install application from specified provider
+    debug:
+
+  - name: uninstall application from nonspecified provider
+    debug:
+with_items: applications
