@@ -1,0 +1,13 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: ubuntu
+    image: docker.io/ubuntu:20.04
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
