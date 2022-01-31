@@ -5,7 +5,9 @@ driver:
   name: docker
 platforms:
   - name: ubuntu
-    image: docker.io/ubuntu:20.04
+    # build test-image with local dockerfile
+    # docker build -t=test-image -f test-image.Dockerfile .
+    image: test-image
     pre_build_image: true
 provisioner:
   name: ansible

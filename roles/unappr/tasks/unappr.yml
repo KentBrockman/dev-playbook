@@ -1,0 +1,22 @@
+---
+- name: "Confirm {{ item.name }} in catalog"
+  assert:
+    that:
+      - item.name in catalog
+    success_msg: "{{ item.name }} is in catalog"
+
+- name: "Confirm {{ item.name }} is available from {{ item.provider }}"
+  assert:
+    that:
+      - "item.provider in catalog.{{ item.name }}.providers"
+    success_msg: "{{ item.name }} is available from {{ item.provider }}"
+
+- name: "install {{ item.name }} from {{ item.provider }}"
+  include_tasks: "{{ item.provider }}_install.yml"
+
+- name: "uninstall {{ item.name }} from other providers"
+  include_tasks: "{{ provider }}_uninstall.yml"
+  when: provider != item.provider
+  loop: "{{ catalog[item.name].providers.keys()|list }}"
+  loop_control:
+    loop_var: provider

@@ -3,7 +3,26 @@
 # Ensure this directory is in your path
 app_image_directory: "{{ ansible_facts.env.HOME }}/.local/bin"
 
+# all applictations
+# TODO: break out each application to its own file and load programatically
+# so it's easier to merge PRs without a ton of merge conflicts
+catalog:
+  joplin:
+    providers:
+      flatpak:
+        application_id: net.cozic.joplin_desktop
+      github_AppImage:
+        url: github.com/laurent22/joplin
+  prusaslicer:
+    providers:
+      flatpak:
+        application_id: com.prusa3d.PrusaSlicer
+      github_AppImage:
+        url: github.com/prusa3d/PrusaSlicer
+
 # list of applications to install from providers
 applications:
   - name: joplin
+    provider: flatpak
+  - name: prusaslicer
     provider: flatpak

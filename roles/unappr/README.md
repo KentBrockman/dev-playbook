@@ -19,7 +19,7 @@ TODO: what if you want multiple versions installed from multiple providers?
 ## Supported Providers
 
 Legend:
-- ✖️  = Cannot be implemented
+- 🛑  = Cannot be implemented
 - ❌ = Not implemented
 - ✅ = Implemented
 

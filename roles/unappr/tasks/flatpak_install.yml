@@ -1,3 +1,5 @@
 # Implement flatpak provider
 ---
 # TODO: use flatpak module
+- debug:
+    msg: "install_flatpak for {{ item.name }}"

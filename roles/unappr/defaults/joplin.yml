@@ -1,9 +1,0 @@
-# Define all providers for Joplin
-# https://github.com/laurent22/joplin
----
-joplin:
-  providers:
-    flatpak:
-      application_id: net.cozic.joplin_desktop
-    github_AppImage:
-      url: github.com/laurent22/joplin

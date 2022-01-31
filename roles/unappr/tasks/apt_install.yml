@@ -1,0 +1,4 @@
+# Implement apt provider
+---
+- debug:
+    msg: "install_apt for {{ item.name }}"

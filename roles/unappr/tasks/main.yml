@@ -1,10 +1,9 @@
-- block:
-  - name: confirm application is available from specified provider
-    debug:
+---
+# TODO: re enable me
+# - name: Have flatpak runtime installed
+  # apt:
+    # name: flatpak
 
-  - name: install application from specified provider
-    debug:
-
-  - name: uninstall application from nonspecified provider
-    debug:
-with_items: applications
+- name: Begin handling applications
+  include_tasks: unappr.yml
+  with_items: "{{ applications }}"
