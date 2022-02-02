@@ -12,7 +12,7 @@ catalog:
       flatpak:
         application_id: net.cozic.joplin_desktop
       github_AppImage:
-        url: github.com/laurent22/joplin
+        repo: github.com/laurent22/joplin
   prusaslicer:
     providers:
       flatpak:
