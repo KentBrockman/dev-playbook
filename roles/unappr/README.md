@@ -15,7 +15,6 @@ Optionally provide:
 And `unappr` will install the application at the specied version from the specified provider, ensuring the application is uninstalled from all other providers
 TODO: what if you want multiple versions installed from multiple providers?
 
-
 ## Supported Providers
 
 Legend:
