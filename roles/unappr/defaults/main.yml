@@ -30,6 +30,5 @@ catalog:
       apt:
         name: tmux
 
-
 # list of applications to install from providers
 applications:
