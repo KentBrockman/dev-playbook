@@ -1,10 +1,29 @@
 ---
-# TODO: confirm app.version is in list of supplied versions
-- name: "install {{ app.name }} with version"
-  apt:
-    name: "{{ catalog[app.name].providers.apt.name }}={{ app.version }}"
-    state: present
-    force: true
+# apt-cache madison {{ app.name }} | awk '{print $3}'
+- name: install with version
+  block:
+  - name: detect all versions available
+    shell: "apt-cache madison {{ app.name }} | awk '{print $3}'"
+    register: output
+    changed_when: false
+
+  - name: set available versions
+    set_fact:
+      available_versions: "{{ output.stdout_lines }}"
+    changed_when: false
+
+  - name: confirm specified version is allowed
+    assert:
+      that: app.version in available_versions
+      fail_msg: |
+        "'{{ app.version }}' is not a valid version for {{ app.name }} from {{ app.provider }}.
+        Please select one of: {{ available_versions }}"
+
+  - name: "install {{ app.name }} with version"
+    apt:
+      name: "{{ catalog[app.name].providers.apt.name }}={{ app.version }}"
+      state: present
+    when: "'version' in app"
   when: "'version' in app"
 
 - name: "install {{ app.name }} at latest"
@@ -13,7 +32,3 @@
     state: latest
     force: true
   when: "'version' not in app"
-
-# Show versions with:
-# apt-cache madison {{ app.name }} | awk '{print $3}'
-# `apt policy {{ app.name }}` also works, but harder to parse strings out

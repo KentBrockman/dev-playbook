@@ -1,9 +1,9 @@
+# apt - Show versions with:
+# apt-cache madison {{ app.name }} | awk '{print $3}'
+# `apt policy {{ app.name }}` also works
 ---
 applications:
   - name: openscad
     provider: flatpak
   - name: tmux
     provider: apt
-    # version: 3.0a-2ubuntu0.3
-    # version: 3.0a-2ubuntu0.2
-    # version: 3.0a-2
