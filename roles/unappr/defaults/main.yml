@@ -25,6 +25,11 @@ catalog:
         application_id: org.openscad.OpenSCAD
       apt:
         name: openscad
+  tmux:
+    providers:
+      apt:
+        name: tmux
+
 
 # list of applications to install from providers
 applications:

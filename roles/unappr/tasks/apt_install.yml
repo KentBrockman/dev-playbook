@@ -1,5 +1,19 @@
 ---
-- name: "install {{ app.name }}"
+# TODO: confirm app.version is in list of supplied versions
+- name: "install {{ app.name }} with version"
+  apt:
+    name: "{{ catalog[app.name].providers.apt.name }}={{ app.version }}"
+    state: present
+    force: true
+  when: "'version' in app"
+
+- name: "install {{ app.name }} at latest"
   apt:
     name: "{{ catalog[app.name].providers.apt.name }}"
-    state: present
+    state: latest
+    force: true
+  when: "'version' not in app"
+
+# Show versions with:
+# apt-cache madison {{ app.name }} | awk '{print $3}'
+# `apt policy {{ app.name }}` also works, but harder to parse strings out

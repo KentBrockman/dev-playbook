@@ -2,3 +2,8 @@
 applications:
   - name: openscad
     provider: flatpak
+  - name: tmux
+    provider: apt
+    # version: 3.0a-2ubuntu0.3
+    # version: 3.0a-2ubuntu0.2
+    # version: 3.0a-2

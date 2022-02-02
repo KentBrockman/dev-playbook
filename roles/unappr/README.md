@@ -24,7 +24,7 @@ Legend:
 
 | Provider | Support Installs | Support Versioning |
 | -- | -- | -- |
-| `apt` | ✅ | ❌ |
+| `apt` | ✅ | ✅ |
 | `flatpak` | ✅ | ❌ |
 | `github_AppImage` | ❌ | ❌ |
 | `url_deb` | ❌ | ❌ |
