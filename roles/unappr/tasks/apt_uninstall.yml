@@ -1,3 +1,6 @@
 ---
-- debug:
-    msg: "uninstall_apt for {{ item.name }}"
+- name: "uninstall {{ app.name }} from apt"
+  apt:
+    name: "{{ catalog[app.name].providers.apt.name }}"
+    state: absent
+    autoremove: yes

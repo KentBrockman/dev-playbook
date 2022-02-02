@@ -1,9 +1,17 @@
 ---
 # TODO: re enable me
-# - name: Have flatpak runtime installed
-  # apt:
-    # name: flatpak
+- name: Have flatpak runtime installed
+  apt:
+    name: flatpak
+
+- name: Add the flathub flatpak repository remote to the user installation
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
 - name: Begin handling applications
   include_tasks: unappr.yml
   with_items: "{{ applications }}"
+  loop_control:
+    loop_var: app

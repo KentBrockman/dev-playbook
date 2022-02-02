@@ -1,3 +1,5 @@
 ---
-- debug:
-    msg: "uninstall_flatpak for {{ item.name }}"
+- name: "uninstall {{ app.name }} from flatpak"
+  flatpak:
+    name: "{{ catalog[app.name].providers.flatpak.application_id }}"
+    state: absent

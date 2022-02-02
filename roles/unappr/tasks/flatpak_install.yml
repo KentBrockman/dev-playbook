@@ -1,5 +1,5 @@
-# Implement flatpak provider
 ---
-# TODO: use flatpak module
-- debug:
-    msg: "install_flatpak for {{ item.name }}"
+- name: "install {{ app.name }}"
+  flatpak:
+    name: "{{ catalog[app.name].providers.flatpak.application_id }}"
+    state: present

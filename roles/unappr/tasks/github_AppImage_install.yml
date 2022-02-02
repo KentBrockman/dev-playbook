@@ -4,4 +4,4 @@
 # TODO hit API to get latest
 # curl https://api.github.com/repos/laurent22/joplin/releases
 - debug:
-    msg: "install_github_AppImage for {{ item.name }}"
+    msg: "install_github_AppImage for {{ app.name }}"

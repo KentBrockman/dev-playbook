@@ -1,4 +1,5 @@
-# Implement apt provider
 ---
-- debug:
-    msg: "install_apt for {{ item.name }}"
+- name: "install {{ app.name }}"
+  apt:
+    name: "{{ catalog[app.name].providers.apt.name }}"
+    state: present

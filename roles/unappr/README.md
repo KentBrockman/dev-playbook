@@ -1,8 +1,8 @@
-Role Name
+**Un**ified **App**lication **R**etriever
 =========
 
-Called `unappr` for short is the **Un**ified **App**lication **R**etriever.
-`unappr`'s goal is to provide you a single interface for installing the applications you use from the variety of providers you get them from.
+Called `unappr` for short 
+The **Un**ified **App**lication **R**etriever provides a single interface for installing applications you use from the variety of providers you get them from.
 This means you spend less time fiddling with various providers can have one clean, obvious way to install software.
 
 Simply supply:
@@ -25,8 +25,8 @@ Legend:
 
 | Provider | Support Installs | Support Versioning |
 | -- | -- | -- |
-| `apt` | ❌ | ❌ |
-| `flatpak` | ❌ | ❌ |
+| `apt` | ✅ | ❌ |
+| `flatpak` | ✅ | ❌ |
 | `github_AppImage` | ❌ | ❌ |
 | `url_deb` | ❌ | ❌ |
 | `url_bin` | ❌ | ❌ |
