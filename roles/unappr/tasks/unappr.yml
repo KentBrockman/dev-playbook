@@ -14,6 +14,8 @@
     success_msg: "{{ app.name }} is available from {{ app.provider }}"
     # TODO: link to the application catalog
     fail_msg: "{{ app.name }} is not available from {{ app.provider }}. Please submit a PR to update the catalog }}"
+  # executable will never be specific in the catalog of providers
+  when: app.provider != "executable"
 
 - include_tasks: "{{ app.provider }}_install.yml"
 
@@ -23,3 +25,8 @@
   loop: "{{ catalog[app.name].providers.keys()|list }}"
   loop_control:
     loop_var: provider
+
+  # not sure how to fold this into loop in the previous task
+- name: "uninstall {{ app.name }} executable"
+  include_tasks: "executable_uninstall.yml"
+  when: app.provider != "executable"

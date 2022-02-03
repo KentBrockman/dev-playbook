@@ -3,9 +3,9 @@
 # `apt policy {{ app.name }}` also works
 ---
 applications:
-  # - name: openscad
-    # provider: flatpak
+  - name: openscad
+    provider: apt
   # - name: tmux
     # provider: apt
-  - name: joplin
-    provider: github_AppImage
+  # - name: joplin
+    # provider: github_AppImage

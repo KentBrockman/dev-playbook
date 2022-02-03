@@ -1,4 +1,10 @@
 # Download .AppImage or Binaries from Github Releases
+# NOTE: abandoning this approach for now for two reasons:
+# 1. It can be adequately serviced by executable provider
+# 2. I expect this implementation to be reasonably brittle
+#    It relies on too many things that are prone to change, such as:
+#       The Github API
+#       How the repo maintainer has decided to tag releases and name assets
 ---
 - name: HTTP GET release metadata from github API
   uri:

@@ -1,9 +1,9 @@
 ---
-# the directory where AppImages should be installed
+# the directory where executables (binaries, AppImages, etc) should be installed
 # Ensure this directory is in your path
-app_image_directory: "{{ ansible_facts.env.HOME }}/.local/bin"
+executable_directory: "{{ ansible_facts.env.HOME }}/.local/bin"
 
-# all applictations
+# all applications
 # TODO: break out each application to its own file and load programatically
 # so it's easier to merge PRs without a ton of merge conflicts
 catalog:
@@ -18,7 +18,7 @@ catalog:
       flatpak:
         application_id: com.prusa3d.PrusaSlicer
       github_AppImage:
-        url: github.com/prusa3d/PrusaSlicer
+        repo: github.com/prusa3d/PrusaSlicer
   openscad:
     providers:
       flatpak:

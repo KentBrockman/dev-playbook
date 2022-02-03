@@ -1,0 +1,20 @@
+# The interface for binary installs is slightly different
+# There is no predefined provider here
+# This interface is a 'last resort' designed to address
+# the case where the app you're trying to get is not
+# available through the other package managers
+#
+# You need to provide:
+# - url to download from, presumably with a version
+# - checksum for remote executable.
+#   - this is used to determine if we have latest version
+#   - value
+#   - hash
+#
+# Optionally:
+# - Executable name, which may differ from app name e.g. minioclient vs mc
+# - zipped
+---
+- name: install with version
+  debug:
+  - msg: test
