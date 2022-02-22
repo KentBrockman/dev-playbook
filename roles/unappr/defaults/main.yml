@@ -29,6 +29,7 @@ catalog:
     providers:
       apt:
         name: tmux
+  minioClient:
 
 # list of applications to install from providers
 applications:

@@ -6,15 +6,33 @@
 #
 # You need to provide:
 # - url to download from, presumably with a version
+# Optionally:
+# - exec_name, which may differ from app name e.g. minioclient vs mc
+---
+- name: executable directory exists
+  file:
+    path: "{{ executable_directory }}"
+    state: directory
+
+# BUG: if the user changes app.url, this step is mistakenly marked ok
+# TODO: implement some form of real idempotency here
+# implement some form of checksum?
+# get_url calculates checksum of local to confirm it has been downloaded properly
+# im thinking - can we provide the checksum we expect to see from the remote as an indicator that...we want to download a new file? or maybe store the url we are downloading from as a form of metadata to inspect + determine if the download should happen again?
 # - checksum for remote executable.
 #   - this is used to determine if we have latest version
 #   - value
 #   - hash
-#
-# Optionally:
-# - Executable name, which may differ from app name e.g. minioclient vs mc
-# - zipped
----
-- name: install with version
-  debug:
-  - msg: test
+- name: download executable
+  get_url:
+    url: "{{ app.url }}"
+    dest: "{{ executable_directory }}/{{ app.exec_name | default(app.name) }}"
+    mode: "+x"
+  when: "{{ app.url | regex_search('^.*\.zip$')}}"
+
+- name: download zipped executable
+  unarchive:
+    url: "{{ app.url }}"
+    dest: "{{ executable_directory }}"
+    mode: "+x"
+  when: "{{ app.url | regex_search('^.*\.zip$')}}"

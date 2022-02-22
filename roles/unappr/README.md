@@ -26,7 +26,7 @@ Legend:
 | -- | -- | -- |
 | `apt` | ✅ | ✅ |
 | `flatpak` | ✅ | 🛑 |
-| `executable` | ❌ | ❌ |
+| `executable` | ✅ | ❌ |
 | `url_deb` | ❌ | ❌ |
 
 ## Supported Applications

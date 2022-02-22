@@ -1,4 +1,5 @@
 ---
-- name: uninstall
-  debug:
-    msg: test
+- name: "uninstall {{ app.name }} executable"
+  get_url:
+    path: "{{ executable_directory }}/{{ app.exec_name | default(app.name) }}"
+    dest: absent

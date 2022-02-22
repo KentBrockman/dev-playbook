@@ -3,9 +3,13 @@
 # `apt policy {{ app.name }}` also works
 ---
 applications:
-  - name: openscad
-    provider: apt
+  # - name: openscad
+    # provider: apt
   # - name: tmux
     # provider: apt
   # - name: joplin
     # provider: github_AppImage
+  - name: minioClient
+    provider: executable
+    url: https://dl.min.io/client/mc/release/linux-amd64/mc.RELEASE.2022-02-02T02-03-24Z
+    exec_name: mc

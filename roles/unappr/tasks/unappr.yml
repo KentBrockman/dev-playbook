@@ -22,11 +22,11 @@
 - name: "uninstall {{ app.name }} from other providers"
   include_tasks: "{{ provider }}_uninstall.yml"
   when: provider != app.provider
-  loop: "{{ catalog[app.name].providers.keys()|list }}"
+  loop: "{{ catalog[app.name].providers | default({}) | dict2items | map(attribute='value') | map(attribute='providers') | list }}"
   loop_control:
     loop_var: provider
 
-  # not sure how to fold this into loop in the previous task
+# not sure how to fold this into loop in the previous task
 - name: "uninstall {{ app.name }} executable"
   include_tasks: "executable_uninstall.yml"
   when: app.provider != "executable"
