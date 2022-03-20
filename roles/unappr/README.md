@@ -72,3 +72,21 @@ Author Information
 ------------------
 
 An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+
+## Development
+
+1. Create docker image to test against
+   Using Ubuntu 20.04 for now, as that is closest to my OS
+
+   `docker build -t test-image -f test-image.Dockerfile .`
+
+   Would love to expand this later
+
+2. Create an instance of the this docker container to test against
+  `molecule create`
+
+3. Run the role
+  `molecule converge`
+
+4. Clean up when you're done
+  `molecule destroy`

@@ -17,12 +17,13 @@
   # executable will never be specific in the catalog of providers
   when: app.provider != "executable"
 
-- include_tasks: "{{ app.provider }}_install.yml"
+- name: "install {{ app.name }} from {{ app.provider }}"
+  include_tasks: "{{ app.provider }}_install.yml"
 
 - name: "uninstall {{ app.name }} from other providers"
   include_tasks: "{{ provider }}_uninstall.yml"
   when: provider != app.provider
-  loop: "{{ catalog[app.name].providers | default({}) | dict2items | map(attribute='value') | map(attribute='providers') | list }}"
+  loop: "{{ catalog['openscad'].providers | default({}) | dict2items | map(attribute='key') | list }}"
   loop_control:
     loop_var: provider
 

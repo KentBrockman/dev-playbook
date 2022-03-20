@@ -1,5 +1,5 @@
 ---
 - name: "uninstall {{ app.name }} executable"
-  get_url:
+  file:
     path: "{{ executable_directory }}/{{ app.exec_name | default(app.name) }}"
-    dest: absent
+    state: absent
