@@ -9,30 +9,42 @@
 # Optionally:
 # - exec_name, which may differ from app name e.g. minioclient vs mc
 ---
-- name: executable directory exists
-  file:
-    path: "{{ executable_directory }}"
-    state: directory
+- name: Set executable and metadata paths
+  set_fact:
+    executable_path: "{{ executable_directory }}/{{ app.exec_name | default(app.name) }}"
+    executable_metadata: "{{ executable_directory }}/.{{ app.exec_name | default(app.name) }}.metadata"
 
-# BUG: if the user changes app.url, this step is mistakenly marked ok
-# TODO: implement some form of real idempotency here
-# implement some form of checksum?
-# get_url calculates checksum of local to confirm it has been downloaded properly
-# im thinking - can we provide the checksum we expect to see from the remote as an indicator that...we want to download a new file? or maybe store the url we are downloading from as a form of metadata to inspect + determine if the download should happen again?
-# - checksum for remote executable.
-#   - this is used to determine if we have latest version
-#   - value
-#   - hash
+- name: Get url from metadata
+  # command: "cat {{ executable_metadata }}"
+  # TODO: how to get this from target
+  shell: if [ ! -f '"{{ executable_metadata }}"' ]; then touch "{{ executable_metadata }}"; fi; "cat {{ executable_metadata }};"
+  changed_when: false
+  register: current_url_output
+
+- name: get current url
+  set_fact:
+    current_url: current_url_output.stdout
+
 - name: download executable
   get_url:
     url: "{{ app.url }}"
-    dest: "{{ executable_directory }}/{{ app.exec_name | default(app.name) }}"
+    dest: "{{ executable_path }}"
     mode: "+x"
-  when: "{{ app.url | regex_search('^.*\.zip$')}}"
+    # force a redownload when url from metadata doesn't match what is provided to this role
+    force: "{{ current_url != app.url }}"
+  # when url does not end in .zip
+  when: app.url | regex_search(".*(?<!zip)$")
 
-- name: download zipped executable
+- name: download and unzip executable
   unarchive:
     url: "{{ app.url }}"
     dest: "{{ executable_directory }}"
     mode: "+x"
-  when: "{{ app.url | regex_search('^.*\.zip$')}}"
+  # when url ends in .zip
+  when: app.url | regex_search('.*zip$') and current_url != app.url
+
+- name: write app.url to metadata
+  copy:
+    content: "{{ app.url }}"
+    dest: "{{ executable_metadata }}"
+  when: current_url != app.url

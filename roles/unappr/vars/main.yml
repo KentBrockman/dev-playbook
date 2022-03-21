@@ -11,5 +11,5 @@ applications:
     # provider: github_AppImage
   - name: minioClient
     provider: executable
-    url: https://dl.min.io/client/mc/release/linux-amd64/mc.RELEASE.2022-02-02T02-03-24Z
+    url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2022-02-16T05-54-01Z
     exec_name: mc

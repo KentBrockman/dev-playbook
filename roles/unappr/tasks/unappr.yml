@@ -23,7 +23,7 @@
 - name: "uninstall {{ app.name }} from other providers"
   include_tasks: "{{ provider }}_uninstall.yml"
   when: provider != app.provider
-  loop: "{{ catalog['openscad'].providers | default({}) | dict2items | map(attribute='key') | list }}"
+  loop: "{{ catalog[app.name].providers | default({}) | dict2items | map(attribute='key') | list }}"
   loop_control:
     loop_var: provider
 
