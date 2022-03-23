@@ -10,7 +10,7 @@ Simply supply:
 - the provider
 
 Optionally provide:
-- version
+- version, for the providers that support it
 
 And `unappr` will install the application at the specied version from the specified provider, ensuring the application is uninstalled from all other providers
 TODO: what if you want multiple versions installed from multiple providers?
@@ -29,10 +29,11 @@ Legend:
 | `executable` | ✅ | ❌ |
 | `github_AppImage` | ❌ | ❌ |
 | `url_deb` | ❌ | ❌ |
+| `repo_deb` | ❌ | ❌ |
 
 ## Supported Applications
 
-
+## Supported Distributions
 
 Requirements
 ------------
@@ -62,7 +63,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: kentbrockman.upappr, x: 42 }
+         - { role: kentbrockman.unappr, x: 42 }
 
 License
 -------

@@ -4,46 +4,46 @@
 # the case where the app you're trying to get is not
 # available through the other package managers
 #
-# You need to provide:
-# - url to download from, presumably with a version
+# Required:
+# - `url` to download from, presumably with a version
 # Optionally:
-# - exec_name, which may differ from app name e.g. minioclient vs mc
+# - `exec_name`, which may differ from app name e.g. minioclient vs mc
 ---
 - name: Set executable and metadata paths
   set_fact:
     executable_path: "{{ executable_directory }}/{{ app.exec_name | default(app.name) }}"
     executable_metadata: "{{ executable_directory }}/.{{ app.exec_name | default(app.name) }}.metadata"
 
-- name: Get url from metadata
-  # command: "cat {{ executable_metadata }}"
-  # TODO: how to get this from target
-  shell: if [ ! -f '"{{ executable_metadata }}"' ]; then touch "{{ executable_metadata }}"; fi; "cat {{ executable_metadata }};"
+- name: Check for metadata file
+  # create metadata file if it doesnt exist
+  # grab its contents for the unholy imperitive crap to follow
+  shell: "test ! -f {{ executable_metadata }} && touch {{ executable_metadata }}; cat {{ executable_metadata }};"
   changed_when: false
   register: current_url_output
 
-- name: get current url
+- name: Get contents of metadata file
   set_fact:
-    current_url: current_url_output.stdout
+    current_url: "{{ current_url_output.stdout }}"
 
 - name: download executable
   get_url:
     url: "{{ app.url }}"
     dest: "{{ executable_path }}"
     mode: "+x"
-    # force a redownload when url from metadata doesn't match what is provided to this role
-    force: "{{ current_url != app.url }}"
+  # download only when url has changed, otherwise we incur network traffic for no reason
   # when url does not end in .zip
-  when: app.url | regex_search(".*(?<!zip)$")
+  when: app.url | regex_search(".*(?<!zip)$") and current_url != app.url
 
 - name: download and unzip executable
   unarchive:
     url: "{{ app.url }}"
     dest: "{{ executable_directory }}"
     mode: "+x"
+  # download only when url has changed, otherwise we incur network traffic for no reason
   # when url ends in .zip
   when: app.url | regex_search('.*zip$') and current_url != app.url
 
-- name: write app.url to metadata
+- name: write app.url to metadata if changed
   copy:
     content: "{{ app.url }}"
     dest: "{{ executable_metadata }}"
