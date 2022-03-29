@@ -26,10 +26,10 @@ Legend:
 | -- | -- | -- |
 | `apt` | ✅ | ✅ |
 | `flatpak` | ✅ | 🛑 |
-| `executable` | ✅ | ❌ |
-| `github_AppImage` | ❌ | ❌ |
-| `url_deb` | ❌ | ❌ |
-| `repo_deb` | ❌ | ❌ |
+| `executable` | ✅ | 🛑 |
+<!-- | `github_AppImage` | ❌ | ❌ | -->
+<!-- | `url_deb` | ❌ | ❌ | -->
+<!-- | `repo_deb` | ❌ | ❌ | -->
 
 ## Supported Applications
 
