@@ -1,6 +1,6 @@
 # apt - Show versions with:
-# apt-cache madison {{ app.name }} | awk '{print $3}'
-# `apt policy {{ app.name }}` also works
+#   - apt-cache madison {{ app.name }} | awk '{print $3}'
+#   - `apt policy {{ app.name }}` also works
 ---
 applications:
   # - name: openscad
@@ -9,10 +9,10 @@ applications:
     # provider: apt
   # - name: joplin
     # provider: github_AppImage
-  - name: minioClient
-    provider: executable
-    url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2022-02-16T05-54-01Z
-    exec_name: mc
+  # - name: minioClient
+    # provider: executable
+    # url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2022-02-16T05-54-01Z
+    # exec_name: mc
 # - name: vagrant
 # https://releases.hashicorp.com/vagrant/2.2.19/
 # url_deb

@@ -5,8 +5,6 @@ driver:
   name: docker
 platforms:
   - name: ubuntu
-    # build test-image with local dockerfile
-    # docker build -t=test-image -f test-image.Dockerfile .
     image: test-image
     pre_build_image: true
 provisioner:

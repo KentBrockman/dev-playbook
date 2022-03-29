@@ -10,3 +10,6 @@ RUN apt update
 # set up python for ansible access
 # set up flatpak runtime so we can install applications from it
 RUN apt install -y python3 python3-pip flatpak
+
+# add flathub remote
+RUN flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

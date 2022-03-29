@@ -3,3 +3,6 @@
   flatpak:
     name: "{{ catalog[app.name].providers.flatpak.application_id }}"
     state: absent
+
+    # TODO: followup with:
+    # `flatpak uninstall --unused`
