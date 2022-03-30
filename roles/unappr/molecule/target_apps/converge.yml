@@ -1,0 +1,15 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include unappr"
+      include_role:
+        name: "unappr"
+      vars:
+        applications:
+          - name: test_package
+            provider: apt
+          - name: tmux
+            provider: apt
+        target_apps:
+          - test_package

@@ -1,0 +1,44 @@
+---
+- name: "Check for {{ app.name }} in catalog"
+  delegate_to: localhost
+  stat:
+    path: "{{ role_path + '/defaults/' + app.name + '.yml' }}"
+  register: app_yaml
+
+- name: "Confirm {{ app.name }} in catalog"
+  assert:
+    that:
+      - app_yaml.stat.exists or app.name in catalog
+    success_msg: "{{ app.name }} is in catalog"
+    # TODO: link to the application catalog
+    fail_msg: "{{ app.name }} does not appear to be in catalog. Please submit a PR to update the catalog."
+
+- name: "Load {{ app.name }} into catalog dict"
+  set_fact:
+    catalog: "{{ catalog | combine(lookup('file', 'defaults/' + app.name + '.yml') | from_yaml) }}"
+  when: app.name not in catalog
+
+- name: "Confirm {{ app.name }} is available from {{ app.provider }}"
+  assert:
+    that:
+      - "app.provider in catalog.{{ app.name }}.providers"
+    success_msg: "{{ app.name }} is available from {{ app.provider }}"
+    # TODO: link to the application catalog
+    fail_msg: "{{ app.name }} is not available from {{ app.provider }}. Please submit a PR to update the catalog }}"
+  # executable will never be specific in the catalog of providers
+  when: app.provider != "executable"
+
+- name: "install {{ app.name }} from {{ app.provider }}"
+  include_tasks: "{{ app.provider }}_install.yml"
+
+- name: "uninstall {{ app.name }} from other providers"
+  include_tasks: "{{ provider }}_uninstall.yml"
+  when: provider != app.provider
+  loop: "{{ catalog[app.name].providers | default({}) | dict2items | map(attribute='key') | list }}"
+  loop_control:
+    loop_var: provider
+
+# not sure how to fold this into loop in the previous task
+- name: "uninstall {{ app.name }} executable"
+  include_tasks: "executable_uninstall.yml"
+  when: app.provider != "executable"

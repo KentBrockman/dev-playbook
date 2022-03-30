@@ -1,0 +1,7 @@
+---
+vagrant:
+  providers:
+    apt:
+      name: vagrant
+    # url_deb:
+      # url: https://releases.hashicorp.com/vagrant/2.2.19/vagrant_2.2.19_x86_64.deb

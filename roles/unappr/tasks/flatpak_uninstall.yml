@@ -1,0 +1,9 @@
+---
+- name: "uninstall {{ app.name }} from flatpak"
+  # TODO: conditional on method: user/system
+  become: ansible_facts.user_id == 'root' or false | bool
+  flatpak:
+    name: "{{ catalog[app.name].providers.flatpak.application_id }}"
+    state: absent
+  notify:
+    - Uninstall unused flatpaks

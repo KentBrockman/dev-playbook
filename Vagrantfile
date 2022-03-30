@@ -32,6 +32,7 @@ Vagrant.configure("2") do |config|
     libvirt.title = "dev-playbook-testing-box"
     libvirt.memory = "4096"
     libvirt.cpus = 2
+    libvirt.machine_virtual_size = 50
   end
 
   # TODO: make public network config conditional based on br0 existing

@@ -1,0 +1,4 @@
+# Unimplemented, see github_AppImage_install.yml
+---
+- debug:
+    msg: "uninstall_github_AppImage for {{ app.name }}"

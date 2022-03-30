@@ -1,0 +1,26 @@
+---
+# the directory where executables (binaries, AppImages, etc) should be installed
+# Ensure this directory is in your path
+executable_directory: "{{ ansible_facts.env.HOME }}/.local/bin"
+
+# all applications
+# break out each application to its own file and load programatically
+# so it's easier to merge PRs without a ton of merge conflicts in this one file
+catalog:
+  # FAKE PACKAGE USED TO TEST THIS ROLE
+  # It doesn't matter if the package is the same across providers
+  # we just need something FAST TO INSTALL
+  # which means SMALL INSTALLED SIZE and FEWEST DEPENDENCIES
+  test_package:
+    providers:
+      flatpak:
+        application_id: org.mersenne.mprime
+      apt:
+        name: rolldice
+
+# list of applications to install from providers
+applications: {}
+
+# if you only want this role to apply to specific applications
+# typically specified when running the playbook for a subset of applications
+target_apps: []

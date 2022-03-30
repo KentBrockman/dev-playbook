@@ -1,0 +1,5 @@
+# apt - Show versions with:
+#   - apt-cache madison {{ app.name }} | awk '{print $3}'
+#   - `apt policy {{ app.name }}` also works
+---
+applications: {}

@@ -1,0 +1,7 @@
+---
+openscad:
+  providers:
+    flatpak:
+      application_id: org.openscad.OpenSCAD
+    apt:
+      name: openscad

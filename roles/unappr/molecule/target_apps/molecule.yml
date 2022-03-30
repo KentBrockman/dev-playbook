@@ -1,0 +1,13 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: ubuntu
+    image: test-image
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

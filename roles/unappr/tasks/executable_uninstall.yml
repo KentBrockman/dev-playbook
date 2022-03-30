@@ -1,0 +1,5 @@
+---
+- name: "uninstall {{ app.name }} executable"
+  file:
+    path: "{{ executable_directory }}/{{ app.exec_name | default(app.name) }}"
+    state: absent

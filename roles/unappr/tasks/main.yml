@@ -1,0 +1,31 @@
+---
+- name: Have flatpak runtime installed
+  become: ansible_facts.user_id == 'root' or false | bool
+  apt:
+    name: flatpak
+
+- name: executable directory exists
+  file:
+    path: "{{ executable_directory }}"
+    state: directory
+
+- name: Add the flathub flatpak repository remote to the user installation
+  become: ansible_facts.user_id == 'root' or false | bool
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Begin handling applications
+  include_tasks: unappr.yml
+  with_items: "{{ applications }}"
+  when: not target_apps
+  loop_control:
+    loop_var: app
+
+- name: Begin handling targeted applications
+  include_tasks: unappr.yml
+  with_items: "{{ applications | selectattr('name', 'in', target_apps) | list }}"
+  when: target_apps
+  loop_control:
+    loop_var: app

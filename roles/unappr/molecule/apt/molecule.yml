@@ -1,0 +1,20 @@
+---
+dependency:
+  name: galaxy
+
+# driver:
+  # name: delegated
+# platforms:
+  # - name: localhost
+
+driver:
+  name: docker
+platforms:
+  - name: ubuntu
+    image: test-image
+    pre_build_image: true
+
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
