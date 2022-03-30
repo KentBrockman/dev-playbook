@@ -44,3 +44,7 @@ catalog:
 
 # list of applications to install from providers
 applications:
+
+# if you only want this role to apply to specific applications
+# typically specified when running the playbook for a subset of applications
+target_apps:

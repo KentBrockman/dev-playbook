@@ -20,5 +20,13 @@
 - name: Begin handling applications
   include_tasks: unappr.yml
   with_items: "{{ applications }}"
+  when: not target_apps
+  loop_control:
+    loop_var: app
+
+- name: Begin handling targeted applications
+  include_tasks: unappr.yml
+  with_items: "{{ applications | selectattr('name', 'in', target_apps) | list }}"
+  when: target_apps
   loop_control:
     loop_var: app
