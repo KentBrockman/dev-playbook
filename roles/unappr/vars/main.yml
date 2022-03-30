@@ -2,20 +2,4 @@
 #   - apt-cache madison {{ app.name }} | awk '{print $3}'
 #   - `apt policy {{ app.name }}` also works
 ---
-applications:
-  # - name: openscad
-    # provider: apt
-  # - name: tmux
-    # provider: apt
-  # - name: joplin
-    # provider: github_AppImage
-  # - name: minioClient
-    # provider: executable
-    # url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2022-02-16T05-54-01Z
-    # exec_name: mc
-# - name: vagrant
-# https://releases.hashicorp.com/vagrant/2.2.19/
-# url_deb
-# - name: vnc
-# https://www.realvnc.com/en/connect/download/vnc/
-# url_deb
+applications: {}
