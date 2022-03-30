@@ -1,5 +1,4 @@
 ---
-
 - name: Have flatpak runtime installed
   become: ansible_facts.user_id == 'root' or false | bool
   apt:

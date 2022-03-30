@@ -4,33 +4,9 @@
 executable_directory: "{{ ansible_facts.env.HOME }}/.local/bin"
 
 # all applications
-# TODO: break out each application to its own file and load programatically
-# so it's easier to merge PRs without a ton of merge conflicts
+# break out each application to its own file and load programatically
+# so it's easier to merge PRs without a ton of merge conflicts in this one file
 catalog:
-  joplin:
-    providers:
-      flatpak:
-        application_id: net.cozic.joplin_desktop
-      github_AppImage:
-        repo: github.com/laurent22/joplin
-  prusaslicer:
-    providers:
-      flatpak:
-        application_id: com.prusa3d.PrusaSlicer
-      github_AppImage:
-        repo: github.com/prusa3d/PrusaSlicer
-  openscad:
-    providers:
-      flatpak:
-        application_id: org.openscad.OpenSCAD
-      apt:
-        name: openscad
-  tmux:
-    providers:
-      apt:
-        name: tmux
-  minioClient:
-
   # FAKE PACKAGE USED TO TEST THIS ROLE
   # It doesn't matter if the package is the same across providers
   # we just need something FAST TO INSTALL
@@ -43,8 +19,8 @@ catalog:
         name: rolldice
 
 # list of applications to install from providers
-applications:
+applications: {}
 
 # if you only want this role to apply to specific applications
 # typically specified when running the playbook for a subset of applications
-target_apps:
+target_apps: []

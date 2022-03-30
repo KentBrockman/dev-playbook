@@ -1,11 +1,22 @@
 ---
+- name: "Check for {{ app.name }} in catalog"
+  delegate_to: localhost
+  stat:
+    path: "{{ role_path + '/defaults/' + app.name + '.yml' }}"
+  register: app_yaml
+
 - name: "Confirm {{ app.name }} in catalog"
   assert:
     that:
-      - app.name in catalog
+      - app_yaml.stat.exists or app.name in catalog
     success_msg: "{{ app.name }} is in catalog"
     # TODO: link to the application catalog
     fail_msg: "{{ app.name }} does not appear to be in catalog. Please submit a PR to update the catalog."
+
+- name: "Load {{ app.name }} into catalog dict"
+  set_fact:
+    catalog: "{{ catalog | combine(lookup('file', 'defaults/' + app.name + '.yml') | from_yaml) }}"
+  when: app.name not in catalog
 
 - name: "Confirm {{ app.name }} is available from {{ app.provider }}"
   assert:

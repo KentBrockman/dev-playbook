@@ -1,0 +1,7 @@
+---
+joplin:
+  providers:
+    flatpak:
+      application_id: net.cozic.joplin_desktop
+    github_AppImage:
+      repo: github.com/laurent22/joplin
