@@ -77,6 +77,10 @@ An optional section for the role authors to include contact information, or a we
 
 ## Development
 
+Use `molecule` with the scenarios provided in [the directory](./molecule)
+
+If using docker:
+
 1. Create docker image to test against
    Using Ubuntu 20.04 for now, as that is closest to my OS
 
@@ -85,10 +89,37 @@ An optional section for the role authors to include contact information, or a we
    Would love to expand this later
 
 2. Create an instance of the this docker container to test against
-  `molecule create`
+  `molecule create -s <scenario name>`
 
 3. Run the role
-  `molecule converge`
+  `molecule converge -s <scenario name>`
 
 4. Clean up when you're done
-  `molecule destroy`
+  `molecule destroy -s <scenario name>`
+
+If using localhost (which is what I am set up for):
+Pretty much same procedure as above
+
+Molecule has been finnicky for me, but I'm running old software.
+In a pinch, you can always run the playbook manually:
+
+`ansible-playbook --inventory ~/.cache/molecule/unappr/flatpak_apt/inventory --skip-tags molecule-notest,notest -K ~/code/dev-playbook/roles/unappr/molecule/flatpak_apt/converge.yml`
+
+Had to do this cause I couldn't find a way to pass -K flag via `molecule converge`
+Doublecheck molecule created inventory (I had to tweak ansible_interpreter_path)
+
+### Automated Testing
+
+Automated testing has proven challenging here.
+Starts with selecting driver:
+- `docker` - ideal. but get `bubblewrap` errors when preinstalling `flatpak` app for testing
+  - why preinstall a `flatpak` app? because they are huge. installing them in the context of a test takes forever
+    - is there a smaller application? [maybe - hopefully there is an answer](https://discourse.flathub.org/t/small-application-for-ci-testing/2384)
+      - worst case scenario we could submit [our own](https://github.com/flathub/flathub/wiki/App-Submission#how-to-submit-an-app)
+    - why not install a smaller runtime instead of an app?
+      - tried this. it doesn't uninstall properly with the `flatpak` module. it also gets uninstalled as an unused dependency
+- so go with `delegated` instead - which runs on localhost. i dont like messing with my host system for testing. doing this for now...
+  - can we delegate to a VM?
+    - maybe. probably. havent looked into it a ton. it'll probably be slower :/
+  - it is more representative of the environment we will run against
+  - TODO: can we provide a driver to KVM?

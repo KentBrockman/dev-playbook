@@ -1,2 +1,4 @@
 ---
-# handlers file for unappr
+- name: Uninstall unused flatpaks
+  become: ansible_facts.user_id == 'root' or false | bool
+  shell: "flatpak uninstall --unused -y"
