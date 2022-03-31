@@ -24,3 +24,6 @@ applications: {}
 # if you only want this role to apply to specific applications
 # typically specified when running the playbook for a subset of applications
 target_apps: []
+
+# URL to display in error messages where new applications can be added to the catalog
+catalog_url: "https://github.com/KentBrockman/dev-playbook/tree/master/roles/unappr/defaults"

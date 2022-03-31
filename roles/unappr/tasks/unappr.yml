@@ -10,8 +10,9 @@
     that:
       - app_yaml.stat.exists or app.name in catalog
     success_msg: "{{ app.name }} is in catalog"
-    # TODO: link to the application catalog
-    fail_msg: "{{ app.name }} does not appear to be in catalog. Please submit a PR to update the catalog."
+    fail_msg: "{{ app.name }} does not appear to be in catalog.
+    Please submit a PR to update the catalog.
+    {{ catalog_url }}"
 
 - name: "Load {{ app.name }} into catalog dict"
   set_fact:
@@ -23,8 +24,9 @@
     that:
       - "app.provider in catalog.{{ app.name }}.providers"
     success_msg: "{{ app.name }} is available from {{ app.provider }}"
-    # TODO: link to the application catalog
-    fail_msg: "{{ app.name }} is not available from {{ app.provider }}. Please submit a PR to update the catalog }}"
+    fail_msg: "{{ app.name }} does not appear to be in catalog.
+    Please submit a PR to update the catalog.
+    {{ catalog_url }}"
   # executable will never be specific in the catalog of providers
   when: app.provider != "executable"
 
@@ -38,7 +40,6 @@
   loop_control:
     loop_var: provider
 
-# not sure how to fold this into loop in the previous task
 - name: "uninstall {{ app.name }} executable"
   include_tasks: "executable_uninstall.yml"
   when: app.provider != "executable"
