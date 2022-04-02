@@ -1,0 +1,7 @@
+---
+vlc:
+  providers:
+    flatpak:
+      application_id: org.videolan.VLC
+    apt:
+      name: vlc

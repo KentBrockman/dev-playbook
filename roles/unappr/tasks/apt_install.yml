@@ -28,7 +28,8 @@
   when: "'version' in app"
 
 - name: "install {{ app.name }} at latest"
-  become: ansible_facts.user_id == 'root' or false | bool
+  # become: ansible_facts.user_id != 'root' | bool
+  become: true
   apt:
     name: "{{ catalog[app.name].providers.apt.name }}"
     state: latest

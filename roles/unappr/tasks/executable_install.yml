@@ -43,7 +43,7 @@
   # when url ends in .zip
   when: app.url | regex_search('.*zip$') and current_url != app.url
 
-- name: write app.url to metadata if changed
+- name: "write {{ app.url }} to metadata if changed"
   copy:
     content: "{{ app.url }}"
     dest: "{{ executable_metadata }}"

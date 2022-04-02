@@ -1,0 +1,7 @@
+---
+calibre:
+  providers:
+    flatpak:
+      application_id: com.calibe_ebook.calibre
+    apt:
+      name: calibre

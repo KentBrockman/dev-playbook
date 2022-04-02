@@ -1,0 +1,7 @@
+---
+gimp:
+  providers:
+    flatpak:
+      application_id: org.gimp.GIMP
+    apt:
+      name: gimp

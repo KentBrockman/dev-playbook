@@ -1,0 +1,7 @@
+---
+peek:
+  providers:
+    apt:
+      name: peek
+    flatpak:
+      application_id: com.uploadedlobster.peek

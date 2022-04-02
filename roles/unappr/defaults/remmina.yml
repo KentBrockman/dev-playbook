@@ -1,0 +1,7 @@
+---
+remmina:
+  providers:
+    apt:
+      name: remmina
+    flatpak:
+      application_id: org.remmina.Remmina

@@ -1,0 +1,7 @@
+---
+zeal:
+  providers:
+    flatpak:
+      application_id: org.zealdocs.Zeal
+    apt:
+      name: zeal

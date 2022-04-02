@@ -1,7 +1,9 @@
 all:
   hosts:
     phoenix:
+      ansible_host: phoenix.local
     aang:
+      ansible_host: aang.local
     thinkserver:
     prusamk3splus:
     benchpi:

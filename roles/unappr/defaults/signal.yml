@@ -1,0 +1,7 @@
+---
+signal:
+  providers:
+    flatpak:
+      application_id: org.signal.Signal
+    apt:
+      name: signal-desktop

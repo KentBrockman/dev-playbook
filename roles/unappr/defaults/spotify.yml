@@ -1,0 +1,7 @@
+---
+spotify:
+  providers:
+    flatpak:
+      application_id: com.spotify.Client
+    apt:
+      name: spotify-client

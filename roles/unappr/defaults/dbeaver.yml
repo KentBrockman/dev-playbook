@@ -1,0 +1,7 @@
+---
+dbeaver:
+  providers:
+    flatpak:
+      application_id: io.dbeaver.DBeaverCommunity
+    apt:
+      name: dbeaver-ce

@@ -1,10 +1,8 @@
 ---
 your_full_name: Kent Brockman
 your_email: brockman.ks@gmail.com
-# name your computer
 install_dotfiles: True
 preferred_shell: /usr/bin/zsh
-install_battery_management_tools: true
 sync_content: true
 # this setup script requires a local checkout on the target machine
 # set the location of that checkout
@@ -28,69 +26,100 @@ firefox_profiles:
       browser.search.defaultenginename: "'DuckDuckGo'"
       browser.urlbar.matchBuckets: "general:5,suggestion:Infinity"
 
-flatpak_applications:
+applications:
   # sql database client
-  - io.dbeaver.DBeaverCommunity
-  # team chat
-  - com.mattermost.Desktop
-  # another chat client
-  - org.signal.Signal
-  # another chat client
-  - org.telegram
-  # music client
-  - com.spotify.Client
-  # handy data science prototyping tool
-  - org.octave.Octave
-  # 3D parametric modelling
-  - org.freecadweb.FreeCAD
-  # ebook manager
-  - com.calibe_ebook.calibre
-  # software for generating 3D printer CAM files
-  - com.prusa3d.PrusaSlicer
-  # digital notebook tool
-  - net.cozic.joplin_desktop
-  # vector graphics editor
-  - org.inkscape.Inkscape
+  - name: dbeaver
+    provider: flatpak
 
-# all the applications you like and want managed by apt
-apt_applications:
+  # team chat
+  - name: mattermost
+    provider: flatpak
+
+  # another chat client
+  - name: signal
+    provider: flatpak
+
+  # another chat client
+  - name: telegram
+    provider: flatpak
+
+  # music client
+  - name: spotify
+    provider: flatpak
+
+  # handy data science prototyping tool
+  - name: octave
+    provider: flatpak
+
+  # 3D parametric modelling
+  - name: freecad
+    provider: flatpak
+
+  # ebook manager
+  - name: calibre
+    provider: flatpak
+
+  # software for generating 3D printer CAM files
+  - name: prusaslicer
+    provider: flatpak
+
+  # digital notebook tool
+  - name: joplin
+    provider: flatpak
+
+  # vector graphics editor
+  - name: inkscape
+    provider: flatpak
+
   # googles browser
-  - google-chrome-stable
+  - name: chrome
+    provider: apt
+
+  # view developer documentation offline. nice for working on an offline/airplane/roadtrip
+  - name: zeal
+    provider: apt
+
+  # image editor
+  - name: gimp
+    provider: apt
+
+  # for recording parts of screen and turning it into gifs
+  - name: peek
+    provider: apt
+
+  # great media player
+  - name: vlc
+    provider: apt
+
+  # VM automation
+  - name: vagrant
+    provider: apt
+
+  # remote desktop client
+  - name: remmina
+    provider: apt
+
+  # object storage client
+  - name: minioclient
+    provider: executable
+    url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2020-03-14T01-23-37Z
+    exec_name: mc
+
+flatpak_applications: []
+
+apt_applications:
   # containerization engine + tooling
   - docker.io
   - docker-compose
-  # team chat
-  - slack-desktop
   # timer to help me work using pomodoro technique: https://en.wikipedia.org/wiki/Pomodoro_Technique
   - gnome-shell-pomodoro
-  # view developer documentation offline. nice for working on an offline/airplane/roadtrip
-  - zeal
-  # image editor
-  - gimp
-  # for recording parts of screen and turning it into gifs
-  - peek
-  # great media player
-  - vlc
   # typing tutor
   - gtypist
   # irc chat client
   - irssi
-  # VM automation
-  - vagrant
-  # TODO: install from zip file online to get latest package
-  # https://releases.hashicorp.com/vagrant/2.2.14/vagrant_2.2.14_linux_amd64.zip
-  # quick access to local services from the worldwide web
-  # TODO: install from zip file online to get latest package
-  # https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
 
-# TODO: fold this into above list
-deb_packages:
-  # vnc client
-  - https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.20.529-Linux-x64.deb
-
-binary_applications:
-  - url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2020-03-14T01-23-37Z
-    dest: ~/.local/bin/mc
+binary_applications: []
+deb_packages: []
 
 # If using gnome, pick the extensions you like
 # https://extensions.gnome.org/local/

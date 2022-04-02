@@ -1,0 +1,7 @@
+---
+freecad:
+  providers:
+    flatpak:
+      application_id: org.freecadweb.FreeCAD
+    apt:
+      name: freecad

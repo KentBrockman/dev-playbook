@@ -5,3 +5,5 @@ prusaslicer:
       application_id: com.prusa3d.PrusaSlicer
     github_AppImage:
       repo: github.com/prusa3d/PrusaSlicer
+    apt:
+      name: prusa-slicer

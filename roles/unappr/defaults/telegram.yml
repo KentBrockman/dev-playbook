@@ -1,0 +1,7 @@
+---
+telegram:
+  providers:
+    flatpak:
+      application_id: org.telegram.desktop
+    apt:
+      name: telegram-desktop

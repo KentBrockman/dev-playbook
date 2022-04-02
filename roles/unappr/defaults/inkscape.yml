@@ -1,0 +1,7 @@
+---
+inkscape:
+  providers:
+    flatpak:
+      application_id: org.inkscape.Inkscape
+    apt:
+      name: inkscape

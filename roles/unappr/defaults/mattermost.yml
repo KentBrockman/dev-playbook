@@ -1,0 +1,7 @@
+---
+mattermost:
+  providers:
+    flatpak:
+      application_id: com.mattermost.Desktop
+    apt:
+      name: mattermost-desktop

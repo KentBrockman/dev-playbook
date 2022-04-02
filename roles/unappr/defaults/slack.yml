@@ -1,0 +1,7 @@
+---
+slack:
+  providers:
+    apt:
+      name: slack-desktop
+    flatpak:
+      application_id: com.slack.Slack

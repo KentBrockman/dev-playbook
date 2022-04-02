@@ -1,6 +1,6 @@
 ---
 - name: "uninstall {{ app.name }} from apt"
-  become: ansible_facts.user_id == 'root' or false | bool
+  become: ansible_facts.user_id != 'root' | bool
   apt:
     name: "{{ catalog[app.name].providers.apt.name }}"
     state: absent

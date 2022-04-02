@@ -1,0 +1,5 @@
+---
+chrome:
+  providers:
+    apt:
+      name: google-chrome-stable

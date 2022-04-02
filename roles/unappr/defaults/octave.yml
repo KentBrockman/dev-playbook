@@ -1,0 +1,7 @@
+---
+octave:
+  providers:
+    flatpak:
+      application_id: org.octave.Octave
+    apt:
+      name: octave

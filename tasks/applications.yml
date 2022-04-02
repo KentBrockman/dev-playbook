@@ -6,30 +6,34 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
 
+- name: install applications via unappr
+  include_role:
+    name: "unappr"
+
 - name: install applications via flatpak
   flatpak:
     name: "{{ item }}"
     state: present
     method: user
-  with_items: "{{ flatpak_applications }}"
+  with_items: "{{ flatpak_applications | default([]) }}"
 
 - name: install standalone binaries
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
     mode: +x
-  with_items: "{{ binary_applications }}"
+  with_items: "{{ binary_applications | default([]) }}"
 
 - name: install applications via apt
   become: true
   apt:
-    pkg: "{{ apt_applications }}"
+    pkg: "{{ apt_applications | default([]) }}"
 
 - name: install deb packages from network
   become: true
   apt:
     deb: "{{ item }}"
-  with_items: "{{ deb_packages }}"
+  with_items: "{{ deb_packages | default([]) }}"
 
 - name: docker group exists
   become: true
