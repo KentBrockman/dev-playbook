@@ -122,4 +122,4 @@ Starts with selecting driver:
   - can we delegate to a VM?
     - maybe. probably. havent looked into it a ton. it'll probably be slower :/
   - it is more representative of the environment we will run against
-  - TODO: can we provide a driver to KVM?
+  - should we find a driver to KVM?
