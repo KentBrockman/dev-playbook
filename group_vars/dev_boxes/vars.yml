@@ -146,11 +146,6 @@ gnome_extension_ids:
   # remove blur effect from lockscreen
   - 2935
 
-# links to debian packages to install
-other_applications:
-  # tool for making USB sticks that boot multiple OS's http://multibootusb.org
-  # - https://github.com/mbusb/multibootusb/releases/download/v9.2.0/python3-multibootusb_9.2.0-1_all.deb
-
 pyenv_root: ~/.pyenv
 
 # gnome-desktop uses the dconf database under the hood for managing settings

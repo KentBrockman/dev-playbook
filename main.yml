@@ -20,8 +20,8 @@
     - name: install python dependencies for playbook
       pip:
         name:
-          # TODO: re-verify these requirements
-          # all of these dependencies are needed for ansible to run properly. experimentally discovered...
+          # these dependencies needed for modules later on
+          # experimentally discovered
           - requests
           - psutil
 

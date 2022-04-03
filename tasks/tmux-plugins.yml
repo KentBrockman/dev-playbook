@@ -10,8 +10,16 @@
     dest: ~/.tmux/plugins/tpm
     version: v3.0.0
 
-# Note: must have plugin lines in tmux.conf uncommented for this to work
-# TODO: this is always marked changed cause we run a command. can you make this more idempotent?
+- name: detect tmux plugins requested to be installed
+  shell: awk '/@plugin/ {print $NF}' ~/.tmux.conf | sed "s/'//g" | awk -F"/" '{print $2}'
+  register: plugins_requested
+  changed_when: false
+
+- name: detect plugins already installed
+  shell: ls -1 $HOME/.tmux/plugins | grep -v 'tpm'
+  register: plugins_installed
+  changed_when: false
+
 - name: install tmux plugins
   command: ~/.tmux/plugins/tpm/bin/install_plugins
   environment:
@@ -20,7 +28,8 @@
     # but the hardcoding is still bad
     # TODO: do not hardcode or at least infer first
     # maybe set in config.yml?
-    TMUX_PLUGIN_MANAGER_PATH: $HOME/.tmux/plugins/
+    TMUX_PLUGIN_MANAGER_PATH: $HOME/.tmux/plugins
+  when: plugins_installed.stdout_lines | difference(plugins_requested.stdout_lines)
 
 - name: save tmux configuration script
   copy:
@@ -36,4 +45,3 @@
     # save tmux panes quietly so I dont see it
     # dont save panes unless tmux server is running otherwise we overwrite our old configuration
     job: ~/.tmux/save_tmux_configuration.sh
-# TODO: include conditional in tmux.conf - reload tmux panes on tmux start if there is a save available

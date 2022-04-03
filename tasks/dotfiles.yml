@@ -22,9 +22,8 @@
     - vim/colors
     - zshrc
     - cmds
-    # largely for remapping capslock to escape
-    # HACK: this only works for x-window sessions, not for TTYs, not with wayland
-    # TODO: for TTYs, explore a lower level option for remapping
+    # for remapping capslock to escape
+    # HACK: only works for x-window sessions, not TTYs or wayland
     # https://superuser.com/questions/729585/remap-keys-without-xmodmap-or-any-x-tools
     - Xmodmap
     - xinitrc
