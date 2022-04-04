@@ -1,12 +1,14 @@
 #!/bin/bash
 # open a file with the default program
-# TODO: "multi mode" - open multiple files
 
-if [[ -z $1 ]];
-then
-    # no argument provided - use fzf to search for one
-    xdg-open "$(fzf)"
+if [[ -z $1 ]]; then
+    # no argument provided - use fzf to search for them
+    FILES=$(fzf -m)
 else
     # open file specified in argument
-    xdg-open "$@"
+    FILES=$@
 fi
+
+for file in $FILES; do
+  xdg-open $file;
+done
