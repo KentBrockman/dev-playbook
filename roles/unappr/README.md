@@ -13,7 +13,8 @@ Optionally provide:
 - version, for the providers that support it
 
 And `unappr` will install the application at the specied version from the specified provider, ensuring the application is uninstalled from all other providers
-TODO: what if you want multiple versions installed from multiple providers?
+At this time, you cannot install multiple versions or from multiple providers.
+If you wish this feature, please describe your use-case as an issue.
 
 ## Supported Providers
 
