@@ -7,6 +7,6 @@ show_always = true
 
 [hostname]
 ssh_only = false
-format =  "@[$hostname](bold white) "
+format =  "@[$hostname](bold blue) "
 trim_at = ".companyname.com"
 disabled = false
