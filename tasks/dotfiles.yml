@@ -1,8 +1,11 @@
 ---
-- name: vim directory exist
+- name: directories exist
   file:
-    dest: ~/.vim
+    dest: "{{ item }}"
     state: directory
+  with_items:
+    - ~/.vim
+    - ~/.zshrc.d
 
 - name: install dotfiles to home directory
   file:
@@ -19,7 +22,8 @@
     - vimrc
     # will fail to link if this directory already exists
     # delete or rename it
-    - vim/colors
+    # TODO: handle this seperately
+    # - vim/colors
     - zshrc
     - cmds
     # for remapping capslock to escape

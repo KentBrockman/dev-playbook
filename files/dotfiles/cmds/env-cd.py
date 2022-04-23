@@ -8,7 +8,7 @@
 import os
 import os.path
 
-
+# TODO: source local .[bash|zsh]rc like files if found in local directory
 def unset(var):
     """Print POSIX command to unset environment variable."""
     print("unset {};".format(var))

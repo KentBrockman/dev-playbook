@@ -31,7 +31,7 @@
       hostname:
         name: "{{ hostname }}"
         use: systemd
-      when: set_hostname
+      when: set_hostname|default(false)
 
     # make it easy to run this playbook
     - name: ensure various directories exist

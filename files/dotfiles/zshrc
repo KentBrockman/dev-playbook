@@ -27,7 +27,15 @@ stty -ixon
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
+# source additional
+if [ $(test -f ~/.zshrc.d) ]; then
+  for file in $(ls ~/.zshrc.d); do
+    source $file
+  done
+fi
+
 # use oh-my-zsh for nice tab-autocompletion on specific commands
+# TODO: load plugins from variable source zshrc.d files before sourcing oh-my-zsh
 plugins=(
 	vagrant
 	terraform
@@ -54,6 +62,7 @@ fi
 if [ $(command -v pyenv) ]; then
 	# BUG: this will create a duplicate path entry for ~/.pyenv/shims
 	# this is because pyenv init - doesn't set PATH using pathmunge
+  # TODO: scrub path after pyenv init
 	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
 fi
@@ -63,7 +72,7 @@ if [ -d "$HOME/.node/bin" ]; then
   pathmunge "$HOME/.node/bin"
 fi
 
-# set up hustory
+# set up history
 # http://zsh.sourceforge.net/Doc/Release/Options.html#index-APPEND_005fHISTORY
 HISTFILE=~/.zsh_history
 # append to the history file, don't overwrite it

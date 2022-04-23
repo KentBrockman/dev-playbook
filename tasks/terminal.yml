@@ -91,7 +91,12 @@
 
 - name: link python executables
   tags: ['link-python']
-  import_tasks: tasks/link-python.yml
+  include_tasks: tasks/link-python.yml
+  with_items:
+    - src: /usr/bin/python3
+      dest: ~/.local/bin/python
+    - src: /usr/bin/pip3
+      dest: ~/.local/bin/pip
 
 - name: install python dev tools
   pip:
