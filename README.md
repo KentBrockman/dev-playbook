@@ -45,7 +45,7 @@ ansible-playbook main.yml -l dev_boxes -K
 
 If running against localhost, you will have to specify variables manually
 ```
-ansible-playbook main.yml -l localhost --extra-vars @group_vars/dev_boxes/vars.yml --extra-vars @host_vars/<YOUR HOST NAME>/vars.yml
+ansible-playbook main.yml -l localhost --extra-vars @group_vars/dev_boxes/vars.yml --extra-vars @host_vars/<YOUR HOST NAME>/vars.yml -K
 ```
 
 ## After Installing

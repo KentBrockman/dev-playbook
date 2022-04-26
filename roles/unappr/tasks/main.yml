@@ -1,6 +1,6 @@
 ---
 - name: Have flatpak runtime installed
-  become: ansible_facts.user_id == 'root' or false | bool
+  become: "{{ 'yes' if ansible_facts.user_id != 'root' else 'no' }}"
   apt:
     name: flatpak
 
@@ -10,7 +10,7 @@
     state: directory
 
 - name: Add the flathub flatpak repository remote to the user installation
-  become: ansible_facts.user_id == 'root' or false | bool
+  become: "{{ 'yes' if ansible_facts.user_id != 'root' else 'no' }}"
   flatpak_remote:
     name: flathub
     state: present
