@@ -11,7 +11,7 @@
   file:
     src: "{{ dev_playbook_directory }}/files/dotfiles/{{ item }}"
     dest: "~/.{{ item }}"
-    force: yes
+    force: true
     # symlink so improvements to any dotfile can be source controlled easily
     state: link
   with_items:
@@ -31,6 +31,24 @@
     # https://superuser.com/questions/729585/remap-keys-without-xmodmap-or-any-x-tools
     - Xmodmap
     - xinitrc
+
+- name: Find all zshrc configuration extensions
+  find:
+    paths: "{{ dev_playbook_directory }}/files/zshrc.d"
+    patterns: "*"
+    recurse: false
+    file_type: file
+  register: zshrc_extensions
+
+# https://unix.stackexchange.com/a/4040
+- name: install zshrc configuration extensions
+  file:
+    src: "{{ item.path }}"
+    dest: "~/.zshrc.d/{{ item.path | basename }}"
+    force: true
+    # symlink so improvements to any dotfile can be source controlled easily
+    state: link
+  with_items: "{{ zshrc_extensions.files }}"
 
 - name: install gitconfig
   tags:

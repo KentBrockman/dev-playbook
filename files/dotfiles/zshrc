@@ -53,51 +53,11 @@ if [ $(command -v mc) ]; then complete -o nospace -C $(which mc) mc; fi;
 # starship for prompt goodness
 if [ $(command -v starship) ]; then; eval "$(starship init zsh)"; fi;
 
-# initialize pyenv if installed
-# BUG: if in zshenv (which might be nice so pyenv is on all shells) vim buffers become super slow
-# unsure how to troubleshoot this at this time
-if [ -d "$HOME/.pyenv/bin" ]; then
-	pathmunge "$HOME/.pyenv/bin"
-fi
-if [ $(command -v pyenv) ]; then
-	# BUG: this will create a duplicate path entry for ~/.pyenv/shims
-	# this is because pyenv init - doesn't set PATH using pathmunge
-  # TODO: scrub path after pyenv init
-	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-fi
-
-# initialize node if installed
-if [ -d "$HOME/.node/bin" ]; then
-  pathmunge "$HOME/.node/bin"
-fi
-
 # set up history
 # http://zsh.sourceforge.net/Doc/Release/Options.html#index-APPEND_005fHISTORY
 HISTFILE=~/.zsh_history
 # append to the history file, don't overwrite it
 setopt APPEND_HISTORY
-
-if [ $(command -v fzf) ]; then
-	# use ripgrep to find files before passing them to fzf (default is find, which doesnt respect .gitignore)
-	export FZF_DEFAULT_COMMAND='rg --files --follow --hidden'
-
-	# Append this line to ~/.zshrc to enable fzf keybindings for Zsh:
-	# To see this in action:
-	# type <CTRL-R> for reverse search
-	# type <CTRL-T> for file search
-	# type <ALT-C> for cd
-	source /usr/share/doc/fzf/examples/key-bindings.zsh
-
-	# Append this line to ~/.zshrc to enable fuzzy auto-completion for Zsh:
-	# To see in action, type any of the following:
-	# less **<TAB>
-	# unset **<TAB>
-	# export **<TAB>
-	# unalias **<TAB>
-	# cd **<TAB> or cd ../**<TAB>
-	source /usr/share/doc/fzf/examples/completion.zsh
-fi
 
 # >>> conda initialize >>>
 # TODO: this hijacks my default python environment. make this conditional based on projects or something?
