@@ -32,7 +32,7 @@ On first setup, you may have to change the `host_vars` directory name or set up 
 Make sure your host names match what is in [inventory](./inventory) and are accessible by SSH.
 The slicker way to do this is to set up an [ssh config](https://linuxize.com/post/using-the-ssh-config-file/) as aliases to `host_var` directory names.
 
-#### Forget SSH, use localhost
+#### Use SSH or localhost
 
 Alternatively, use the `localhost` connection adapter if you wish to run against only your local machine by targetting localhost with `ansible-playbook -l localhost` and not worry about SSH access at all.
 
@@ -48,7 +48,7 @@ If you want to target a specific box:
 ansible-playbook main.yml -l phoenix -K
 ```
 
-If running against localhost, you will have to specify variables manually
+If running against localhost, you will have to specify variables manually or set up an alias for your variables to also apply on localhost
 ```
 ansible-playbook main.yml -l localhost --extra-vars @group_vars/dev_boxes/vars.yml --extra-vars @host_vars/<YOUR HOST NAME>/vars.yml -K
 ```

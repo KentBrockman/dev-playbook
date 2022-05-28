@@ -27,10 +27,13 @@ stty -ixon
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# source additional
-if [ $(test -f ~/.zshrc.d) ]; then
-  for file in $(ls ~/.zshrc.d); do
-    source $file
+source ~/.oh-my-zsh/oh-my-zsh.sh
+
+# source additional configs
+# NOTE: if any additional configs require oh-my-zsh.sh plugins, oh-my-zsh must be sourced first
+if [ -d $HOME/.zshrc.d ]; then
+  for file in $(ls $HOME/.zshrc.d); do
+    source "$HOME/.zshrc.d/$file"
   done
 fi
 
@@ -40,7 +43,6 @@ plugins=(
 	vagrant
 	terraform
 )
-source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # Add generated tab autocompletion flags to these programs
 # It is better than nothing
