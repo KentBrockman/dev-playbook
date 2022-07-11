@@ -5,17 +5,20 @@ let &packpath = &runtimepath
 set number
 set wrap
 
-" compatibility with SpaceVim
-" set runtimepath^=~/.vim_back runtimepath+=~/.vim_back/after
-" let &packpath = &runtimepath
-" source ~/.vimrc_back
-" set fzf
-" set background as function of appearnce (light vs dark)
-set background=light
-
 nmap <Space> :
 
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }   " Fuzzy File Finding
+" Fuzzy file finding
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
+
+" colorscheme
+Plug 'Th3Whit3Wolf/one-nvim'
 call plug#end()
+
+" use true colors
+set termguicolors
+colorscheme one-nvim
+set background=dark
+
+set tabstop=4
