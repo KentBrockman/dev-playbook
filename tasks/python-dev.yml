@@ -40,7 +40,7 @@
   vars:
     # pyenv/virtualenv versions to install
     # choose a tag for a release: https://github.com/pyenv/pyenv/releases
-    pyenv_version: "v2.2.3"
+    pyenv_version: "v2.3.1"
     # choose a tag for a release: https://github.com/pyenv/pyenv-virtualenv/releases
     pyenv_virtualenv_version: "v1.1.5"
     # Python versions to install
