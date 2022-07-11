@@ -47,3 +47,5 @@ function! ChangeBackground()
     set background=light
   endif
 endfunction
+
+call ChangeBackground()
