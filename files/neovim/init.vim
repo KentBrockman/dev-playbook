@@ -26,6 +26,10 @@ Plug 'jiangmiao/auto-pairs'
 " Text objects for indentation
 Plug 'michaeljsmith/vim-indent-object'
 
+Plug 'sheerun/vim-polyglot'
+" requires nvim 0.7.0
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 call plug#end()
 
 " use true colors
@@ -48,4 +52,5 @@ function! ChangeBackground()
   endif
 endfunction
 
+" call on startup to set the right background based on current system theme
 call ChangeBackground()
