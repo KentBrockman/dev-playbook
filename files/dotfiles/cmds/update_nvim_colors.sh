@@ -19,7 +19,8 @@ function send_keys() {
 				# echo $wix.$pix $lastproc;
 				# start with an escape, end with an enter
 				# Ctrl-V <your key> to record a literal keypress
-				tmux send-keys -t $wix.$pix ':call ChangeBackground()'
+				# final : is to clear the message
+				tmux send-keys -t $wix.$pix ':call ChangeBackground():'
 			fi
 		done
 	done
