@@ -23,6 +23,9 @@ function send_keys() {
 	done
 }
 
+# send keys initially
+send_keys
+
 # watch for changes in system theme via dconf
 # send keys to every nvim instance once a change has been detected
 dconf watch /org/gnome/desktop/interface/gtk-theme | grep --line-buffered gtk-theme | while IFS='' read -r line; do send_keys; done
