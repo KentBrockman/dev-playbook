@@ -1,5 +1,6 @@
 galaxy_info:
-  author: Kent Brockman
+  role_name: unappr
+  author: kentbrockman
   description: a single interface to install apps from many providers
 
   # If the issue tracker for your role is not on github, uncomment the
