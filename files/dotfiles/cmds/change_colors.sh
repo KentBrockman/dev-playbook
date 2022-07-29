@@ -19,5 +19,3 @@ gsettings set org.gnome.desktop.interface color-scheme $COLORSCHEME
 gsettings set org.gnome.desktop.interface gtk-theme $GTKTHEME
 # update org.gnome.gedit.preferences.editor scheme to ensure the gnome menu has the right item selected
 gsettings set org.gnome.gedit.preferences.editor scheme $SCHEME
-
-exit 0;
