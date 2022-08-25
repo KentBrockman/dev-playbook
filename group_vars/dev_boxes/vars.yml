@@ -130,6 +130,7 @@ gnome_extension_ids:
   # Sound Input & Output Device Chooser
   - 906
   # System Monitor
+  # TODO: gsettings set org.gnome.shell "disable-extension-version-validation" true
   - 120
   # Open Weather
   - 750
