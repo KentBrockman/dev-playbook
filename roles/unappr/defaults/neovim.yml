@@ -1,0 +1,7 @@
+---
+neovim:
+  providers:
+    apt:
+      name: neovim
+    flatpak:
+      application_id: io.neovim.nvim

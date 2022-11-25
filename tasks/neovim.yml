@@ -3,10 +3,13 @@
 # Specifically - my neovim config heavily depends on vim configuration
 
 - name: install neovim
-  become: true
-  apt:
-    name: neovim
-    state: present
+  vars:
+    applications:
+      # TODO: install from github....
+      - name: neovim
+        provider: apt
+  include_role:
+    name: "unappr"
 
     # TODO: adjust our config here....
 # - name: neovim configuration directory exists

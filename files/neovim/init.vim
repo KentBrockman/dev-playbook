@@ -54,3 +54,5 @@ endfunction
 
 " call on startup to set the right background based on current system theme
 call ChangeBackground()
+
+let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'

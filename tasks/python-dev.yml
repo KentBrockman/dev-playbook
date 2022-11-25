@@ -80,16 +80,9 @@
   tags: pyenv-environments
   include_tasks: tasks/python-environment.yml
   with_items:
-    # Python 2 neovim provider
-    - virtualenv_name: neovim2
-      version: 2.7.18
-      packages:
-        - neovim
-        - python-language-server
-        - jedi
     # Python 3 neovim provider
     - virtualenv_name: neovim3
-      version: 3.7.9
+      version: 3.10.1
       packages:
         - neovim
         - python-language-server
