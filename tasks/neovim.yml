@@ -23,8 +23,21 @@
     # dest: "~/.config/nvim/init.vim"
     # state: link
 
+- name: install neovim dependencies
+  become: true
+  apt:
+    name:
+      - ruby-dev
+
 - name: install neovim pip package
   pip:
     name:
       - neovim
     state: latest
+
+- name: install neovim gem
+  become: true
+  gem:
+    name: neovim
+    state: present
+    user_install: false
