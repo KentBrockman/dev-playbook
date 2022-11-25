@@ -4,6 +4,7 @@ let &packpath = &runtimepath
 
 set number
 set wrap
+set nohlsearch
 
 nmap <Space> :
 
@@ -27,8 +28,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'sheerun/vim-polyglot'
-" requires nvim 0.7.0
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
@@ -55,4 +54,15 @@ endfunction
 " call on startup to set the right background based on current system theme
 call ChangeBackground()
 
+" set up external providers
+" python - excepts pyenv installed cause i tend to use that. should be smarter
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
+
+" ruby - not disabled
+" `gem info --installed neovim` should return true
+
+" node - not disabled
+" `npm -g ls | grep neovim` should return true
+
+" disable perl
+let g:loaded_perl_provider = 0
