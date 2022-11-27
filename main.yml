@@ -77,6 +77,7 @@
       tags: ["gnome-desktop"]
 
     # development tools
+    # TODO: add langserver installations
     - import_tasks: tasks/python-dev.yml
       tags: ["python-dev"]
     - import_tasks: tasks/javascript-dev.yml
