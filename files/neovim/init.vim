@@ -111,17 +111,24 @@ end
 
 -- set up LSP servers
 -- `:h lspconfig-all` to see more language servers
+
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
+
+-- https://github.com/microsoft/pyright
 require('lspconfig')['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
+-- https://github.com/typescript-language-server/typescript-language-server
 require('lspconfig')['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
+-- https://github.com/ansible/ansible-language-server
 require('lspconfig')['ansiblels'].setup{}
 EOF
