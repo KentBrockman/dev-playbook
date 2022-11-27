@@ -46,7 +46,7 @@
       git:
         repo: https://github.com/kentbrockman/dev-playbook.git
         dest: ~/code/dev-playbook/
-        update: no
+        update: false
 
     - name: add run-dev-playbook to local scripts
       tags: ["run-dev-playbook"]
