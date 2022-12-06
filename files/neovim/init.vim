@@ -58,6 +58,30 @@ endfunction
 " call on startup to set the right background based on current system theme
 call ChangeBackground()
 
+" Taken from https://stackoverflow.com/a/6271254
+" Thanks xolox!
+function! s:get_visual_selection()
+    " Why is this not a built-in Vim script function?!
+    " return visual selection, <Space> break across <CR>
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, " ")
+endfunction
+
+" Search visual selection in google
+" Uses xdg-open so doenst work on wayland or over ssh...for now
+function SearchGoogle() range
+    silent execute "!xdg-open \"https://google.ca/search?q=" . s:get_visual_selection() "\" 2> /dev/null"
+endfunction
+command! -range SearchGoogle call g:SearchGoogle()
+vnoremap gx :call SearchGoogle()<CR>
+
 " set up external providers
 " python - excepts pyenv installed cause i tend to use that. should be smarter
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
@@ -70,7 +94,6 @@ let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 
 " disable perl
 let g:loaded_perl_provider = 0
-
 
 set completeopt=menu,menuone,noselect
 

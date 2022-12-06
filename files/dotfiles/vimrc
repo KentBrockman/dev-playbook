@@ -287,6 +287,6 @@ endfunction
 command! -nargs=+ -complete=command More call s:more(<q-args>)
 
 function s:search(question)
-    silent execute "!xdg-open \"https://google.ca/search?q=" . a:question "\""
+    silent execute "!xdg-open \"https://google.ca/search?q=" . a:question "\" 2> /dev/null"
 endfunction
 command! -nargs=+ -complete=command Search call s:search(<q-args>)
