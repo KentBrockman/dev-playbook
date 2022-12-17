@@ -82,6 +82,9 @@ endfunction
 command! -range SearchGoogle call g:SearchGoogle()
 vnoremap gx :call SearchGoogle()<CR>
 
+" change floating window color so it doesnt blend in with background
+highlight NormalFloat guibg=Black
+
 " set up external providers
 " python - excepts pyenv installed cause i tend to use that. should be smarter
 let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
@@ -157,8 +160,8 @@ cmp.setup({
     end,
   },
   window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
