@@ -11,17 +11,11 @@
   include_role:
     name: "unappr"
 
-    # TODO: adjust our config here....
-# - name: neovim configuration directory exists
-  # file:
-    # dest: ~/.config/nvim
-    # state: directory
-#
-# - name: install neovim config
-  # file:
-    # src: "{{ dev_playbook_directory }}/files/neovim/init.vim"
-    # dest: "~/.config/nvim/init.vim"
-    # state: link
+- name: install neovim config
+  file:
+    src: "{{ dev_playbook_directory }}/files/neovim"
+    dest: "~/.config/nvim"
+    state: link
 
 - name: install neovim dependencies
   become: true
