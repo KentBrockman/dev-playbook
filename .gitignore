@@ -1,3 +1,4 @@
 # hide from source control - strategy is to symlink custom config from another file
 config.custom.yml
 candy256_files
+files/neovim/plugin
