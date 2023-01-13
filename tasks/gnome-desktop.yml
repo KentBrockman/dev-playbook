@@ -13,6 +13,9 @@
   import_role:
     name: jaredhocutt.gnome_extensions
 
+# allow all verions of gnome extentions
+# this can cause stability issues but many useful extentions arent quickly updated
+# gsettings set org.gnome.shell disable-extension-version-validation "true"
 - name: set GNOME desktop preferences
   dconf:
     key: "{{ item.key | string }}"
