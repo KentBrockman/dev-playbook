@@ -1,0 +1,137 @@
+---
+screen_resolution: "2560x1600"
+preferred_shell: /usr/bin/zsh
+dev_playbook_checkout_dir: "{{ ansible_facts.env.HOME }}/code/dev-playbook"
+gnome_extension_ids:
+  # Alt-Tab Switcher Popup Delay Removal
+  - 1317
+  # Sound Input & Output Device Chooser
+  - 906
+  # System Monitor
+  # TODO: gsettings set org.gnome.shell "disable-extension-version-validation" true
+  - 120
+  # Open Weather
+  - 750
+  # Removable Drive Menu
+  - 7
+  # Automatic background slideshow
+  - 543
+  # Clipboard history
+  - 779
+  # StealMyFocus - remove "Window is ready" notification and focus on it
+  - 234
+  # remove blur effect from lockscreen
+  - 2935
+
+# gnome-desktop uses the dconf database under the hood for managing settings
+# dconf is a key-value storage and how you specify values can be a little finicky
+# see this for a good guide: https://docs.ansible.com/ansible/latest/modules/dconf_module.html#notes
+# basically: make sure values have single quotes around them so ansibles dconf module parses them as strings
+gnome_desktop_settings:
+  # display temperatures in celsius
+  - key: /org/gnome/GWeather/temperature-unit
+    value: "'centigrade'"
+
+    # use two fingers on the track pad to scroll
+  - key: /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled
+    value: "true"
+
+  # enable f.lux style blue-light reduction in display after sundown
+  - key: /org/gnome/settings-daemon/plugins/color/night-light-enabled
+    value: "true"
+
+  # enable location services
+  - key: /org/gnome/system/location
+    value: "true"
+
+  # determine where in the world we are for weather purposes
+  - key: /org/gnome/shell/weather/automatic-location
+    value: "true"
+
+  # if you use a different color scheme or font, overwrite these keys in your fork
+  # see the keys/values on your own system with the command: dconf dump /
+  # solarized dark
+  - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-color
+    value: "'rgb(0,43,54)'"
+  # solarized dark
+  - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/foreground-color
+    value: "'rgb(131,148,150)'"
+  # use solarized palette
+  - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/palette
+    value: "['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']"
+  # use powerline font provided + installed from this repo
+  - key: /org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/font
+    value: "'JetbrainsMono Medium 10'"
+
+  # Backslide parameters
+  - key: /org/gnome/shell/extensions/backslide/delay
+    value: "416"    # 6 hours
+
+  # system monitor settings
+  - key: /org/gnome/shell/extensions/system-monitor/background
+    value: "'ffffff16'"
+  - key: /org/gnome/shell/extensions/system-monitor/battery-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/battery-hidesystem
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/battery-show-menu
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/center-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/compact-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/cpu-individual-cores
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/cpu-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-show-text
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/disk-usage-style
+    value: "'bar'"
+  - key: /org/gnome/shell/extensions/system-monitor/fan-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/freq-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/gpu-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/gpu-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/gpu-show-menu
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/icon-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/memory-refresh-time
+    value: "1000"
+  - key: /org/gnome/shell/extensions/system-monitor/move-clock
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/net-display
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/net-show-menu
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/net-show-text
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/show-tooltip
+    value: "true"
+  - key: /org/gnome/shell/extensions/system-monitor/swap-display
+    value: "false"
+  - key: /org/gnome/shell/extensions/system-monitor/thermal-display
+    value: "true"
+
+wallpapers:
+  # directory to store wallpapers
+  directory: ~/Pictures/wallpapers
+  # only download if set to true
+  # downloading can take a awhile. some websites also think you're scraping them
+  # TODO: host our wallpapers somewhere else...
+  download: false
+  # put in wallpaper page - proper resolution will be selected + downloaded
+  urls:
+    - https://wallpaperscraft.com/wallpaper/lake_forest_snow_130421
+    - https://wallpaperscraft.com/wallpaper/waterfall_cliff_stone_141850
+    - https://wallpaperscraft.com/wallpaper/boat_mountains_lake_135258
+    - https://wallpaperscraft.com/wallpaper/mountains_lake_tops_129263
+    - https://wallpaperscraft.com/wallpaper/mountains_winter_snow_118389

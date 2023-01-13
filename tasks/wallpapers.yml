@@ -3,6 +3,11 @@
     dest: "{{ wallpapers.directory }}"
     state: directory
 
+# TODO: figure out how we can make this work for:
+# - X11 as well as wayland
+# - over ssh
+# `cat /sys/class/drm/card0-eDP-1/modes` shows display resolution
+# - might need to inspect what cards are available
 - name: determine screen resolution
   shell: "xrandr --screen 0 | grep ' connected' | awk '{ print $4 }'"
   register: xrandr_output
@@ -18,10 +23,10 @@
 
   - name: get wallpapers from wallpaperscraft.com
     get_url:
-      url: "{{ item + '_' + screen_resolution + '.jpg'}}"
+      url: "{{ item + '_' + screen_resolution + '.jpg' }}"
       dest: "{{ wallpapers.directory }}/{{ item | basename }}"
     # modify URL to resolution-appropriate version
-    with_items: '{{ wallpapers.urls | map("regex_replace", "/wallpaper/", "/image/") | map("regex_replace", "wallpaperscraft", "images.wallpaperscraft") }}'
+    with_items: '{{ wallpapers.urls | map("regex_replace", "/wallpaper/", "/image/single/") | map("regex_replace", "wallpaperscraft", "images.wallpaperscraft") }}'
     when: wallpapers.download
 
   - name: get images list

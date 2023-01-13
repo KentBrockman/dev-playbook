@@ -1,0 +1,43 @@
+---
+- hosts:
+  - pegasus
+
+  vars:
+    # determine where the playbook is on the target machine
+    # when local: use playbook_dir, which is a built in var for where playbook is on the host
+    # when on ssh: dev_playbook_checkout_dir is supplied by host or group vars to check it out
+    dev_playbook_directory: "{{ playbook_dir if ansible_connection == 'local' else dev_playbook_checkout_dir }}"
+
+  pre_tasks:
+    - name: update packages
+      become: true
+      apt:
+        update_cache: yes
+      changed_when: False
+
+  tasks:
+
+    # make it easy to run this playbook
+    - name: ensure various directories exist
+      file:
+        dest: "{{ item }}"
+        state: directory
+      with_items:
+        - ~/.local/bin
+        - ~/code
+
+    - name: make sure this repo exists on dev box
+      git:
+        repo: https://github.com/kentbrockman/dev-playbook.git
+        dest: ~/code/dev-playbook/
+        update: false
+
+    # set up terminal experience
+    - import_tasks: tasks/terminal.yml
+      tags: ["terminal"]
+    - import_tasks: tasks/remote-access.yml
+      tags: ["remote-access"]
+
+    # set up GUI experience
+    - import_tasks: tasks/gnome-desktop.yml
+      tags: ["gnome-desktop"]
