@@ -1,5 +1,5 @@
-- name: create wallpapers directory
-  file:
+- name: Create wallpapers directory
+  ansible.builtin.file:
     dest: "{{ wallpapers.directory }}"
     state: directory
 
@@ -8,43 +8,41 @@
 # - over ssh
 # `cat /sys/class/drm/card0-eDP-1/modes` shows display resolution
 # - might need to inspect what cards are available
-- name: determine screen resolution
-  shell: "xrandr --screen 0 | grep ' connected' | awk '{ print $4 }'"
+- name: Determine screen resolution
+  ansible.builtin.shell: "xrandr --screen 0 | grep ' connected' | awk '{ print $4 }'"
   register: xrandr_output
   changed_when: false
 
   # TODO: https://github.com/adi1090x/dynamic-wallpaper?
-- name: set wallpapers
-  block:
-
-  - name: parse resolution out of xrandr output
-    set_fact:
-      screen_resolution: "{{ xrandr_output.stdout_lines[0] | regex_replace('\\+.*$', '') }}"
-
-  - name: get wallpapers from wallpaperscraft.com
-    get_url:
-      url: "{{ item + '_' + screen_resolution + '.jpg' }}"
-      dest: "{{ wallpapers.directory }}/{{ item | basename }}"
-    # modify URL to resolution-appropriate version
-    with_items: '{{ wallpapers.urls | map("regex_replace", "/wallpaper/", "/image/single/") | map("regex_replace", "wallpaperscraft", "images.wallpaperscraft") }}'
-    when: wallpapers.download
-
-  - name: get images list
-    # need to do this cause dconf needs a very specific string format
-    # use python3 instead of python because it seems more likely to be
-    # available on PATH
-    shell: ls -d {{ wallpapers.directory }}/* | python3 -c "import sys, os; print(list([x.replace(os.linesep, '') for x in sys.stdin]))"
-    register: images
-    changed_when: false
-
-  - name: Report any failures with generating image list
-    debug:
-      msg: "Failed to generate image list: {{ images }}"
-    when: images.stderr != ""
-
-  - name: add images to backslide config
-    dconf:
-      key: /org/gnome/shell/extensions/backslide/image-list
-      value: "{{ images.stdout_lines[0] }}"
-
+- name: Set wallpapers
   when: not "Can't open display" in xrandr_output.stderr
+  block:
+    - name: Parse resolution out of xrandr output
+      ansible.builtin.set_fact:
+        screen_resolution: "{{ xrandr_output.stdout_lines[0] | regex_replace('\\+.*$', '') }}"
+
+    - name: Get wallpapers from wallpaperscraft.com
+      ansible.builtin.get_url:
+        url: "{{ item + '_' + screen_resolution + '.jpg' }}"
+        dest: "{{ wallpapers.directory }}/{{ item | basename }}"
+      # modify URL to resolution-appropriate version
+      with_items: '{{ wallpapers.urls | map("regex_replace", "/wallpaper/", "/image/single/") | map("regex_replace", "wallpaperscraft", "images.wallpaperscraft") }}'
+      when: wallpapers.download
+
+    - name: Get images list
+      # need to do this cause dconf needs a very specific string format
+      # use python3 instead of python because it seems more likely to be
+      # available on PATH
+      ansible.builtin.shell: ls -d {{ wallpapers.directory }}/* | python3 -c "import sys, os; print(list([x.replace(os.linesep, '') for x in sys.stdin]))"
+      register: images
+      changed_when: false
+
+    - name: Report any failures with generating image list
+      ansible.builtin.debug:
+        msg: "Failed to generate image list: {{ images }}"
+      when: images.stderr != ""
+
+    - name: Add images to backslide config
+      community.general.dconf:
+        key: /org/gnome/shell/extensions/backslide/image-list
+        value: "{{ images.stdout_lines[0] }}"

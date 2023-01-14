@@ -1,14 +1,14 @@
 ---
-- name: directories exist
-  file:
+- name: Directories exist
+  ansible.builtin.file:
     dest: "{{ item }}"
     state: directory
   with_items:
     - ~/.vim
     - ~/.zshrc.d
 
-- name: install dotfiles to home directory
-  file:
+- name: Install dotfiles to home directory
+  ansible.builtin.file:
     src: "{{ dev_playbook_directory }}/files/dotfiles/{{ item }}"
     dest: "~/.{{ item }}"
     force: true
@@ -33,7 +33,7 @@
     - xinitrc
 
 - name: Find all zshrc configuration extensions
-  find:
+  ansible.builtin.find:
     paths: "{{ dev_playbook_directory }}/files/zshrc.d"
     patterns: "*"
     recurse: false
@@ -41,8 +41,8 @@
   register: zshrc_extensions
 
 # https://unix.stackexchange.com/a/4040
-- name: install zshrc configuration extensions
-  file:
+- name: Install zshrc configuration extensions
+  ansible.builtin.file:
     src: "{{ item.path }}"
     dest: "~/.zshrc.d/{{ item.path | basename }}"
     force: true
@@ -50,9 +50,9 @@
     state: link
   with_items: "{{ zshrc_extensions.files }}"
 
-- name: install gitconfig
+- name: Install gitconfig
   tags:
     - gitconfig
-  template:
+  ansible.builtin.template:
     src: "files/dotfiles/gitconfig"
     dest: "~/.gitconfig"

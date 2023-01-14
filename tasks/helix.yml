@@ -1,6 +1,6 @@
 ---
-- name: install helix config
-  file:
+- name: Install helix config
+  ansible.builtin.file:
     src: "{{ dev_playbook_directory }}/files/helix"
     dest: "~/.config/helix"
     state: link

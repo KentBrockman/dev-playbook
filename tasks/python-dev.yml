@@ -14,9 +14,9 @@
 ---
 
 # from https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-- name: install python-dev dependencies
+- name: Install python-dev dependencies
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - make
       - build-essential
@@ -36,7 +36,7 @@
       - libffi-dev
       - liblzma-dev
 
-- name: install pyenv
+- name: Install pyenv
   vars:
     # pyenv/virtualenv versions to install
     # choose a tag for a release: https://github.com/pyenv/pyenv/releases
@@ -54,31 +54,33 @@
     pyenv_detect_existing_install: true
     # Dont modify dotfiles - will do it our own way
     pyenv_init_shell: false
-  include_role:
+  ansible.builtin.include_role:
     name: markosamuli.pyenv
 
-- name: confirm pyenv global is system
-  copy:
+- name: Confirm pyenv global is system
+  ansible.builtin.copy:
     src: files/python-dev/pyenv_version
     dest: ~/.pyenv/version
 
-- name: install development dependencies
-  pip:
+- name: Install development dependencies
+  ansible.builtin.pip:
     name:
       - python-language-server
       - jedi
       - tox
     state: latest
 
-- name: install pyenv ansible module to set up virtual environments
-  tags: pyenv-environments
-  import_role:
+- name: Install pyenv ansible module to set up virtual environments
+  tags:
+    - pyenv-environments
+  ansible.builtin.import_role:
     name: suzuki-shunsuke.pyenv-module
 
 # setup neovim Python providers in pyenv now that we have it
-- name: set up virtual environments
-  tags: pyenv-environments
-  include_tasks: tasks/python-environment.yml
+- name: Set up virtual environments
+  tags:
+    - pyenv-environments
+  ansible.builtin.include_tasks: tasks/python-environment.yml
   with_items:
     # Python 3 neovim provider
     - virtualenv_name: neovim3

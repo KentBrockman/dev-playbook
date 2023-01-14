@@ -65,11 +65,6 @@
       tags:
         - tmux-plugins
 
-    # TODO: this should be part of editor setup
-    - name: Set up vim plugins
-      ansible.builtin.import_tasks: tasks/vim-plugins.yml
-      tags:
-        - vim-plugins
     - name: Set up remote access options (e.g. ssh)
       ansible.builtin.import_tasks: tasks/remote-access.yml
       tags:

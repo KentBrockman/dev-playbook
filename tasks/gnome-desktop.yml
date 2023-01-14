@@ -1,7 +1,7 @@
 ---
-- name: dependencies for managing gnome-desktop settings via ansible
+- name: Dependencies for managing gnome-desktop settings via ansible
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       # package for recording system resource (CPU, RAM, etc) information
       - python3-psutil
@@ -9,19 +9,20 @@
       - gnome-tweaks
       - unzip
 
-- name: install gnome extensions
-  import_role:
+- name: Install gnome extensions
+  ansible.builtin.import_role:
     name: jaredhocutt.gnome_extensions
 
 # allow all verions of gnome extentions
 # this can cause stability issues but many useful extentions arent quickly updated
 # gsettings set org.gnome.shell disable-extension-version-validation "true"
-- name: set GNOME desktop preferences
-  dconf:
+- name: Set GNOME desktop preferences
+  community.general.dconf:
     key: "{{ item.key | string }}"
     value: "{{ item.value }}"
   with_items: "{{ gnome_desktop_settings }}"
 
-- name: get wallpapers
-  tags: ["wallpapers"]
-  import_tasks: tasks/wallpapers.yml
+- name: Get wallpapers
+  tags:
+    - wallpapers
+  ansible.builtin.import_tasks: tasks/wallpapers.yml

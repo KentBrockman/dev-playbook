@@ -1,15 +1,15 @@
 # enable remote access tools
 # e.g. ssh, vnc
 ---
-- name: install sshd
+- name: Install sshd
   become: true
-  apt:
+  ansible.builtin.apt:
     name: openssh-server
     state: present
 
-- name: sshd running
+- name: Run sshd
   become: true
-  service:
+  ansible.builtin.service:
     name: sshd
     state: started
-    enabled: yes
+    enabled: true

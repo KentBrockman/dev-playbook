@@ -4,21 +4,20 @@
 # https://github.com/nvm-sh/nvm/blob/master/README.md
 # https://www.npmjs.com/package/nave
 # https://www.npmjs.com/package/n
-- name: install nodejs and npm tools
+- name: Install nodejs and npm tools
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - nodejs
       - npm
 
 # HACK: use npx to run npm executables as binaries not in PATH
-- name: install global dev packages
+- name: Install global dev packages
   become: true
-  npm:
+  community.general.npm:
     name: "{{ item.name }}"
-    global: yes
+    global: true
     state: latest
   with_items:
     - name: yarn
     - name: neovim
-

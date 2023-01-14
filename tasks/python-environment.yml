@@ -1,16 +1,18 @@
 # Establish virtual environments with a given name and list of packages
 ---
-- name: create virtual environment '{{ item.virtualenv_name }}'
-  tags: ["pyenv-environments"]
+- name: Create virtual environment {{ item.virtualenv_name }}
+  tags:
+    - pyenv-environments
   pyenv:
     subcommand: virtualenv
     version: "{{ item.version }}"
     virtualenv_name: "{{ item.virtualenv_name }}"
     pyenv_root: "{{ pyenv_root }}"
 
-- name: install packages to {{ item.virtualenv_name }}
-  tags: ["pyenv-environments"]
-  pip:
+- name: Install packages to {{ item.virtualenv_name }}
+  tags:
+    - pyenv-environments
+  ansible.builtin.pip:
     name: "{{ item.packages }}"
     executable: "{{ pyenv_root }}/versions/{{ item.virtualenv_name }}/bin/pip"
-    state: "{{ item.state|default('latest') }}"
+    state: "{{ item.state | default('latest') }}"

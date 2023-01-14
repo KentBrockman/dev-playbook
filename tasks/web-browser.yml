@@ -1,14 +1,14 @@
 ---
-- name: install firefox
-  include_role:
+- name: Install firefox
+  ansible.builtin.include_role:
     name: basvandenbrink.firefox
 
 # see: https://bugzilla.mozilla.org/show_bug.cgi?id=444284#c102
 # search.json.mozlz4 is the file that contains search engines
 # Use this tool to decompress/compress the search.json.mozlz4 https://github.com/jusw85/mozlz4
 # use bookmark keywords (but know these dont work in tridactyl)
-- name: install search engines
-  file:
+- name: Install search engines
+  ansible.builtin.file:
     src: "{{ dev_playbook_directory }}/files/web-browser/search.json.mozlz4"
     dest: "{{ create_profile.profile_path }}/search.json.mozlz4"
     state: hard

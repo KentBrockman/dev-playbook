@@ -2,36 +2,36 @@
 # This task depends on vim-plugins
 # Specifically - my neovim config heavily depends on vim configuration
 
-- name: install neovim
+- name: Install neovim
   vars:
     applications:
       # TODO: install from github....
       - name: neovim
         provider: apt
-  include_role:
+  ansible.builtin.include_role:
     name: "unappr"
 
-- name: install neovim config
-  file:
+- name: Install neovim config
+  ansible.builtin.file:
     src: "{{ dev_playbook_directory }}/files/neovim"
     dest: "~/.config/nvim"
     state: link
 
-- name: install neovim dependencies
+- name: Install neovim dependencies
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - ruby-dev
 
-- name: install neovim pip package
-  pip:
+- name: Install neovim pip package
+  ansible.builtin.pip:
     name:
       - neovim
     state: latest
 
-- name: install neovim gem
+- name: Install neovim gem
   become: true
-  gem:
+  community.general.gem:
     name: neovim
     state: present
     user_install: false

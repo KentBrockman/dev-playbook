@@ -1,7 +1,7 @@
 ---
-- name: install terminal related packages
+- name: Install terminal related packages
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       # better shell and helper methods
       - zsh
@@ -28,12 +28,12 @@
       - tree
 
 - name: Install oh-my-zsh
-  git:
+  ansible.builtin.git:
     repo: https://github.com/robbyrussell/oh-my-zsh.git
     dest: ~/.oh-my-zsh
 
-- name: set permissions on .oh-my-zsh directories for security
-  file:
+- name: Set permissions on .oh-my-zsh directories for security
+  ansible.builtin.file:
     path: "{{ item.path }}"
     recurse: "{{ item.recurse }}"
     mode: g-w,o-w
@@ -45,12 +45,12 @@
     - path: "{{ ansible_facts.env.HOME }}/.oh-my-zsh/cache"
       recurse: false
 
-- name: confirm preferred shell executable is installed
-  stat:
+- name: Confirm preferred shell executable is installed
+  ansible.builtin.stat:
     path: "{{ preferred_shell }}"
   register: preferred_shell_executable
 
-- name: install starship
+- name: Install starship
   # BUG: andrewrothstein.unarchive_deps tries to install xz, which doesn't exist
   # Hypothesis: Pop!_OS not detected as a Debian-based OS so vars/Debian.yml is not used
   # Instead, the xz package from defaults/main.yml is instead. xz doesn't exist on debian
@@ -58,48 +58,51 @@
   vars:
     unarchive_deps_xz_pkgs:
       - xz-utils
-  import_role:
+  ansible.builtin.import_role:
     name: andrewrothstein.starship
 
-- name: install starship config
-  file:
+- name: Install starship config
+  ansible.builtin.file:
     src: "{{ dev_playbook_directory }}/files/dotfiles/starship.toml"
     dest: "~/.config/starship.toml"
     # symlink so improvements to any dotfile can be source controlled easily
     state: link
 
-- name: set preferred shell for user
+- name: Set preferred shell for user
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: "{{ preferred_shell }}"
   when: preferred_shell_executable.stat.exists
 
-- name: ensure local font directory exists
-  file:
+- name: Ensure local font directory exists
+  ansible.builtin.file:
     name: ~/.local/share/fonts
     state: directory
 
-- name: install custom fonts
-  synchronize:
+- name: Install custom fonts
+  ansible.posix.synchronize:
     src: files/fonts/
     dest: ~/.local/share/fonts/
 
-- name: setup root shell
-  tags: ['root-shell']
-  import_tasks: tasks/root-shell.yml
+- name: Setup root shell
+  tags:
+    - root-shell
+  ansible.builtin.import_tasks: tasks/root-shell.yml
 
-- name: link python executables
-  tags: ['link-python']
-  include_tasks: tasks/link-python.yml
+# TODO: figure out why i put this here again?
+- name: Link python executables
+  tags:
+    - link-python
+  ansible.builtin.include_tasks: tasks/link-python.yml
   with_items:
     - src: /usr/bin/python3
       dest: ~/.local/bin/python
     - src: /usr/bin/pip3
       dest: ~/.local/bin/pip
 
-- name: install python dev tools
-  pip:
+- name: Install python dev tools
+  ansible.builtin.pip:
     name:
       # rerun commands as files change. super handy
       - rerun

@@ -3,13 +3,13 @@
 # for that, make sure a python/pip executable are available to user/on path
 # this is also just generally handy for using python/pip keywords
 ---
-- name: check current destination
-  stat:
+- name: Check current destination
+  ansible.builtin.stat:
     path: "{{ item.dest }}"
   register: target
 
-- name: link file
-  file:
+- name: Link file
+  ansible.builtin.file:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     state: link

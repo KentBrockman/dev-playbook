@@ -1,27 +1,27 @@
 ---
-- name: tmux plugin manager directory exists
-  file:
+- name: Tmux plugin manager directory exists
+  ansible.builtin.file:
     name: ~/.tmux/plugins
     state: directory
 
-- name: install tmux plugin manager (tpm)
-  git:
+- name: Install tmux plugin manager (tpm)
+  ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm.git
     dest: ~/.tmux/plugins/tpm
     version: v3.0.0
 
-- name: detect tmux plugins requested to be installed
-  shell: awk '/@plugin/ {print $NF}' ~/.tmux.conf | sed "s/'//g" | awk -F"/" '{print $2}'
+- name: Detect tmux plugins requested to be installed
+  ansible.builtin.shell: awk '/@plugin/ {print $NF}' ~/.tmux.conf | sed "s/'//g" | awk -F"/" '{print $2}'
   register: plugins_requested
   changed_when: false
 
-- name: detect plugins already installed
-  shell: ls -1 $HOME/.tmux/plugins | grep -v 'tpm'
+- name: Detect plugins already installed
+  ansible.builtin.shell: ls -1 $HOME/.tmux/plugins | grep -v 'tpm'
   register: plugins_installed
   changed_when: false
 
-- name: install tmux plugins
-  command: ~/.tmux/plugins/tpm/bin/install_plugins
+- name: Install tmux plugins
+  ansible.builtin.command: ~/.tmux/plugins/tpm/bin/install_plugins
   environment:
     # needs to be set for plugins to install
     # this is a fairly standard place for tmux plugins
@@ -31,14 +31,14 @@
     TMUX_PLUGIN_MANAGER_PATH: $HOME/.tmux/plugins
   when: plugins_installed.stdout_lines | difference(plugins_requested.stdout_lines)
 
-- name: save tmux configuration script
-  copy:
+- name: Save tmux configuration script
+  ansible.builtin.copy:
     src: save_tmux_configuration.sh
     dest: ~/.tmux/save_tmux_configuration.sh
     mode: +x
 
-- name: periodically save tmux configuration
-  cron:
+- name: Periodically save tmux configuration
+  ansible.builtin.cron:
     name: save tmux panes
     # run every 20 minutes: https://crontab.guru/#*/20_*_*_*_*
     minute: "*/20"

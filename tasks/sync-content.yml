@@ -1,5 +1,5 @@
 ---
-- name: install syncthing service
+- name: Install syncthing service
   become: true
   vars:
     # https://github.com/syncthing/syncthing/tags
@@ -10,21 +10,23 @@
       ansible.builtin.apt_key:
         url: https://syncthing.net/release-key.gpg
         state: present
+
     - name: Add the "stable" channel to APT sources
-      apt_repository:
+      ansible.builtin.apt_repository:
         repo: deb https://apt.syncthing.net/ syncthing stable
         state: present
-    - name: install syncthing
-      apt:
+
+    - name: Install syncthing
+      ansible.builtin.apt:
         name: syncthing
         state: present
-        update_cache: yes
+        update_cache: true
 
   # start syncthing as a system service so syncing happens without user logging in
   # this falls down when multiple users may want multiple syncthing agents running on a single box
-- name: define syncthing.service unit file
+- name: Define syncthing.service unit file
   become: true
-  template:
+  ansible.builtin.template:
     # HACK: this ought to be part of role above
     src: files/sync-content/syncthing.service
     dest: /etc/systemd/system/syncthing.service
@@ -32,17 +34,17 @@
     group: root
     mode: 0644
 
-- name: start syncthing.service
+- name: Start syncthing.service
   become: true
-  systemd:
+  ansible.builtin.systemd:
     name: syncthing.service
-    enabled: yes
-    daemon_reload: yes
+    enabled: true
+    daemon_reload: true
 
-- name: raise inotify limits cause we sync a lot of content
+- name: Raise inotify limits cause we sync a lot of content
   # https://docs.syncthing.net/users/faq.html#inotify-limits
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sysctl.conf
     regexp: '^fs.inotify.max_user_watches'
     line: fs.inotify.max_user_watches=204800

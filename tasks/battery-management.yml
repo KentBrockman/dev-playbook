@@ -1,10 +1,10 @@
 ---
 # see https://support.system76.com/articles/battery/
-- name: install system76 recommended battery utilities
+- name: Install system76 recommended battery utilities
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - tlp
       - tlp-rdw
       - powertop
-    install_recommends: no
+    install_recommends: false

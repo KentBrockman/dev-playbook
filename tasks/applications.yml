@@ -1,49 +1,49 @@
 ---
 - name: Add the flathub flatpak repository remote to the user installation
-  flatpak_remote:
+  community.general.flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
 
-- name: install applications via unappr
-  include_role:
+- name: Install applications via unappr
+  ansible.builtin.include_role:
     name: "unappr"
 
-- name: install applications via flatpak
-  flatpak:
+- name: Install applications via flatpak
+  community.general.flatpak:
     name: "{{ item }}"
     state: present
     method: user
   with_items: "{{ flatpak_applications | default([]) }}"
 
-- name: install standalone binaries
-  get_url:
+- name: Install standalone binaries
+  ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
     mode: +x
   with_items: "{{ binary_applications | default([]) }}"
 
-- name: install applications via apt
+- name: Install applications via apt
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg: "{{ apt_applications | default([]) }}"
 
-- name: install deb packages from network
+- name: Install deb packages from network
   become: true
-  apt:
+  ansible.builtin.apt:
     deb: "{{ item }}"
   with_items: "{{ deb_packages | default([]) }}"
 
-- name: docker group exists
+- name: Docker group exists
   become: true
-  group:
+  ansible.builtin.group:
     name: docker
     state: present
 
-- name: ensure current user is in docker group
+- name: Ensure current user is in docker group
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     group: docker
-    append: yes
+    append: true

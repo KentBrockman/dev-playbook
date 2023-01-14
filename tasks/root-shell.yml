@@ -1,32 +1,32 @@
-- name: confirm preferred_shell installed
-  stat:
+- name: Confirm preferred_shell installed
+  ansible.builtin.stat:
     path: "{{ preferred_shell }}"
   register: stat_results
 
-- name: set up root shell
+- name: Set up root shell
   become: true
+  when: stat_results.stat.exists
   block:
-    - name: set root user to preferred_shell
-      user:
+    - name: Set root user to preferred_shell
+      ansible.builtin.user:
         name: root
         shell: "{{ preferred_shell }}"
 
-    - name: install zshrc to root
-      copy:
+    - name: Install zshrc to root
+      ansible.builtin.copy:
         src: "files/dotfiles/zshrc_root"
         dest: /root/.zshrc
         owner: root
         group: root
 
-    - name: root config exists
-      file:
+    - name: Root config exists
+      ansible.builtin.file:
         dest: /root/.config
         state: directory
 
-    - name: install starship config
-      file:
+    - name: Install starship config
+      ansible.builtin.file:
         src: "{{ dev_playbook_directory }}/files/dotfiles/starship.toml"
         dest: "/root/.config/starship.toml"
         # symlink so improvements to any dotfile can be source controlled easily
         state: link
-  when: stat_results.stat.exists

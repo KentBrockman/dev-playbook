@@ -2,9 +2,9 @@
 # couple different install guides
 # https://code.visualstudio.com/docs/setup/linux
 # https://code.visualstudio.com/docs/?dv=linux64_deb
-- name: install vscode
+- name: Install vscode
   become: true
-  apt:
+  ansible.builtin.apt:
     deb: https://go.microsoft.com/fwlink/?LinkID=760868
 
 # TODO: automate configuring VSCode using the following gist - https://gist.github.com/KentBrockman/f5b65a7d81e236973d21493b0be0ba54
@@ -13,9 +13,9 @@
 # move gist id to config.yml
 # unsure how to execute command to sync settings from commandline. does not appear to be a way
 
-- name: install packages to help vscode
+- name: Install packages to help vscode
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       # builds tag databases for symbol search
       - universal-ctags
