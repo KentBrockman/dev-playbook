@@ -92,6 +92,8 @@
       tags: ["vscode"]
     - import_tasks: tasks/neovim.yml
       tags: ["neovim"]
+    - import_tasks: tasks/helix.yml
+      tags: ["helix"]
 
     # other things
     - import_tasks: tasks/sync-content.yml

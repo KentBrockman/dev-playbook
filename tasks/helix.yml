@@ -1,0 +1,13 @@
+---
+- name: install helix config
+  file:
+    src: "{{ dev_playbook_directory }}/files/helix"
+    dest: "~/.config/helix"
+    state: link
+
+- name: Install helix editor
+  # TODO: switch to unappr
+  ansible.builtin.get_url:
+    url: "https://github.com/helix-editor/helix/releases/download/22.12/helix-22.12-x86_64.AppImage"
+    dest: "~/.local/bin/hx"
+    mode: +x
