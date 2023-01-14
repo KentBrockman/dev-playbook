@@ -1,17 +1,20 @@
-# BUG: v5.0.0 is not available on ansible-galaxy: https://galaxy.ansible.com/markosamuli/pyenv
-# Asked markosamuli if this will happen 16 Jan 2022: https://github.com/markosamuli/ansible-pyenv/pull/39#issuecomment-1014069043
-# HACK: check out github.com/markosamuli/ansible-pyenv/ to ~/.ansible/roles/markosamuli.pyenv manually @ tag v5.0.0
+---
+# https://galaxy.ansible.com/markosamuli/pyenv
 - name: markosamuli.pyenv
   version: v5.0.0
-- name: andrewrothstein.unarchive-deps
-  version: v1.1.5
+
+# https://galaxy.ansible.com/jaredhocutt/gnome_extensions
 - name: jaredhocutt.gnome_extensions
   version: master
-- name: spk.syncthing-debian
-  version: v2.4.0
+
+# https://github.com/basvandenbrink/ansible-firefox
 - name: basvandenbrink.firefox
   version: master
+
+# https://github.com/andrewrothstein/ansible-starship
 - name: andrewrothstein.starship
-  version:  v1.0.8
+  version: v1.0.8
+
+# https://github.com/suzuki-shunsuke/ansible-pyenv-module
 - name: suzuki-shunsuke.pyenv-module
-  version:  v2.3.1
+  version: v2.3.1
