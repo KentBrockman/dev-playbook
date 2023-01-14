@@ -1,5 +1,6 @@
 ---
-- hosts:
+- name: Set up development workstations the way I like them!
+  hosts:
   - dev_boxes
   - test_boxes
   - localhost
@@ -11,14 +12,14 @@
     dev_playbook_directory: "{{ playbook_dir if ansible_connection == 'local' else dev_playbook_checkout_dir }}"
 
   pre_tasks:
-    - name: update packages
+    - name: Update packages
       become: true
-      apt:
-        update_cache: yes
-      changed_when: False
+      ansible.builtin.apt:
+        update_cache: true
+      changed_when: false
 
-    - name: install python dependencies for playbook
-      pip:
+    - name: Install python dependencies for playbook
+      ansible.builtin.pip:
         name:
           # these dependencies needed for modules later on
           # experimentally discovered
@@ -26,79 +27,112 @@
           - psutil
 
   tasks:
-    - name: set hostname
-      tags: ["hostname"]
-      hostname:
-        name: "{{ hostname }}"
-        use: systemd
-      when: set_hostname|default(false)
-
     # make it easy to run this playbook
-    - name: ensure various directories exist
-      file:
+    - name: Ensure directories exist
+      ansible.builtin.file:
         dest: "{{ item }}"
         state: directory
       with_items:
         - ~/.local/bin
         - ~/code
 
-    - name: make sure this repo exists on dev box
-      git:
+    - name: Make sure this repo exists on dev box
+      ansible.builtin.git:
         repo: https://github.com/kentbrockman/dev-playbook.git
         dest: ~/code/dev-playbook/
         update: false
 
-    - name: add run-dev-playbook to local scripts
-      tags: ["run-dev-playbook"]
-      template:
+    - name: Add run-dev-playbook to local scripts
+      tags:
+        - run-dev-playbook
+      ansible.builtin.template:
         src: files/run-dev-playbook.sh
         dest: ~/.local/bin/run-dev-playbook.sh
         mode: 0544
 
-    # set up terminal experience
-    - import_tasks: tasks/dotfiles.yml
-      tags: ["dotfiles"]
+    - name: Install dotfiles
+      ansible.builtin.import_tasks: tasks/dotfiles.yml
+      tags:
+        - dotfiles
       when: install_dotfiles
-    - import_tasks: tasks/terminal.yml
-      tags: ["terminal"]
-    - import_tasks: tasks/tmux-plugins.yml
-      tags: ["tmux-plugins"]
-    - import_tasks: tasks/vim-plugins.yml
-      tags: ["vim-plugins"]
-    - import_tasks: tasks/remote-access.yml
-      tags: ["remote-access"]
+
+    - name: Set up nice terminal experience
+      ansible.builtin.import_tasks: tasks/terminal.yml
+      tags:
+        - terminal
+    - name: Set up nice tmux experience
+      ansible.builtin.import_tasks: tasks/tmux-plugins.yml
+      tags:
+        - tmux-plugins
+
+    # TODO: this should be part of editor setup
+    - name: Set up vim plugins
+      ansible.builtin.import_tasks: tasks/vim-plugins.yml
+      tags:
+        - vim-plugins
+    - name: Set up remote access options (e.g. ssh)
+      ansible.builtin.import_tasks: tasks/remote-access.yml
+      tags:
+        - remote-access
 
     # set up GUI experience
-    - import_tasks: tasks/web-browser.yml
-      tags: ["web-browser"]
-    - import_tasks: tasks/applications.yml
-      tags: ["applications"]
-    - import_tasks: tasks/gnome-desktop.yml
-      tags: ["gnome-desktop"]
+    - name: Configure web browser (firefox)
+      ansible.builtin.import_tasks: tasks/web-browser.yml
+      tags:
+        - web-browser
+    - name: Install applications we commonly use
+      ansible.builtin.import_tasks: tasks/applications.yml
+      tags:
+        - applications
+    - name: Set up nice gnome-desktop experience
+      ansible.builtin.import_tasks: tasks/gnome-desktop.yml
+      tags:
+        - gnome-desktop
 
     # development tools
     # TODO: add langserver installations
-    - import_tasks: tasks/python-dev.yml
-      tags: ["python-dev"]
-    - import_tasks: tasks/javascript-dev.yml
-      tags: ["javascript-dev"]
-    - import_tasks: tasks/golang-dev.yml
-      tags: ["golang-dev"]
-    - import_tasks: tasks/ops-dev.yml
-      tags: ["ops-dev"]
+    - name: Install dev tooling for writing python
+      ansible.builtin.import_tasks: tasks/python-dev.yml
+      tags:
+        - python-dev
+    - name: Install dev tooling for writing JS
+      ansible.builtin.import_tasks: tasks/javascript-dev.yml
+      tags:
+        - javascript-dev
+    - name: Install dev tooling for writing golang
+      ansible.builtin.import_tasks: tasks/golang-dev.yml
+      tags:
+        - golang-dev
+    - name: Install dev tooling for infrastructure development
+      ansible.builtin.import_tasks: tasks/ops-dev.yml
+      tags:
+        - ops-dev
 
     # text editors
-    - import_tasks: tasks/vscode.yml
-      tags: ["vscode"]
-    - import_tasks: tasks/neovim.yml
-      tags: ["neovim"]
-    - import_tasks: tasks/helix.yml
-      tags: ["helix"]
+    - name: Set up vscode
+      ansible.builtin.import_tasks: tasks/vscode.yml
+      tags:
+        - vscode
+
+    - name: Set up neovim
+      ansible.builtin.import_tasks: tasks/neovim.yml
+      tags:
+        - neovim
+
+    - name: Set up helix
+      ansible.builtin.import_tasks: tasks/helix.yml
+      tags:
+        - helix
 
     # other things
-    - import_tasks: tasks/sync-content.yml
-      tags: ["sync-content"]
+    - name: Set up syncthing
+      ansible.builtin.import_tasks: tasks/sync-content.yml
+      tags:
+        - sync-content
       when: sync_content
-    - import_tasks: tasks/battery-management.yml
-      tags: ["battery-management"]
+
+    - name: Set up battery management tools
+      ansible.builtin.import_tasks: tasks/battery-management.yml
+      tags:
+        - battery-management
       when: install_battery_management_tools
