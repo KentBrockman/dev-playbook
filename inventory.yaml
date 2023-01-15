@@ -12,9 +12,9 @@ all:
       ansible_host: minotaur.home
     golem:
     pve:
-      ansible_password: NotSaying
-    pve-workstation1:
       ansible_password: NiceTry
+    pve-workstation1:
+      ansible_password: NotSaying
     testbox:
     # TODO: add HTPC
 
@@ -38,4 +38,10 @@ all:
         benchpi:
 
     windows:
-      minotaur:
+      hosts:
+        minotaur:
+
+    proxmox_boxes:
+      hosts:
+        pve:
+        pve-workstation1:
