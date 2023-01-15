@@ -1,3 +1,0 @@
-hostname: dummybox
-set_hostname: false
-install_battery_management_tools: false

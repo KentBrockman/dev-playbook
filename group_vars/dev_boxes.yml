@@ -1,4 +1,8 @@
 ---
+# interpreter discovery is unreliable and finds python3.7
+# force env python3, assume ansible is installed there
+ansible_python_interpreter: /usr/bin/python3
+
 your_full_name: Kent Brockman
 your_email: brockman.ks@gmail.com
 install_dotfiles: true

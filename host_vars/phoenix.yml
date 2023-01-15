@@ -1,5 +1,6 @@
 # This is my laptop
 hostname: phoenix
+ansible_host: phoenix.local
 set_hostname: true
 install_battery_management_tools: true
 
