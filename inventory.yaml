@@ -16,6 +16,7 @@ all:
     pve-workstation1:
       ansible_password: NotSaying
     testbox:
+    prodbox1:
     # TODO: add HTPC
 
   children:
@@ -31,6 +32,8 @@ all:
     servers:
       hosts:
         thinkserver:
+        testbox:
+        prodbox1:
 
     rpis:
       hosts:
