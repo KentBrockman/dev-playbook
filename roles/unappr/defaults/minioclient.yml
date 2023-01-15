@@ -1,5 +1,5 @@
 ---
-minioClient:
+minio_client:
   # provider: executable
   # url: https://dl.min.io/client/mc/release/linux-amd64/archive/mc.RELEASE.2022-02-16T05-54-01Z
   # exec_name: mc

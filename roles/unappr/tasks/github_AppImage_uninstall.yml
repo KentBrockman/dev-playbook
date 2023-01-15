@@ -1,4 +1,4 @@
 # Unimplemented, see github_AppImage_install.yml
 ---
-- debug:
+- ansible.builtin.debug:    # noqa name[missing]
     msg: "uninstall_github_AppImage for {{ app.name }}"

@@ -1,4 +1,4 @@
 ---
 - name: Uninstall unused flatpaks
   become: "{{ 'yes' if ansible_facts.user_id != 'root' else 'no' }}"
-  shell: "flatpak uninstall --unused -y"
+  ansible.builtin.shell: "flatpak uninstall --unused -y"
