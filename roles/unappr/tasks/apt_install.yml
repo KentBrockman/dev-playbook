@@ -1,35 +1,35 @@
 ---
 # apt-cache madison {{ app.name }} | awk '{print $3}'
-- name: install with version
+- name: Install with version
+  when: "'version' in app"
   block:
-  - name: detect all versions available
-    shell: "apt-cache madison {{ app.name }} | awk '{print $3}'"
+  - name: Detect all versions available
+    ansible.builtin.shell: "apt-cache madison {{ app.name }} | awk '{print $3}'"
     register: output
     changed_when: false
 
-  - name: set available versions
-    set_fact:
+  - name: Set available versions
+    ansible.builtin.set_fact:
       available_versions: "{{ output.stdout_lines }}"
     changed_when: false
 
-  - name: confirm specified version is allowed
-    assert:
+  - name: Confirm specified version is allowed
+    ansible.builtin.assert:
       that: app.version in available_versions
       fail_msg: |
         "'{{ app.version }}' is not a valid version for {{ app.name }} from {{ app.provider }}.
         Please select one of: {{ available_versions }}"
 
-  - name: "install {{ app.name }} with version"
+  - name: "Install at specified version: {{ app.name }}"
     become: "{{ 'yes' if ansible_facts.user_id != 'root' else 'no' }}"
-    apt:
+    ansible.builtin.apt:
       name: "{{ catalog[app.name].providers.apt.name }}={{ app.version }}"
       state: present
     when: "'version' in app"
-  when: "'version' in app"
 
-- name: "install {{ app.name }} at latest"
+- name: "Install at latest: {{ app.name }}"
   become: "{{ 'yes' if ansible_facts.user_id != 'root' else 'no' }}"
-  apt:
+  ansible.builtin.apt:
     name: "{{ catalog[app.name].providers.apt.name }}"
     state: latest
     force: true

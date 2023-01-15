@@ -45,5 +45,5 @@
   become: true
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
-    group: docker
+    groups: docker
     append: true

@@ -2,8 +2,8 @@
 # https://docs.ansible.com/ansible/2.9/modules/flatpak_module.html#flatpak-module
 # flatpak module doesnt support versioning very well
 # It is also tricky to do via flatpak directly
-- name: install with version
-  fail:
+- name: Install with version
+  ansible.builtin.fail:
     msg: |
       "unappr cannot support flatpak versioning and this time.
 
@@ -16,8 +16,8 @@
       https://github.com/flatpak/flatpak/issues/3097#issuecomment-530583469"
   when: "'version' in app"
 
-- name: "install {{ app.name }} from flatpak"
-  flatpak:
+- name: "Install from flatpak: {{ app.name }}"
+  community.general.flatpak:
     name: "{{ catalog[app.name].providers.flatpak.application_id }}"
     state: present
     method: user

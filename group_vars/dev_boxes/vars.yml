@@ -1,7 +1,7 @@
 ---
 your_full_name: Kent Brockman
 your_email: brockman.ks@gmail.com
-install_dotfiles: True
+install_dotfiles: true
 preferred_shell: /usr/bin/zsh
 sync_content: true
 # this setup script requires a local checkout on the target machine

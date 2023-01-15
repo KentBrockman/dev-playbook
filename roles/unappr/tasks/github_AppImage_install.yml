@@ -7,38 +7,36 @@
 #       How the repo maintainer has decided to tag releases and name assets
 ---
 - name: HTTP GET release metadata from github API
-  uri:
+  ansible.builtin.uri:
     # strip off github.com/ from provided repo url
     # this lets the user opt to provide or not provide "github.com" in repo
     # the api call needs to be api.github.com/repos
     # i also like to use vim gx to web search stuff straight out of vim
     # :help gx to see more
     # this also wont negatively impact other editors
-    url: "https://api.github.com/repos/{{ catalog[app.name].providers.github_AppImage.repo|replace('github.com/', '') }}/releases"
+    url: "https://api.github.com/repos/{{ catalog[app.name].providers.github_AppImage.repo | replace('github.com/', '') }}/releases"
     return_content: true
     method: get
     headers:
       Accept: application/vnd.github.v3+json
   register: releases
 
-# troubleshooting HTTP response
-# show all the keys associate with response
 # - debug:
 #     msg: "{{ releases.keys() }}"
 
 # take the first (latest release) for now
 # BUG: latest release may be a prerelease/dev release
 # TODO: implement versioning
-- name: select release to use
-  set_fact:
+- name: Select release to use
+  ansible.builtin.set_fact:
     # access the response content as a dict with .json accessor
-    release: "{{ releases.json|first }}"
+    release: "{{ releases.json | first }}"
 
-- debug:
-    msg: "{{ release }}"
+# - debug:
+#     msg: "{{ release }}"
 
-- name: select asset to download
-  set_fact:
+- name: Select asset to download
+  ansible.builtin.set_fact:
     download_url: "{{ asset.browser_download_url }}"
   # hard to find a good way to do this
   # essentially - loop through all the assets util we find the AppImage one
@@ -49,8 +47,8 @@
   loop_control:
     loop_var: asset
 
-- debug:
-    msg: "{{ download_url }}"
+# - debug:
+#     msg: "{{ download_url }}"
 
 # go to obj.assets, take first that matches ^.*\.AppImage$ regex
 # of that match, download obj.assets[INDEX].download to path

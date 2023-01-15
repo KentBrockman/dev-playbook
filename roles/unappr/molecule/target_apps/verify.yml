@@ -7,5 +7,5 @@
   tasks:
   # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/assert_module.html
   - name: Example assertion
-    assert:
+    ansible.builtin.assert:
       that: true
